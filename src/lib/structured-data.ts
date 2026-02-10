@@ -12,7 +12,6 @@ export function getPersonAndWebsiteJsonLd() {
         jobTitle: siteConfig.role,
         url: absoluteUrl("/"),
         email: siteConfig.contact.email,
-        telephone: siteConfig.contact.phoneLabel,
         address: {
           "@type": "PostalAddress",
           addressLocality: "Atlanta",
