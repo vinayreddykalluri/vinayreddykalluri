@@ -19,7 +19,9 @@ export async function generateStaticParams() {
   return slugs.map((slug) => ({ slug }));
 }
 
-export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: BlogPostPageProps): Promise<Metadata> {
   const { slug } = await params;
   const post = await getPostBySlug(slug);
 
@@ -46,15 +48,27 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   return (
     <article className="surface-panel mx-auto max-w-3xl space-y-7 p-7 md:p-11">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(postJsonLd) }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(postJsonLd) }}
+      />
       <div className="space-y-3">
-        <p className="font-mono text-xs uppercase tracking-[0.08em] text-[color:var(--muted)]">{formatDate(post.date)}</p>
-        <h1 className="text-3xl font-semibold tracking-tight md:text-4xl">{post.title}</h1>
-        <p className="text-base text-[color:var(--muted)]">{post.description}</p>
+        <p className="font-mono text-xs uppercase tracking-[0.08em] text-[color:var(--muted)]">
+          {formatDate(post.date)}
+        </p>
+        <h1 className="text-3xl font-semibold tracking-tight md:text-4xl">
+          {post.title}
+        </h1>
+        <p className="text-base text-[color:var(--muted)]">
+          {post.description}
+        </p>
         {post.tags && post.tags.length > 0 ? (
           <ul className="flex flex-wrap gap-2">
             {post.tags.map((tag) => (
-              <li key={tag} className="soft-chip rounded-full px-3 py-1 text-xs">
+              <li
+                key={tag}
+                className="soft-chip rounded-full px-3 py-1 text-xs"
+              >
                 {tag}
               </li>
             ))}

@@ -48,12 +48,16 @@ export default function RootLayout({
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
-      <body className={`${manrope.variable} ${ibmPlexMono.variable} min-h-screen antialiased`}>
+      <body
+        className={`${manrope.variable} ${ibmPlexMono.variable} min-h-screen antialiased`}
+      >
         <FirebaseAnalytics />
         {/* Shared shell keeps every section one click away. */}
         <div className="site-bg min-h-screen">
           <SiteHeader />
-          <main className="mx-auto max-w-6xl px-4 pb-24 pt-14 sm:px-6 lg:px-8">{children}</main>
+          <main className="mx-auto max-w-6xl px-4 pb-24 pt-14 sm:px-6 lg:px-8">
+            {children}
+          </main>
           <SiteFooter />
         </div>
       </body>

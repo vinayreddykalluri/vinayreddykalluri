@@ -19,7 +19,9 @@ export function ExperienceCard({ experience }: ExperienceCardProps) {
         </p>
       </header>
 
-      <p className="mt-5 text-sm leading-7 text-[color:var(--muted)]">{experience.summary}</p>
+      <p className="mt-5 text-sm leading-7 text-[color:var(--muted)]">
+        {experience.summary}
+      </p>
 
       <ul className="mt-5 space-y-2.5 pl-5 text-sm leading-7 text-[color:var(--muted)]">
         {experience.highlights.map((highlight) => (

@@ -19,13 +19,22 @@ export function ProjectCard({ project }: ProjectCardProps) {
 
       <div className="mt-5 space-y-3.5 text-sm leading-7 text-[color:var(--muted)]">
         <p>
-          <span className="font-semibold text-[color:var(--foreground)]">Problem:</span> {project.problem}
+          <span className="font-semibold text-[color:var(--foreground)]">
+            Problem:
+          </span>{" "}
+          {project.problem}
         </p>
         <p>
-          <span className="font-semibold text-[color:var(--foreground)]">Solution:</span> {project.solution}
+          <span className="font-semibold text-[color:var(--foreground)]">
+            Solution:
+          </span>{" "}
+          {project.solution}
         </p>
         <p>
-          <span className="font-semibold text-[color:var(--foreground)]">Impact:</span> {project.impact}
+          <span className="font-semibold text-[color:var(--foreground)]">
+            Impact:
+          </span>{" "}
+          {project.impact}
         </p>
       </div>
 

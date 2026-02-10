@@ -13,17 +13,38 @@ export const siteConfig = {
   shortName: "VRK",
   role: "Senior Java Backend Engineer",
   location: "Atlanta, Georgia, USA",
-  headline: "Building high-throughput microservices and event platforms that scale with confidence.",
+  headline:
+    "Building high-throughput microservices and event platforms that scale with confidence.",
   summary:
     "Senior backend engineer with 7+ years of experience delivering resilient distributed systems across healthcare and enterprise domains using Java, Spring Boot, Kafka, Redis, MySQL, and AWS.",
   mission:
     "I focus on backend systems that improve reliability, decision speed, and service quality at scale. My long-term vision is to build nationally impactful software infrastructure and engineering practices aligned with the U.S. national interest.",
   metrics: [
-    { label: "Data Pipelines", value: "35TB+", detail: "Large-scale migration and ETL modernization" },
-    { label: "Experience", value: "7+ Years", detail: "Backend systems across healthcare and enterprise" },
-    { label: "Core Streaming", value: "Kafka", detail: "Event-driven architecture and real-time sync" },
-    { label: "Cloud Platform", value: "AWS", detail: "Production workloads and CI/CD automation" },
-    { label: "Recognition", value: "7 Awards", detail: "Impact awards for engineering outcomes" },
+    {
+      label: "Data Pipelines",
+      value: "35TB+",
+      detail: "Large-scale migration and ETL modernization",
+    },
+    {
+      label: "Experience",
+      value: "7+ Years",
+      detail: "Backend systems across healthcare and enterprise",
+    },
+    {
+      label: "Core Streaming",
+      value: "Kafka",
+      detail: "Event-driven architecture and real-time sync",
+    },
+    {
+      label: "Cloud Platform",
+      value: "AWS",
+      detail: "Production workloads and CI/CD automation",
+    },
+    {
+      label: "Recognition",
+      value: "7 Awards",
+      detail: "Impact awards for engineering outcomes",
+    },
   ],
   contact: {
     email: "vinayreddykalluri@gmail.com",
@@ -55,7 +76,11 @@ export const siteConfig = {
       period: "Jan 2022 - May 2023",
       logo: "/education/umkc-logo.png",
       logoAlt: "University of Missouri-Kansas City logo",
-      details: ["GPA: 3.9/4.0", "Hack-A-Roo Hackathon Winner", "Machine Learning Research Assistant"],
+      details: [
+        "GPA: 3.9/4.0",
+        "Hack-A-Roo Hackathon Winner",
+        "Machine Learning Research Assistant",
+      ],
     },
     {
       degree: "M.S. in Software Engineering",
@@ -70,10 +95,10 @@ export const siteConfig = {
     visa: "H-1B (Open to Transfer)",
     availability: "Remote / Hybrid / Onsite (U.S.)",
   },
-  footerTagline: "Engineering calm, scalable backend systems for real-world impact.",
+  footerTagline:
+    "Engineering calm, scalable backend systems for real-world impact.",
 } as const;
 
-export const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://vinayreddykalluri.vercel.app").replace(
-  /\/$/,
-  "",
-);
+export const siteUrl = (
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://vinayreddykalluri.vercel.app"
+).replace(/\/$/, "");

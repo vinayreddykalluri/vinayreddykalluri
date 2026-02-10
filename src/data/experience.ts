@@ -39,14 +39,22 @@ export const experiences: ExperienceItem[] = [
       "Designed throttled REST APIs for high-volume, low-latency traffic patterns.",
       "Executed profiling and load testing to maintain stability under 100K+ concurrent users.",
     ],
-    stack: ["Spring Cloud", "Kafka", "AWS", "CloudFormation", "REST APIs", "CI/CD"],
+    stack: [
+      "Spring Cloud",
+      "Kafka",
+      "AWS",
+      "CloudFormation",
+      "REST APIs",
+      "CI/CD",
+    ],
   },
   {
     role: "Software Engineer",
     company: "Legato Health Technologies",
     location: "Hyderabad, India",
     period: "Dec 2019 - Dec 2021",
-    summary: "Delivered high-throughput healthcare services and improved reliability through streaming and observability patterns.",
+    summary:
+      "Delivered high-throughput healthcare services and improved reliability through streaming and observability patterns.",
     highlights: [
       "Developed Spring Boot and JDBC Template applications handling millions of transactions per day.",
       "Built Kafka-based real-time pipelines to improve interoperability and reduce service coupling.",
@@ -61,7 +69,8 @@ export const experiences: ExperienceItem[] = [
     company: "Cognizant",
     location: "Hyderabad, India",
     period: "Sep 2017 - Nov 2019",
-    summary: "Built scalable event-driven backend services and improved operational efficiency for enterprise healthcare clients.",
+    summary:
+      "Built scalable event-driven backend services and improved operational efficiency for enterprise healthcare clients.",
     highlights: [
       "Developed event-driven microservices for Anthem Inc. processing 1M+ events per day with Spring Boot and Kafka.",
       "Improved response time by 35% through SQL optimization and Redis-based caching.",

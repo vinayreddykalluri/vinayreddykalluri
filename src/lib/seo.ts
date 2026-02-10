@@ -36,7 +36,8 @@ export function pageMetadata({
   noIndex = false,
 }: PageMetadataOptions): Metadata {
   const normalizedPath = normalizePath(path);
-  const pageTitle = title === "Home" ? siteConfig.name : `${title} | ${siteConfig.name}`;
+  const pageTitle =
+    title === "Home" ? siteConfig.name : `${title} | ${siteConfig.name}`;
 
   return {
     title,

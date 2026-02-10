@@ -56,10 +56,26 @@ body {
 
 .site-bg {
   background:
-    radial-gradient(circle at 8% 14%, rgba(116, 0, 184, 0.2) 0%, transparent 35%),
-    radial-gradient(circle at 88% 8%, rgba(94, 96, 206, 0.2) 0%, transparent 34%),
-    radial-gradient(circle at 85% 82%, rgba(78, 168, 222, 0.22) 0%, transparent 38%),
-    radial-gradient(circle at 22% 84%, rgba(128, 255, 219, 0.16) 0%, transparent 28%),
+    radial-gradient(
+      circle at 8% 14%,
+      rgba(116, 0, 184, 0.2) 0%,
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 88% 8%,
+      rgba(94, 96, 206, 0.2) 0%,
+      transparent 34%
+    ),
+    radial-gradient(
+      circle at 85% 82%,
+      rgba(78, 168, 222, 0.22) 0%,
+      transparent 38%
+    ),
+    radial-gradient(
+      circle at 22% 84%,
+      rgba(128, 255, 219, 0.16) 0%,
+      transparent 28%
+    ),
     var(--background);
 }
 
@@ -75,7 +91,11 @@ a {
 
 .surface-panel {
   border: 1px solid var(--border);
-  background: linear-gradient(160deg, var(--surface), rgba(255, 255, 255, 0.42));
+  background: linear-gradient(
+    160deg,
+    var(--surface),
+    rgba(255, 255, 255, 0.42)
+  );
   backdrop-filter: blur(8px);
   border-radius: 1.6rem;
   box-shadow: var(--shadow-soft);
@@ -87,7 +107,11 @@ a {
 
 .surface-card {
   border: 1px solid var(--border);
-  background: linear-gradient(160deg, var(--surface), rgba(255, 255, 255, 0.52));
+  background: linear-gradient(
+    160deg,
+    var(--surface),
+    rgba(255, 255, 255, 0.52)
+  );
   backdrop-filter: blur(8px);
   border-radius: 1.4rem;
   box-shadow: var(--shadow-soft);

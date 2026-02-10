@@ -18,7 +18,12 @@ export const projects: ProjectItem[] = [
       "International professionals often struggle to understand fragmented U.S. work visa and immigration pathways.",
     solution:
       "Built a content and insights platform concept that translates complex visa pathways into clear, actionable guidance with structured resource navigation.",
-    stack: ["Next.js", "TypeScript", "Tailwind CSS", "Static Content Architecture"],
+    stack: [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Static Content Architecture",
+    ],
     impact:
       "Established a mission-driven product direction at the intersection of technology, immigration clarity, and public access to information.",
   },
@@ -31,27 +36,32 @@ export const projects: ProjectItem[] = [
     solution:
       "Designed an event-driven backend platform using Spring Boot, Kafka, and MySQL with robust orchestration, retries, and consistency safeguards.",
     stack: ["Java", "Spring Boot", "Kafka", "MySQL", "Redis", "AWS"],
-    impact: "Reduced manual effort by 40%, improved consistency to 99.9%, and increased API throughput by 20%.",
+    impact:
+      "Reduced manual effort by 40%, improved consistency to 99.9%, and increased API throughput by 20%.",
   },
   {
     name: "Revisitly",
     type: "Product",
     period: "2023",
-    problem: "Users lacked a clean way to organize and revisit saved web discoveries across categories.",
+    problem:
+      "Users lacked a clean way to organize and revisit saved web discoveries across categories.",
     solution:
       "Created a lightweight product concept focused on quick capture, contextual notes, and deliberate revisit workflows.",
     stack: ["Flutter", "Dart", "REST APIs", "Firebase-ready Architecture"],
-    impact: "Improved personal knowledge retention patterns and validated product-thinking workflows from ideation to launch.",
+    impact:
+      "Improved personal knowledge retention patterns and validated product-thinking workflows from ideation to launch.",
   },
   {
     name: "Flames Match",
     type: "Mobile App",
     period: "2017 - 2018",
-    problem: "Needed a polished, production-ready Android app to publish and validate mobile development capabilities.",
+    problem:
+      "Needed a polished, production-ready Android app to publish and validate mobile development capabilities.",
     solution:
       "Designed and released a complete Android application with focused UX, responsive UI flows, and market distribution readiness.",
     stack: ["Android SDK", "Java", "Material Design", "Google Play"],
-    impact: "Published on Google Play and established early proof of end-to-end product execution.",
+    impact:
+      "Published on Google Play and established early proof of end-to-end product execution.",
     href: "https://play.google.com/dev?id=56692869",
   },
 ];

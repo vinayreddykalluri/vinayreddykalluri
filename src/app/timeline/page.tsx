@@ -8,7 +8,8 @@ export const dynamic = "force-static";
 
 export const metadata: Metadata = pageMetadata({
   title: "Timeline",
-  description: "Living timeline of career milestones, launches, awards, publications, and learning moments.",
+  description:
+    "Living timeline of career milestones, launches, awards, publications, and learning moments.",
   path: "/timeline",
 });
 
@@ -22,14 +23,17 @@ const categoryStyles: Record<TimelineCategory, string> = {
 
 function groupTimelineByYear() {
   // Keep timeline rendering simple by grouping once on the server.
-  return timelineEvents.reduce<Record<number, typeof timelineEvents>>((acc, event) => {
-    const year = event.year;
-    if (!acc[year]) {
-      acc[year] = [];
-    }
-    acc[year].push(event);
-    return acc;
-  }, {});
+  return timelineEvents.reduce<Record<number, typeof timelineEvents>>(
+    (acc, event) => {
+      const year = event.year;
+      if (!acc[year]) {
+        acc[year] = [];
+      }
+      acc[year].push(event);
+      return acc;
+    },
+    {},
+  );
 }
 
 export default function TimelinePage() {
@@ -42,16 +46,26 @@ export default function TimelinePage() {
     <div className="space-y-10 md:space-y-12">
       <header className="max-w-3xl space-y-4">
         <p className="kicker">Timeline</p>
-        <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">Living archive of growth and execution</h1>
+        <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">
+          Living archive of growth and execution
+        </h1>
         <p className="text-base leading-7 text-[color:var(--muted)]">
-          Career milestones, project launches, awards, publications, and learning checkpoints organized by year.
+          Career milestones, project launches, awards, publications, and
+          learning checkpoints organized by year.
         </p>
       </header>
 
       <div className="space-y-10">
         {years.map((year) => (
-          <section key={year} aria-labelledby={`year-${year}`} className="surface-panel p-6 md:p-7">
-            <h2 id={`year-${year}`} className="text-2xl font-semibold tracking-tight">
+          <section
+            key={year}
+            aria-labelledby={`year-${year}`}
+            className="surface-panel p-6 md:p-7"
+          >
+            <h2
+              id={`year-${year}`}
+              className="text-2xl font-semibold tracking-tight"
+            >
               {year}
             </h2>
 
@@ -64,15 +78,21 @@ export default function TimelinePage() {
                       <span className="absolute -left-[1.55rem] top-2 h-3 w-3 rounded-full border border-[var(--accent)] bg-[color:var(--surface)]" />
                       <article className="surface-card rounded-xl p-4">
                         <div className="flex flex-wrap items-center justify-between gap-2">
-                          <h3 className="text-base font-semibold">{event.title}</h3>
-                          <span className={`rounded-full px-2.5 py-1 text-xs font-medium ${categoryStyles[event.category]}`}>
+                          <h3 className="text-base font-semibold">
+                            {event.title}
+                          </h3>
+                          <span
+                            className={`rounded-full px-2.5 py-1 text-xs font-medium ${categoryStyles[event.category]}`}
+                          >
                             {event.category}
                           </span>
                         </div>
                         <p className="mt-1 font-mono text-xs uppercase tracking-[0.08em] text-[color:var(--muted)]">
                           {formatDate(event.date)}
                         </p>
-                        <p className="mt-2 text-sm leading-6 text-[color:var(--muted)]">{event.details}</p>
+                        <p className="mt-2 text-sm leading-6 text-[color:var(--muted)]">
+                          {event.details}
+                        </p>
                       </article>
                     </RevealOnScroll>
                   </li>

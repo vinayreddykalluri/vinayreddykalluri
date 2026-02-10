@@ -18,7 +18,11 @@ export function getPersonAndWebsiteJsonLd() {
           addressRegion: "Georgia",
           addressCountry: "US",
         },
-        sameAs: [siteConfig.contact.linkedin, siteConfig.contact.github, siteConfig.contact.medium],
+        sameAs: [
+          siteConfig.contact.linkedin,
+          siteConfig.contact.github,
+          siteConfig.contact.medium,
+        ],
       },
       {
         "@type": "WebSite",

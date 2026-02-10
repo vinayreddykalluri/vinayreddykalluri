@@ -6,7 +6,8 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: "Vinay Reddy Kalluri - Personal Website",
     short_name: "VRK",
-    description: "Senior Java Backend Engineer portfolio focused on scalable microservices and distributed systems.",
+    description:
+      "Senior Java Backend Engineer portfolio focused on scalable microservices and distributed systems.",
     start_url: "/",
     display: "standalone",
     background_color: "#090d1f",

@@ -4,7 +4,15 @@ import { getAllPosts } from "@/lib/blog";
 
 export const dynamic = "force-static";
 
-const staticRoutes = ["/", "/about", "/career", "/projects", "/blog", "/timeline", "/contact"];
+const staticRoutes = [
+  "/",
+  "/about",
+  "/career",
+  "/projects",
+  "/blog",
+  "/timeline",
+  "/contact",
+];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const posts = await getAllPosts();

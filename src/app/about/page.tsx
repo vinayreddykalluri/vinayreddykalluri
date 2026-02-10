@@ -7,7 +7,8 @@ export const dynamic = "force-static";
 
 export const metadata: Metadata = pageMetadata({
   title: "About",
-  description: "Story and professional philosophy of Vinay Reddy Kalluri: India to U.S., builder mindset, and mission-driven engineering.",
+  description:
+    "Story and professional philosophy of Vinay Reddy Kalluri: India to U.S., builder mindset, and mission-driven engineering.",
   path: "/about",
 });
 
@@ -18,9 +19,12 @@ export default function AboutPage() {
     <div className="space-y-14 md:space-y-16">
       <header className="max-w-4xl space-y-4 md:space-y-5">
         <p className="kicker">About</p>
-        <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">A builder&apos;s journey with systems, scale, and purpose</h1>
+        <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">
+          A builder&apos;s journey with systems, scale, and purpose
+        </h1>
         <p className="max-w-3xl text-base leading-8 text-[color:var(--muted)]">
-          I build backend systems that stay reliable under pressure, communicate clearly to stakeholders, and create measurable business outcomes.
+          I build backend systems that stay reliable under pressure, communicate
+          clearly to stakeholders, and create measurable business outcomes.
         </p>
       </header>
 
@@ -38,10 +42,17 @@ export default function AboutPage() {
             <h2 className="text-xl font-semibold">Current Focus</h2>
             <div className="mt-4 grid gap-3 sm:grid-cols-2">
               {spotlightMetrics.map((metric) => (
-                <div key={metric.label} className="surface-card rounded-xl p-3.5">
-                  <p className="text-xs text-[color:var(--muted)]">{metric.label}</p>
+                <div
+                  key={metric.label}
+                  className="surface-card rounded-xl p-3.5"
+                >
+                  <p className="text-xs text-[color:var(--muted)]">
+                    {metric.label}
+                  </p>
                   <p className="mt-1 text-lg font-semibold">{metric.value}</p>
-                  <p className="mt-1 text-xs leading-5 text-[color:var(--muted)]">{metric.detail}</p>
+                  <p className="mt-1 text-xs leading-5 text-[color:var(--muted)]">
+                    {metric.detail}
+                  </p>
                 </div>
               ))}
             </div>
@@ -54,7 +65,10 @@ export default function AboutPage() {
             <h2 className="text-xl font-semibold">Engineering Mindset</h2>
             <ul className="mt-4 space-y-3 text-sm text-[color:var(--muted)]">
               {siteConfig.mindset.map((item, index) => (
-                <li key={item} className="surface-card flex items-start gap-3 rounded-xl px-3.5 py-3">
+                <li
+                  key={item}
+                  className="surface-card flex items-start gap-3 rounded-xl px-3.5 py-3"
+                >
                   <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[linear-gradient(135deg,#7400B8,#5E60CE)] text-xs font-semibold text-white">
                     {index + 1}
                   </span>
@@ -68,17 +82,26 @@ export default function AboutPage() {
 
       <section className="surface-panel relative overflow-hidden p-8 md:p-10">
         <div className="absolute right-0 top-0 h-28 w-28 rounded-full bg-[color:var(--accent-soft)] blur-2xl" />
-        <h2 className="text-2xl font-semibold">Mission &amp; Long-Term Vision</h2>
-        <p className="relative mt-4 max-w-4xl leading-8 text-[color:var(--muted)]">{siteConfig.mission}</p>
+        <h2 className="text-2xl font-semibold">
+          Mission &amp; Long-Term Vision
+        </h2>
+        <p className="relative mt-4 max-w-4xl leading-8 text-[color:var(--muted)]">
+          {siteConfig.mission}
+        </p>
       </section>
 
       <section className="grid gap-5 lg:grid-cols-2">
         <article className="surface-panel p-7 md:p-8">
           <h2 className="text-2xl font-semibold">Education</h2>
-          <p className="mt-2 text-sm text-[color:var(--muted)]">Academic foundation, research exposure, and outcomes.</p>
+          <p className="mt-2 text-sm text-[color:var(--muted)]">
+            Academic foundation, research exposure, and outcomes.
+          </p>
           <div className="mt-5 space-y-4">
             {siteConfig.education.map((item) => (
-              <div key={`${item.degree}-${item.period}`} className="surface-card overflow-hidden rounded-2xl">
+              <div
+                key={`${item.degree}-${item.period}`}
+                className="surface-card overflow-hidden rounded-2xl"
+              >
                 <div className="h-1.5 bg-[linear-gradient(90deg,#7400B8,#5E60CE,#4EA8DE)]" />
                 <div className="space-y-4 p-5">
                   <div className="flex items-start gap-4">
@@ -92,8 +115,12 @@ export default function AboutPage() {
                       />
                     </div>
                     <div className="min-w-0 flex-1">
-                      <h3 className="text-base leading-6 font-semibold">{item.degree}</h3>
-                      <p className="mt-1 text-sm leading-6 text-[color:var(--muted)]">{item.institution}</p>
+                      <h3 className="text-base leading-6 font-semibold">
+                        {item.degree}
+                      </h3>
+                      <p className="mt-1 text-sm leading-6 text-[color:var(--muted)]">
+                        {item.institution}
+                      </p>
                       <p className="mt-2 inline-flex rounded-full border border-[var(--border)] bg-[color:var(--accent-soft)] px-2.5 py-1 font-mono text-[11px] uppercase tracking-[0.08em] text-[color:var(--accent-strong)]">
                         {item.period}
                       </p>
@@ -114,7 +141,10 @@ export default function AboutPage() {
                           <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-[color:var(--accent)]" />
                           {hasValue ? (
                             <p>
-                              <span className="font-semibold text-[color:var(--foreground)]">{left}:</span> {right}
+                              <span className="font-semibold text-[color:var(--foreground)]">
+                                {left}:
+                              </span>{" "}
+                              {right}
                             </p>
                           ) : (
                             <p>{detail}</p>
@@ -133,8 +163,13 @@ export default function AboutPage() {
           <h2 className="text-2xl font-semibold">Selected Achievements</h2>
           <ul className="mt-5 space-y-3">
             {siteConfig.achievements.map((item, index) => (
-              <li key={item} className="surface-card rounded-xl px-4 py-3.5 text-sm leading-7 text-[color:var(--muted)]">
-                <span className="mr-2 font-mono text-xs text-[color:var(--accent)]">0{index + 1}</span>
+              <li
+                key={item}
+                className="surface-card rounded-xl px-4 py-3.5 text-sm leading-7 text-[color:var(--muted)]"
+              >
+                <span className="mr-2 font-mono text-xs text-[color:var(--accent)]">
+                  0{index + 1}
+                </span>
                 {item}
               </li>
             ))}

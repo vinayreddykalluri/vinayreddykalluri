@@ -7,7 +7,10 @@ type RevealOnScrollProps = {
   className?: string;
 };
 
-export function RevealOnScroll({ children, className = "" }: RevealOnScrollProps) {
+export function RevealOnScroll({
+  children,
+  className = "",
+}: RevealOnScrollProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
