@@ -31,11 +31,6 @@ export default function ContactPage() {
               </a>
             </li>
             <li>
-              <a className="text-[color:var(--accent)] transition hover:text-[color:var(--accent-strong)]" href={siteConfig.contact.phoneHref}>
-                {siteConfig.contact.phoneLabel}
-              </a>
-            </li>
-            <li>
               <a className="text-[color:var(--accent)] transition hover:text-[color:var(--accent-strong)]" href={siteConfig.contact.linkedin} target="_blank" rel="noreferrer">
                 LinkedIn Profile
               </a>

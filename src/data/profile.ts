@@ -26,8 +26,6 @@ export const siteConfig = {
     { label: "Recognition", value: "7 Awards", detail: "Impact awards for engineering outcomes" },
   ],
   contact: {
-    phoneLabel: "+1 (660) 492-8656",
-    phoneHref: "tel:+16604928656",
     email: "vinayreddykalluri@gmail.com",
     linkedin: "https://linkedin.com/in/vinayreddykalluri",
     github: "https://github.com/vinayreddykalluri",
