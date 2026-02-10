@@ -54,7 +54,7 @@ export default function ContactPage() {
           </p>
           <a
             href={`mailto:${siteConfig.contact.email}`}
-            className="mt-6 inline-flex rounded-full bg-white px-5 py-2 text-sm font-semibold text-[#5E60CE] transition hover:-translate-y-0.5"
+            className="mt-6 inline-flex items-center gap-2 rounded-full border border-white/40 bg-[#0b1022] px-6 py-2.5 text-sm font-semibold text-white shadow-[0_14px_28px_rgba(11,16,34,0.45)] transition hover:-translate-y-0.5 hover:bg-[#131a34] focus-visible:outline-white"
           >
             Start a conversation
           </a>
