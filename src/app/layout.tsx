@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
+import { FirebaseAnalytics } from "@/components/firebase-analytics";
 import { IBM_Plex_Mono, Manrope } from "next/font/google";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { siteConfig, siteUrl } from "@/data/profile";
+import { siteMetadata } from "@/lib/seo";
 import "./globals.css";
 
 const manrope = Manrope({
@@ -18,7 +19,6 @@ const ibmPlexMono = IBM_Plex_Mono({
   display: "swap",
 });
 
-const title = `${siteConfig.name} | ${siteConfig.role}`;
 const themeInitScript = `
 (() => {
   try {
@@ -34,40 +34,8 @@ const themeInitScript = `
 `;
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
-  title: {
-    default: title,
-    template: `%s | ${siteConfig.name}`,
-  },
-  description: siteConfig.summary,
-  keywords: [
-    "Senior Java Backend Engineer",
-    "Spring Boot",
-    "Kafka",
-    "AWS",
-    "Distributed Systems",
-    "Microservices",
-    "Atlanta Engineer",
-    "EB2 NIW",
-  ],
-  authors: [{ name: siteConfig.name }],
-  alternates: {
-    canonical: "/",
-  },
-  openGraph: {
-    title,
-    description: siteConfig.summary,
-    siteName: siteConfig.name,
-    type: "website",
-    locale: "en_US",
-    url: "/",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title,
-    description: siteConfig.summary,
-  },
-  category: "technology",
+  ...siteMetadata,
+  manifest: "/manifest.webmanifest",
 };
 
 export default function RootLayout({
@@ -81,6 +49,7 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
       <body className={`${manrope.variable} ${ibmPlexMono.variable} min-h-screen antialiased`}>
+        <FirebaseAnalytics />
         {/* Shared shell keeps every section one click away. */}
         <div className="site-bg min-h-screen">
           <SiteHeader />

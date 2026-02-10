@@ -2,13 +2,15 @@ import type { Metadata } from "next";
 import { RevealOnScroll } from "@/components/reveal-on-scroll";
 import { formatDate } from "@/lib/format";
 import { timelineEvents, type TimelineCategory } from "@/data/timeline";
+import { pageMetadata } from "@/lib/seo";
 
 export const dynamic = "force-static";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Timeline",
   description: "Living timeline of career milestones, launches, awards, publications, and learning moments.",
-};
+  path: "/timeline",
+});
 
 const categoryStyles: Record<TimelineCategory, string> = {
   Career: "border border-[#5E60CE55] bg-[#5E60CE1A] text-[#5E60CE]",

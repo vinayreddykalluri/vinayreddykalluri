@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { getAllPostSlugs, getPostBySlug } from "@/lib/blog";
 import { formatDate } from "@/lib/format";
+import { pageMetadata } from "@/lib/seo";
+import { getBlogPostingJsonLd } from "@/lib/structured-data";
 
 type BlogPostPageProps = {
   params: Promise<{
@@ -21,18 +23,30 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
   const { slug } = await params;
   const post = await getPostBySlug(slug);
 
-  return {
+  return pageMetadata({
     title: post.title,
     description: post.description,
-  };
+    path: `/blog/${slug}`,
+    type: "article",
+    publishedTime: post.date,
+    tags: post.tags ?? [],
+  });
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params;
   const post = await getPostBySlug(slug);
+  const postJsonLd = getBlogPostingJsonLd({
+    title: post.title,
+    description: post.description,
+    slug,
+    publishedTime: post.date,
+    tags: post.tags ?? [],
+  });
 
   return (
     <article className="surface-panel mx-auto max-w-3xl space-y-7 p-7 md:p-11">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(postJsonLd) }} />
       <div className="space-y-3">
         <p className="font-mono text-xs uppercase tracking-[0.08em] text-[color:var(--muted)]">{formatDate(post.date)}</p>
         <h1 className="text-3xl font-semibold tracking-tight md:text-4xl">{post.title}</h1>

@@ -25,6 +25,16 @@ npm run start
 
 Build output is generated in `out/`.
 
+## SEO Setup
+
+Set the production site URL before building/deploying:
+
+```bash
+NEXT_PUBLIC_SITE_URL=https://your-domain.com
+```
+
+This is used for canonical URLs, sitemap URLs, and structured metadata.
+
 ## Structure
 
 ```text

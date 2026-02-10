@@ -1,0 +1,22 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Vinay Reddy Kalluri website preview">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1A1040" />
+      <stop offset="0.45" stop-color="#3A1A8A" />
+      <stop offset="1" stop-color="#4EA8DE" />
+    </linearGradient>
+    <linearGradient id="chip" x1="0" y1="0" x2="280" y2="52" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7400B8" />
+      <stop offset="1" stop-color="#5E60CE" />
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)" />
+  <circle cx="1040" cy="115" r="190" fill="#80FFDB" fill-opacity="0.14" />
+  <circle cx="120" cy="540" r="210" fill="#6930C3" fill-opacity="0.2" />
+  <rect x="86" y="85" rx="26" ry="26" width="280" height="52" fill="url(#chip)" />
+  <text x="226" y="118" fill="white" font-family="Manrope, Arial, sans-serif" font-size="24" text-anchor="middle">Senior Backend Engineer</text>
+  <text x="86" y="250" fill="white" font-family="Manrope, Arial, sans-serif" font-size="70" font-weight="700">Vinay Reddy Kalluri</text>
+  <text x="86" y="318" fill="#D5D8FF" font-family="Manrope, Arial, sans-serif" font-size="30">Java • Spring Boot • Kafka • AWS • Distributed Systems</text>
+  <text x="86" y="390" fill="#D5D8FF" font-family="IBM Plex Mono, monospace" font-size="24">vinayreddykalluri.vercel.app</text>
+</svg>

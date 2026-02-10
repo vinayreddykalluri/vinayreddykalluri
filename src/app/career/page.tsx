@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
 import { ExperienceCard } from "@/components/experience-card";
 import { experiences } from "@/data/experience";
+import { pageMetadata } from "@/lib/seo";
 
 export const dynamic = "force-static";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Career",
   description: "Career journey and impact metrics across backend engineering roles in healthcare and enterprise systems.",
-};
+  path: "/career",
+});
 
 export default function CareerPage() {
   return (

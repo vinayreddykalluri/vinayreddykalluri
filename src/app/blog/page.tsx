@@ -3,19 +3,32 @@ import type { Metadata } from "next";
 import { externalArticles } from "@/data/blog";
 import { getAllPosts } from "@/lib/blog";
 import { formatDate } from "@/lib/format";
+import { absoluteUrl, pageMetadata } from "@/lib/seo";
 
 export const dynamic = "force-static";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Blog",
   description: "Technical notes, architecture writing, and engineering insights by Vinay Reddy Kalluri.",
-};
+  path: "/blog",
+});
 
 export default async function BlogPage() {
   const posts = await getAllPosts();
+  const blogListJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    itemListElement: posts.map((post, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      url: absoluteUrl(`/blog/${post.slug}`),
+      name: post.title,
+    })),
+  };
 
   return (
     <div className="space-y-10 md:space-y-12">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(blogListJsonLd) }} />
       <header className="max-w-3xl space-y-4">
         <p className="kicker">Blog</p>
         <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">Thoughtful backend engineering notes</h1>

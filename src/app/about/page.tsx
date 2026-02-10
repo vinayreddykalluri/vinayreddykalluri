@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { siteConfig } from "@/data/profile";
+import { pageMetadata } from "@/lib/seo";
 
 export const dynamic = "force-static";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "About",
   description: "Story and professional philosophy of Vinay Reddy Kalluri: India to U.S., builder mindset, and mission-driven engineering.",
-};
+  path: "/about",
+});
 
 export default function AboutPage() {
   const spotlightMetrics = siteConfig.metrics.slice(0, 4);

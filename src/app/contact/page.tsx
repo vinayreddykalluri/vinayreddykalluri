@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import { siteConfig } from "@/data/profile";
+import { pageMetadata } from "@/lib/seo";
 
 export const dynamic = "force-static";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Contact",
   description: "Contact Vinay Reddy Kalluri for backend engineering opportunities and collaboration.",
-};
+  path: "/contact",
+});
 
 export default function ContactPage() {
   return (

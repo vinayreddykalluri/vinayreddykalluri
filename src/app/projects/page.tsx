@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
 import { ProjectCard } from "@/components/project-card";
 import { projects } from "@/data/projects";
+import { pageMetadata } from "@/lib/seo";
 
 export const dynamic = "force-static";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Projects",
   description: "Case-study projects by Vinay Reddy Kalluri: problem, solution, tech stack, and measurable impact.",
-};
+  path: "/projects",
+});
 
 export default function ProjectsPage() {
   return (

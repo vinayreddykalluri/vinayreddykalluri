@@ -1,18 +1,24 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { siteConfig } from "@/data/profile";
+import { pageMetadata } from "@/lib/seo";
+import { getPersonAndWebsiteJsonLd } from "@/lib/structured-data";
 
 export const dynamic = "force-static";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Home",
   description:
     "Senior Java Backend Engineer portfolio focused on high-throughput microservices, Kafka event systems, and AWS backend platforms.",
-};
+  path: "/",
+});
 
 export default function HomePage() {
+  const jsonLd = getPersonAndWebsiteJsonLd();
+
   return (
     <div className="space-y-16 md:space-y-20">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <section className="surface-panel grid gap-10 p-7 md:grid-cols-[1.2fr_0.8fr] md:p-12">
         <div className="space-y-6 motion-safe:animate-[fade-up_650ms_ease-out_forwards]">
           <p className="soft-chip inline-flex rounded-full px-3 py-1 font-mono text-xs tracking-[0.1em] uppercase">
