@@ -1,0 +1,27 @@
+---
+title: "Scaling Data Migrations Without Operational Downtime"
+date: "2025-11-03"
+description: "How to reduce migration timelines with parallelization, SQL optimization, and controlled orchestration."
+tags:
+  - Data Engineering
+  - Performance
+  - Architecture
+---
+
+Large migrations are often treated as one-time projects. In reality, they are a systems design challenge.
+
+## Migration Principles
+
+For a 35TB+ migration effort, the gains came from architecture choices, not brute force infrastructure:
+
+- Partition the workload by data domain and dependency.
+- Batch aggressively, but monitor lock and transaction pressure.
+- Track each stage with checkpoints to support safe restarts.
+
+## What Improved
+
+We reduced the pipeline window from 16 days to 4 days by aligning orchestration and SQL strategy.
+
+## Closing Thought
+
+Performance work is compounding. A single query optimization helps once; a better migration architecture helps every future release.

@@ -1,0 +1,103 @@
+export type TimelineCategory = "Career" | "Project" | "Award" | "Learning" | "Publication";
+
+export type TimelineEvent = {
+  year: number;
+  date: string;
+  title: string;
+  category: TimelineCategory;
+  details: string;
+};
+
+export const timelineEvents: TimelineEvent[] = [
+  {
+    year: 2017,
+    date: "2017-06-01",
+    title: "Published Driver Fatigue Detection Paper",
+    category: "Publication",
+    details: "Published in IJCET Vol. 8 on real-time driver fatigue detection using face image streams.",
+  },
+  {
+    year: 2017,
+    date: "2017-09-01",
+    title: "Started at Cognizant",
+    category: "Career",
+    details: "Joined as Programmer Analyst and began building enterprise healthcare microservices.",
+  },
+  {
+    year: 2018,
+    date: "2018-04-01",
+    title: "Released Play Store Apps",
+    category: "Project",
+    details: "Published mobile apps including Flames Match and Keep Motive through Google Play developer profile.",
+  },
+  {
+    year: 2019,
+    date: "2019-12-01",
+    title: "Joined Legato Health Technologies",
+    category: "Career",
+    details: "Built high-throughput healthcare services and Kafka-based interoperability pipelines.",
+  },
+  {
+    year: 2021,
+    date: "2021-12-01",
+    title: "Transitioned to U.S. Graduate Journey",
+    category: "Learning",
+    details: "Moved focus toward advanced systems design and graduate studies in the United States.",
+  },
+  {
+    year: 2022,
+    date: "2022-01-15",
+    title: "Started M.S. in Computer Science (UMKC)",
+    category: "Learning",
+    details: "Pursued advanced study in scalable systems while expanding applied research work.",
+  },
+  {
+    year: 2023,
+    date: "2023-03-01",
+    title: "Consulted at Hays UK",
+    category: "Career",
+    details: "Led AWS microservices migration and streaming architecture improvements.",
+  },
+  {
+    year: 2023,
+    date: "2023-05-15",
+    title: "Graduated with M.S. CS (GPA 3.9)",
+    category: "Learning",
+    details: "Completed graduate degree at UMKC with Hack-A-Roo recognition and research assistantship.",
+  },
+  {
+    year: 2024,
+    date: "2024-01-05",
+    title: "Joined UST as Developer III",
+    category: "Career",
+    details: "Took ownership of high-impact backend initiatives for Elevance Health systems.",
+  },
+  {
+    year: 2024,
+    date: "2024-07-10",
+    title: "Completed 35TB+ Migration Program",
+    category: "Project",
+    details: "Reduced migration runtime from 16 days to 4 days through pipeline and SQL optimization.",
+  },
+  {
+    year: 2025,
+    date: "2025-02-20",
+    title: "Recognized with Multiple Impact Awards",
+    category: "Award",
+    details: "Received 7 Impact Awards for scalability, reliability, and backend performance engineering outcomes.",
+  },
+  {
+    year: 2025,
+    date: "2025-08-01",
+    title: "Launched Work Visa Insights Direction",
+    category: "Project",
+    details: "Started shaping a mission-driven platform focused on immigration clarity and trusted guidance.",
+  },
+  {
+    year: 2026,
+    date: "2026-01-10",
+    title: "Expanded Public Technical Writing",
+    category: "Learning",
+    details: "Committed to sharing backend architecture and engineering strategy insights publicly.",
+  },
+];

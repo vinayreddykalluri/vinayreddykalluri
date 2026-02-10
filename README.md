@@ -1,16 +1,72 @@
-## Hi there 👋
+# Vinay Reddy Kalluri - Personal Website
 
-<!--
-**vinayreddykalluri/vinayreddykalluri** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+Frontend-only personal website built with:
 
-Here are some ideas to get you started:
+- Next.js 15 (App Router)
+- TypeScript
+- Tailwind CSS v4
+- Static export (`output: "export"`)
+- MDX blog support
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+## Run
+
+```bash
+npm run dev
+```
+
+Open `http://localhost:3000`.
+
+## Build and Preview Static Output
+
+```bash
+npm run build
+npm run start
+```
+
+Build output is generated in `out/`.
+
+## Structure
+
+```text
+src/
+  app/
+    page.tsx                 # Home
+    about/page.tsx           # About
+    career/page.tsx          # Career
+    projects/page.tsx        # Projects
+    blog/page.tsx            # Blog listing
+    blog/[slug]/page.tsx     # Blog post page
+    timeline/page.tsx        # Timeline
+    contact/page.tsx         # Contact
+  components/
+    site-header.tsx
+    site-footer.tsx
+    experience-card.tsx
+    project-card.tsx
+    reveal-on-scroll.tsx
+  content/blog/
+    *.mdx                    # MDX posts with frontmatter
+  data/
+    profile.ts
+    experience.ts
+    projects.ts
+    timeline.ts
+    blog.ts
+  lib/
+    blog.ts                  # MDX loader + frontmatter parser
+    format.ts
+    mdx-components.tsx
+```
+
+## Content Updates
+
+- Profile and contact: `src/data/profile.ts`
+- Career: `src/data/experience.ts`
+- Projects: `src/data/projects.ts`
+- Timeline events: `src/data/timeline.ts`
+- External blog links: `src/data/blog.ts`
+- MDX posts: `src/content/blog/*.mdx`
+
+## Deploy
+
+Deploy `out/` to Vercel static hosting, Netlify, Cloudflare Pages, GitHub Pages, or S3 + CloudFront.

@@ -1,0 +1,29 @@
+---
+title: "Designing Reliable Kafka Pipelines for Enterprise Workloads"
+date: "2025-09-12"
+description: "A pragmatic guide to sequencing, retries, and observability for high-throughput event systems."
+tags:
+  - Kafka
+  - Distributed Systems
+  - Reliability
+---
+
+Enterprise event systems rarely fail because Kafka is unavailable. They fail because the surrounding workflow is under-specified.
+
+## The Pattern That Worked for Me
+
+In high-volume compensation and healthcare pipelines, reliability came from combining three layers:
+
+1. Deterministic sequencing for dependent events.
+2. Multi-level retries with clear terminal handling.
+3. Traceable observability for every state transition.
+
+## Practical Rules
+
+- Never mix business retry logic with transport retry logic.
+- Make idempotency explicit at write boundaries.
+- Build replay tooling before your first production incident.
+
+## Outcome
+
+When these patterns were introduced in production workflows, we improved consistency and reduced incident recovery time substantially.
