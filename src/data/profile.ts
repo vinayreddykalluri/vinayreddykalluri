@@ -57,6 +57,32 @@ export const siteConfig = {
     "After moving to the United States for my M.S. in Computer Science at the University of Missouri-Kansas City, I deepened my focus on scalable backend platforms, distributed systems, and measurable product impact.",
     "Today, I work as a Senior Java Backend Engineer in Atlanta, delivering low-latency microservices, fault-tolerant data pipelines, and cloud-native systems that operate reliably under production pressure.",
   ],
+  journey: [
+    {
+      year: "2012-2017",
+      title: "Software Foundation in India",
+      description:
+        "Built core engineering discipline during graduate studies while leading campus technical communities and shipping production-grade systems.",
+    },
+    {
+      year: "2017-2021",
+      title: "Enterprise Backend and Event Architectures",
+      description:
+        "Worked on high-volume enterprise workflows, where event-driven architecture and observability became central to reliability and decision speed.",
+    },
+    {
+      year: "2022-2023",
+      title: "U.S. Graduate Depth in Computer Science",
+      description:
+        "Completed M.S. in Computer Science at UMKC with research exposure and hackathon outcomes focused on scalable and data-intensive platforms.",
+    },
+    {
+      year: "2023-Present",
+      title: "Senior Backend Engineering in Atlanta",
+      description:
+        "Own and evolve low-latency microservices, cloud-native data pipelines, and production systems designed for sustained reliability at scale.",
+    },
+  ],
   mindset: [
     "Design for reliability first, then optimize for velocity.",
     "Treat observability as a product feature, not an afterthought.",
