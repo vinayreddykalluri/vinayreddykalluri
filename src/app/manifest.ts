@@ -10,8 +10,8 @@ export default function manifest(): MetadataRoute.Manifest {
       "Senior Java Backend Engineer portfolio focused on scalable microservices and distributed systems.",
     start_url: "/",
     display: "standalone",
-    background_color: "#090d1f",
-    theme_color: "#7400B8",
+    background_color: "#f2f6fc",
+    theme_color: "#0f6fff",
     icons: [
       {
         src: "/favicon.ico",

@@ -15,8 +15,8 @@ type EducationCardProps = {
 
 export function EducationCard({ item }: EducationCardProps) {
   return (
-    <article className="group overflow-hidden rounded-2xl border border-[var(--border)] bg-[linear-gradient(160deg,var(--surface),rgba(255,255,255,0.55))] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_60px_rgba(94,96,206,0.15)]">
-      <div className="h-1.5 bg-gradient-to-r from-[#7400B8] via-[#5E60CE] to-[#4EA8DE]" />
+    <article className="group overflow-hidden rounded-2xl border border-[var(--border)] bg-[linear-gradient(160deg,var(--surface),rgba(255,255,255,0.55))] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_60px_rgba(15,111,255,0.18)]">
+      <div className="h-1.5 bg-gradient-to-r from-[var(--accent)] via-[var(--accent-alt)] to-[#4ca9ff]" />
       <div className="space-y-4 p-5 md:p-6">
         <div className="flex items-start gap-4">
           <div className="flex h-[4.5rem] w-[6.5rem] shrink-0 items-center justify-center rounded-xl border border-[var(--border)] bg-[color:var(--surface-strong)] p-2">

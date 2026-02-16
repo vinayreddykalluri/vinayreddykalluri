@@ -51,7 +51,7 @@ export function MetricGrid({ metrics, location, visa, mindset }: MetricGridProps
             <li key={item}>
               <details className="group rounded-xl border border-[var(--border)] bg-[linear-gradient(160deg,var(--surface),rgba(255,255,255,0.56))] px-4 py-3 shadow-[var(--shadow-soft)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[var(--shadow-strong)] open:border-[color:var(--accent)] open:bg-[color:var(--accent-soft)]/50">
                 <summary className="flex cursor-pointer list-none items-center gap-3 [&::-webkit-details-marker]:hidden">
-                  <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[linear-gradient(135deg,#7400B8,#5E60CE)] text-xs font-semibold text-white">
+                  <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[linear-gradient(135deg,var(--accent),var(--accent-alt))] text-xs font-semibold text-white">
                     {index + 1}
                   </span>
                   <span className="flex-1 text-sm font-medium text-[color:var(--foreground)]">

@@ -17,20 +17,20 @@ export function ProjectCard({ project }: ProjectCardProps) {
         </p>
       </header>
 
-      <div className="mt-5 space-y-3.5 text-sm leading-7 text-[color:var(--muted)]">
-        <p>
+      <div className="mt-5 space-y-3 text-sm leading-7 text-[color:var(--muted)]">
+        <p className="rounded-xl border border-[var(--border)] bg-[color:var(--surface-strong)] p-3.5">
           <span className="font-semibold text-[color:var(--foreground)]">
             Problem:
           </span>{" "}
           {project.problem}
         </p>
-        <p>
+        <p className="rounded-xl border border-[var(--border)] bg-[color:var(--surface-strong)] p-3.5">
           <span className="font-semibold text-[color:var(--foreground)]">
             Solution:
           </span>{" "}
           {project.solution}
         </p>
-        <p>
+        <p className="rounded-xl border border-[var(--border)] bg-[color:var(--accent-soft)] p-3.5">
           <span className="font-semibold text-[color:var(--foreground)]">
             Impact:
           </span>{" "}
@@ -51,7 +51,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
           href={project.href}
           target="_blank"
           rel="noreferrer"
-          className="mt-6 inline-flex w-fit items-center gap-2 rounded-full border border-[var(--border)] bg-[color:var(--surface-strong)] px-4 py-2 text-xs font-semibold transition group-hover:border-[color:var(--accent)] group-hover:text-[color:var(--accent)]"
+          className="spark-link mt-6 inline-flex w-fit items-center gap-2 px-4 py-2 text-xs font-semibold group-hover:border-[color:var(--accent)] group-hover:text-[color:var(--accent)]"
         >
           View Link
         </a>

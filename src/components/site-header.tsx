@@ -22,10 +22,10 @@ export function SiteHeader() {
   }, [pathname]);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-[var(--border)]/70 bg-[color:var(--surface)]/70 backdrop-blur">
+    <header className="sticky top-0 z-40 border-b border-[var(--border)]/70 bg-[color:var(--surface)]/72 backdrop-blur-xl">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
-        <Link href="/" className="group inline-flex items-center gap-2">
-          <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-[linear-gradient(135deg,#7400B8,#5E60CE)] text-sm font-bold text-white shadow-[0_10px_22px_rgba(94,96,206,0.35)]">
+        <Link href="/" className="group inline-flex items-center gap-3">
+          <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-[linear-gradient(135deg,var(--accent),var(--accent-alt))] text-sm font-bold text-white shadow-[0_10px_22px_rgba(15,111,255,0.35)] transition group-hover:scale-105">
             {siteConfig.shortName}
           </span>
           <span className="text-sm font-semibold tracking-tight transition group-hover:text-[color:var(--accent)]">
@@ -53,7 +53,7 @@ export function SiteHeader() {
                     href={item.href}
                     className={`rounded-full px-4 py-2 text-sm transition ${
                       active
-                        ? "bg-[linear-gradient(135deg,#7400B8,#5E60CE)] font-semibold text-white shadow-[0_10px_20px_rgba(94,96,206,0.32)]"
+                        ? "bg-[linear-gradient(135deg,var(--accent),var(--accent-alt))] font-semibold text-white shadow-[0_10px_22px_rgba(15,111,255,0.32)]"
                         : "text-[color:var(--muted)] hover:bg-[color:var(--accent-soft)] hover:text-[color:var(--foreground)]"
                     }`}
                   >
@@ -69,7 +69,7 @@ export function SiteHeader() {
       <nav
         id="mobile-nav"
         aria-label="Mobile"
-        className={`${menuOpen ? "block" : "hidden"} border-t border-[var(--border)] bg-[color:var(--surface-strong)]/92 md:hidden`}
+        className={`${menuOpen ? "block motion-safe:animate-[fade-up_260ms_ease-out]" : "hidden"} border-t border-[var(--border)] bg-[color:var(--surface-strong)]/92 md:hidden`}
       >
         <ul className="mx-auto flex max-w-6xl flex-col gap-1 px-4 py-3 sm:px-6">
           {navLinks.map((item) => {
@@ -80,7 +80,7 @@ export function SiteHeader() {
                   href={item.href}
                   className={`block rounded-xl px-3 py-2 text-sm transition ${
                     active
-                      ? "bg-[linear-gradient(135deg,#7400B8,#5E60CE)] font-semibold text-white"
+                      ? "bg-[linear-gradient(135deg,var(--accent),var(--accent-alt))] font-semibold text-white"
                       : "text-[color:var(--muted)] hover:bg-[color:var(--accent-soft)] hover:text-[color:var(--foreground)]"
                   }`}
                 >

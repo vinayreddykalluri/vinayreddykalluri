@@ -25,7 +25,7 @@ export function JourneyTimeline({ journey }: JourneyTimelineProps) {
         <ol className="space-y-8">
           {journey.map((item) => (
             <li key={`${item.year}-${item.title}`} className="relative pl-9 md:pl-11">
-              <span className="absolute left-[1.43rem] top-1.5 h-4 w-4 -translate-x-1/2 rounded-full border border-white/45 bg-[linear-gradient(135deg,#7400B8,#5E60CE)] shadow-[0_0_0_5px_color-mix(in_oklab,var(--accent-soft)_75%,transparent)] md:left-[1.95rem]" />
+              <span className="absolute left-[1.43rem] top-1.5 h-4 w-4 -translate-x-1/2 rounded-full border border-white/45 bg-[linear-gradient(135deg,var(--accent),var(--accent-alt))] shadow-[0_0_0_5px_rgba(15,111,255,0.12)] md:left-[1.95rem]" />
               <p className="text-xs uppercase tracking-[0.16em] text-[color:var(--muted)]">
                 {item.year}
               </p>

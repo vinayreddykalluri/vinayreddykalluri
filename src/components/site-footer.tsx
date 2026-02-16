@@ -6,7 +6,7 @@ export function SiteFooter() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-[var(--border)] bg-[color:var(--surface)]/70 backdrop-blur">
+    <footer className="border-t border-[var(--border)] bg-[color:var(--surface)]/78 backdrop-blur-xl">
       <div className="mx-auto grid max-w-6xl gap-9 px-4 py-12 sm:px-6 md:grid-cols-[1fr_auto] lg:px-8">
         <div>
           <h2 className="text-lg font-semibold tracking-tight">
@@ -14,6 +14,9 @@ export function SiteFooter() {
           </h2>
           <p className="mt-3 max-w-xl text-sm leading-6 text-[color:var(--muted)]">
             {siteConfig.footerTagline}
+          </p>
+          <p className="mt-3 text-xs uppercase tracking-[0.1em] text-[color:var(--muted)]">
+            {siteConfig.role} | {siteConfig.location}
           </p>
           <p className="mt-4 text-xs text-[color:var(--muted)]">
             &copy; {year} {siteConfig.name}
@@ -24,7 +27,7 @@ export function SiteFooter() {
           <ul className="flex flex-wrap gap-3 text-[color:var(--muted)]">
             <li>
               <a
-                className="transition hover:text-[color:var(--foreground)]"
+                className="spark-link inline-flex px-3 py-1.5 text-xs font-semibold"
                 href={siteConfig.contact.linkedin}
                 target="_blank"
                 rel="noreferrer"
@@ -34,7 +37,7 @@ export function SiteFooter() {
             </li>
             <li>
               <a
-                className="transition hover:text-[color:var(--foreground)]"
+                className="spark-link inline-flex px-3 py-1.5 text-xs font-semibold"
                 href={siteConfig.contact.github}
                 target="_blank"
                 rel="noreferrer"
@@ -44,7 +47,7 @@ export function SiteFooter() {
             </li>
             <li>
               <a
-                className="transition hover:text-[color:var(--foreground)]"
+                className="spark-link inline-flex px-3 py-1.5 text-xs font-semibold"
                 href={`mailto:${siteConfig.contact.email}`}
               >
                 Email

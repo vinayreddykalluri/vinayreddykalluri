@@ -9,8 +9,9 @@ export function ExperienceCard({ experience }: ExperienceCardProps) {
     <article className="surface-card p-7">
       <header className="flex flex-wrap items-start justify-between gap-3">
         <div>
-          <h3 className="text-xl font-semibold">{experience.role}</h3>
-          <p className="text-sm text-[color:var(--muted)]">
+          <p className="kicker">Role</p>
+          <h3 className="mt-2 text-xl font-semibold">{experience.role}</h3>
+          <p className="mt-1 text-sm text-[color:var(--muted)]">
             {experience.company} | {experience.location}
           </p>
         </div>
@@ -19,7 +20,7 @@ export function ExperienceCard({ experience }: ExperienceCardProps) {
         </p>
       </header>
 
-      <p className="mt-5 text-sm leading-7 text-[color:var(--muted)]">
+      <p className="mt-5 rounded-xl border border-[var(--border)] bg-[color:var(--surface-strong)] p-4 text-sm leading-7 text-[color:var(--muted)]">
         {experience.summary}
       </p>
 
