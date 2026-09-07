@@ -79,4 +79,34 @@ src/
 
 ## Deploy
 
-Deploy `out/` to Vercel static hosting, Netlify, Cloudflare Pages, GitHub Pages, or S3 + CloudFront.
+Hosting is Cloudflare Workers (static assets). The domain is registered at
+Porkbun, with DNS served by Cloudflare.
+
+`next build` writes the static export to `out/`, and `wrangler.jsonc` points a
+Worker at that directory. No server code runs — the Worker only serves assets.
+
+```bash
+npm run build      # writes out/
+npm run preview    # serve the built output locally via wrangler
+npm run deploy     # build, then publish to Cloudflare
+```
+
+First-time setup on a new machine:
+
+```bash
+npx wrangler login
+```
+
+### Routing notes
+
+- `next.config.ts` sets `trailingSlash: true`, so pages emit as
+  `out/about/index.html`. `html_handling: "auto-trailing-slash"` serves those
+  at `/about/`.
+- `not_found_handling: "404-page"` serves the exported `out/404.html`. On
+  Workers this must be set explicitly — unlike Pages, it is not inferred.
+
+### DNS
+
+`vinayreddykalluri.com` stays registered at Porkbun; only the nameservers point
+to Cloudflare. A Workers Custom Domain then requires no manual DNS record —
+Cloudflare creates the record and issues the certificate.

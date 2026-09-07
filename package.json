@@ -6,7 +6,9 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "serve out",
-    "lint": "eslint . --ignore-pattern .next --ignore-pattern out --ignore-pattern next-env.d.ts"
+    "lint": "eslint . --ignore-pattern .next --ignore-pattern out --ignore-pattern next-env.d.ts",
+    "preview": "npm run build && wrangler dev",
+    "deploy": "npm run build && wrangler deploy"
   },
   "dependencies": {
     "firebase": "^12.9.0",
@@ -29,6 +31,7 @@
     "eslint-config-next": "^15.5.12",
     "serve": "^14.2.5",
     "tailwindcss": "^4",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "wrangler": "^4.129.1"
   }
 }

@@ -1,0 +1,19 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "vinayreddykalluri",
+  "compatibility_date": "2026-09-07",
+
+  // The site is a Next.js static export (`output: "export"` in next.config.ts),
+  // so this Worker serves the built `out/` directory and runs no server code.
+  "assets": {
+    "directory": "./out/",
+
+    // next.config.ts sets `trailingSlash: true`, so pages build as
+    // `out/about/index.html`. "auto-trailing-slash" serves those at `/about/`.
+    "html_handling": "auto-trailing-slash",
+
+    // Serve the exported `out/404.html` for unmatched paths.
+    // Must be explicit on Workers — unlike Pages, it is not inferred.
+    "not_found_handling": "404-page"
+  }
+}

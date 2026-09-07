@@ -126,5 +126,5 @@ export const siteConfig = {
 } as const;
 
 export const siteUrl = (
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://vinayreddykalluri.vercel.app"
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://vinayreddykalluri.com"
 ).replace(/\/$/, "");
