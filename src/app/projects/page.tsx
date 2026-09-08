@@ -15,7 +15,7 @@ export const metadata: Metadata = pageMetadata({
 
 export default function ProjectsPage() {
   return (
-    <div className="space-y-10 md:space-y-12">
+    <div className="shell py-14 md:py-20 space-y-10 md:space-y-12">
       <Reveal>
         <header className="max-w-3xl space-y-4">
           <p className="kicker">Projects</p>

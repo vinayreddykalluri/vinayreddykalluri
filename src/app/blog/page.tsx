@@ -29,7 +29,7 @@ export default async function BlogPage() {
   };
 
   return (
-    <div className="space-y-10 md:space-y-12">
+    <div className="shell py-14 md:py-20 space-y-10 md:space-y-12">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(blogListJsonLd) }}

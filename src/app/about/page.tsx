@@ -23,7 +23,7 @@ export default function AboutPage() {
   const spotlightMetrics = siteConfig.metrics.slice(0, 4);
 
   return (
-    <div className="relative space-y-16 pb-2 md:space-y-20">
+    <div className="shell py-14 md:py-20 relative space-y-16 pb-2 md:space-y-20">
       <div className="pointer-events-none absolute -top-8 left-[15%] h-36 w-36 rounded-full bg-[color:var(--accent-soft)] blur-3xl" />
       <div className="pointer-events-none absolute right-[8%] top-[22rem] h-44 w-44 rounded-full bg-[color:var(--accent-soft)] blur-3xl" />
 

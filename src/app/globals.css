@@ -1,98 +1,103 @@
 @import "tailwindcss";
 
 /*
-  Design system: "Instrument"
-  An engineering spec-sheet, not a glass-card portfolio. Hairlines and flat
-  panels instead of blur and shadow; one signal-red accent doing the pointing;
-  a deep teal reserved for "healthy / shipped" states.
+  Design system: "Dispatch"
+  Editorial full-bleed layout with systems-instrument detail. Oversized display
+  type running edge to edge, alternating colour-blocked bands for rhythm, and
+  telemetry motifs (event lanes, sparklines, mono data labels) drawn from the
+  subject's actual work rather than added as ornament.
 
-  Token names are kept from the previous system so page-level Tailwind
+  Token names are inherited from the previous system so page-level Tailwind
   arbitrary values (text-[color:var(--muted)], border-[var(--border)], ...)
   keep resolving. Only the values changed.
 */
 
 :root {
-  /* ground + ink */
-  --background: #e9ebe6;      /* pale sage-grey, a chosen neutral */
-  --surface: #f4f5f2;
-  --surface-strong: #fbfbf9;
-  --foreground: #14181c;
-  --muted: #4e5a63;
-  --faint: #5f6a72;
+  --background: #ede9e1;        /* greyed bone, deliberately not cream */
+  --surface: #f6f3ed;
+  --surface-strong: #fdfcf9;
+  --foreground: #1a1416;        /* near-black with a red-violet bias */
+  --muted: #5c5057;
+  --faint: #6b5f65;
 
-  /* hairlines */
-  --border: #c9cec7;
-  --border-soft: #d9ddd6;
-  --grid-line: rgba(20, 24, 28, 0.045);
+  --border: #cfc7bb;
+  --border-soft: #ded7cc;
+  --grid-line: rgba(26, 20, 22, 0.06);
 
-  /* signal red — the one bold move */
-  --accent: #b4472c;
-  --accent-strong: #9c3a22;   /* text-safe on light ground */
-  --accent-soft: #f0e2dc;
+  /* oxblood — the primary voice */
+  --accent: #6e1a2b;
+  --accent-strong: #5a1523;
+  --accent-soft: #e6d9d5;
 
-  /* deep teal — secondary, semantic "good" */
-  --accent-alt: #2e6f63;
-  --accent-alt-soft: #dfe9e5;
+  /* electric blue — the cold counter-accent */
+  --accent-alt: #1739b8;
+  --accent-alt-soft: #dbe0f5;
+
+  /* inverted band: dark section inside a light page */
+  --band: #1a1416;
+  --band-ink: #ede9e1;
+  --band-muted: #a99ba1;
 
   --shadow-soft: none;
-  --shadow-strong: 0 1px 0 rgba(20, 24, 28, 0.06);
-
-  --radius: 3px;
+  --shadow-strong: none;
+  --radius: 2px;
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --background: #12161a;
-    --surface: #191e23;
-    --surface-strong: #1e242a;
-    --foreground: #e4e7e1;
-    --muted: #8d9aa3;
-    --faint: #7d8891;
+    --background: #141013;
+    --surface: #1d171b;
+    --surface-strong: #241d22;
+    --foreground: #ede7e2;
+    --muted: #a79aa0;
+    --faint: #93868c;
 
-    --border: #2b3238;
-    --border-soft: #222831;
-    --grid-line: rgba(228, 231, 225, 0.05);
+    --border: #362c32;
+    --border-soft: #291f26;
+    --grid-line: rgba(237, 231, 226, 0.055);
 
-    --accent: #e27a57;
-    --accent-strong: #e8886a;
-    --accent-soft: #2a1e1a;
+    --accent: #d9566e;
+    --accent-strong: #e87186;
+    --accent-soft: #2e1a20;
 
-    --accent-alt: #4fa391;
-    --accent-alt-soft: #16261f;
+    --accent-alt: #7fa0ff;
+    --accent-alt-soft: #1a1f38;
 
-    --shadow-soft: none;
-    --shadow-strong: 0 1px 0 rgba(0, 0, 0, 0.4);
+    --band: #ede7e2;
+    --band-ink: #141013;
+    --band-muted: #5c5057;
   }
 }
 
 [data-theme="dark"] {
-  --background: #12161a;
-  --surface: #191e23;
-  --surface-strong: #1e242a;
-  --foreground: #e4e7e1;
-  --muted: #8d9aa3;
-  --faint: #7d8891;
+  --background: #141013;
+  --surface: #1d171b;
+  --surface-strong: #241d22;
+  --foreground: #ede7e2;
+  --muted: #a79aa0;
+  --faint: #93868c;
 
-  --border: #2b3238;
-  --border-soft: #222831;
-  --grid-line: rgba(228, 231, 225, 0.05);
+  --border: #362c32;
+  --border-soft: #291f26;
+  --grid-line: rgba(237, 231, 226, 0.055);
 
-  --accent: #e27a57;
-  --accent-strong: #e8886a;
-  --accent-soft: #2a1e1a;
+  --accent: #d9566e;
+  --accent-strong: #e87186;
+  --accent-soft: #2e1a20;
 
-  --accent-alt: #4fa391;
-  --accent-alt-soft: #16261f;
+  --accent-alt: #7fa0ff;
+  --accent-alt-soft: #1a1f38;
 
-  --shadow-soft: none;
-  --shadow-strong: 0 1px 0 rgba(0, 0, 0, 0.4);
+  --band: #ede7e2;
+  --band-ink: #141013;
+  --band-muted: #5c5057;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-archivo);
-  --font-serif: var(--font-source-serif);
+  --font-sans: var(--font-bricolage);
+  --font-serif: var(--font-newsreader);
   --font-mono: var(--font-ibm-plex-mono);
 }
 
@@ -111,41 +116,74 @@ body {
   min-height: 100vh;
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-archivo), "Helvetica Neue", Arial, sans-serif;
-  font-size: 16px;
+  font-family: var(--font-newsreader), Georgia, "Times New Roman", serif;
+  font-size: 17px;
+  line-height: 1.62;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }
 
-/* Quiet ground. The old build stacked four radial gradients here. */
 .site-bg {
   background: var(--background);
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
+a { color: inherit; text-decoration: none; }
 
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
-  border-radius: 2px;
 }
 
 ::selection {
   background: var(--accent);
-  color: #fff;
+  color: var(--background);
 }
 
-h1,
-h2,
-h3,
-h4 {
-  font-family: var(--font-archivo), "Helvetica Neue", Arial, sans-serif;
-  letter-spacing: -0.025em;
+h1, h2, h3, h4 {
+  font-family: var(--font-bricolage), "Helvetica Neue", Arial, sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 0.98;
   text-wrap: balance;
 }
+
+/* ---------- layout: full bleed ---------- */
+
+/*
+  Sections run full width by default; .shell gives their contents a readable
+  measure. Doing it this way avoids the classic 50vw/50% bleed trick, whose
+  margins overshoot by half the scrollbar width and cause horizontal overflow.
+*/
+.shell {
+  width: 100%;
+  max-width: 1600px;
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 5vw, 5rem);
+}
+
+/* Readable measures for prose inside a bleeding band. */
+.measure { max-width: 66ch; }
+.measure-wide { max-width: 88ch; }
+
+/* Inverted band: dark on a light page, light on a dark page. */
+.band-invert {
+  background: var(--band);
+  color: var(--band-ink);
+}
+.band-invert .kicker { color: var(--accent); }
+.band-invert .band-dim { color: var(--band-muted); }
+.band-invert .signal-pill,
+.band-invert .soft-chip {
+  border-color: color-mix(in oklab, var(--band-ink) 28%, transparent);
+  color: var(--band-muted);
+}
+
+.band-accent {
+  background: var(--accent);
+  color: #f7efe9;
+}
+.band-accent .kicker { color: #f0cfc6; }
+.band-accent .band-dim { color: #e2c4bc; }
 
 /* ---------- surfaces ---------- */
 
@@ -153,7 +191,6 @@ h4 {
   border: 1px solid var(--border);
   background: var(--surface);
   border-radius: var(--radius);
-  box-shadow: none;
 }
 
 .surface-card {
@@ -161,14 +198,11 @@ h4 {
   border: 1px solid var(--border);
   background: var(--surface);
   border-radius: var(--radius);
-  box-shadow: none;
-  transition:
-    border-color 180ms ease,
-    background-color 180ms ease;
+  transition: border-color 200ms ease, background-color 200ms ease;
 }
 
 .surface-card:hover {
-  border-color: color-mix(in oklab, var(--accent) 45%, var(--border));
+  border-color: var(--accent);
   background: var(--surface-strong);
 }
 
@@ -179,7 +213,7 @@ h4 {
   color: var(--muted);
   font-family: var(--font-ibm-plex-mono), ui-monospace, monospace;
   font-size: 0.6875rem;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.07em;
   text-transform: uppercase;
 }
 
@@ -189,47 +223,74 @@ h4 {
   background: var(--surface);
 }
 
-/* ---------- type utilities ---------- */
+/* ---------- type ---------- */
 
 .kicker {
   font-family: var(--font-ibm-plex-mono), ui-monospace, monospace;
   font-size: 0.6875rem;
   font-weight: 500;
-  letter-spacing: 0.13em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--faint);
+  color: var(--accent-strong);
 }
 
-/*
-  Was a blue-to-orange gradient fill. Gradient headline text is the single
-  most recognizable "generated portfolio" tell, so this is now flat ink.
-*/
-.text-gradient {
-  color: var(--foreground);
+.text-gradient { color: var(--foreground); }
+
+/* Oversized editorial display, sized to the viewport rather than a container. */
+.display-xl {
+  font-family: var(--font-bricolage), "Helvetica Neue", Arial, sans-serif;
+  font-weight: 800;
+  font-size: clamp(2.75rem, 8.5vw, 8rem);
+  line-height: 0.88;
+  letter-spacing: -0.045em;
+}
+
+.display-lg {
+  font-family: var(--font-bricolage), "Helvetica Neue", Arial, sans-serif;
+  font-weight: 800;
+  font-size: clamp(2rem, 4.6vw, 3.75rem);
+  line-height: 0.96;
+  letter-spacing: -0.04em;
+}
+
+/* A metric rendered as a graphic object rather than a card. */
+.stat-figure {
+  font-family: var(--font-bricolage), "Helvetica Neue", Arial, sans-serif;
+  font-weight: 800;
+  font-size: clamp(2.25rem, 4.6vw, 4rem);
+  line-height: 0.9;
+  letter-spacing: -0.05em;
+  font-variant-numeric: tabular-nums;
+}
+
+.data-label {
+  font-family: var(--font-ibm-plex-mono), ui-monospace, monospace;
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.rule-accent {
+  border: 0;
+  border-top: 3px solid var(--accent);
+  width: 3.5rem;
 }
 
 .mesh-grid {
   background-image:
     linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
     linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
-  background-size: 3rem 3rem;
+  background-size: 4rem 4rem;
 }
 
-.hero-shell {
-  position: relative;
-  overflow: hidden;
-}
+.hero-shell { position: relative; }
+.hero-orb { display: none; }
 
-/* Floating blurred orbs retired — decoration that carried no information. */
-.hero-orb {
-  display: none;
-}
-
-/* ---------- stack strip (was an auto-scrolling marquee) ---------- */
+/* ---------- stack strip ---------- */
 
 .signal-strip {
-  border-top: 1px solid var(--border-soft);
-  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  padding-top: 1.15rem;
 }
 
 .signal-track {
@@ -243,18 +304,16 @@ h4 {
   align-items: center;
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 0.25rem 0.6rem;
+  padding: 0.3rem 0.7rem;
   font-family: var(--font-ibm-plex-mono), ui-monospace, monospace;
   font-size: 0.6875rem;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--muted);
   white-space: nowrap;
 }
 
-.signal-dot {
-  display: none;
-}
+.signal-dot { display: none; }
 
 /* ---------- controls ---------- */
 
@@ -265,12 +324,11 @@ h4 {
   border: 1px solid var(--accent);
   border-radius: var(--radius);
   background: var(--accent);
-  color: #fff;
-  font-weight: 600;
-  box-shadow: none;
-  transition:
-    background-color 180ms ease,
-    border-color 180ms ease;
+  color: #f7efe9;
+  font-family: var(--font-bricolage), sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  transition: background-color 180ms ease, border-color 180ms ease;
 }
 
 .cta-primary:hover {
@@ -278,8 +336,13 @@ h4 {
   border-color: var(--accent-strong);
 }
 
-[data-theme="dark"] .cta-primary {
-  color: #14181c;
+[data-theme="dark"] .cta-primary { color: #141013; }
+
+.band-invert .cta-primary,
+.band-accent .cta-primary {
+  background: var(--band-ink);
+  border-color: var(--band-ink);
+  color: var(--band);
 }
 
 .spark-link {
@@ -289,10 +352,9 @@ h4 {
   border: 1px solid var(--border);
   border-radius: var(--radius);
   background: transparent;
-  font-weight: 600;
-  transition:
-    border-color 180ms ease,
-    color 180ms ease;
+  font-family: var(--font-bricolage), sans-serif;
+  font-weight: 700;
+  transition: border-color 180ms ease, color 180ms ease;
 }
 
 .spark-link:hover {
@@ -300,90 +362,80 @@ h4 {
   color: var(--accent-strong);
 }
 
-/* ---------- timeline rail ---------- */
-
-.timeline-rail {
-  position: relative;
+.band-invert .spark-link,
+.band-accent .spark-link {
+  border-color: color-mix(in oklab, currentColor 35%, transparent);
+  color: inherit;
 }
+
+/* ---------- timeline ---------- */
+
+.timeline-rail { position: relative; }
 
 .timeline-rail::before {
   content: "";
   position: absolute;
-  left: 0.3rem;
+  left: 0.28rem;
   top: 0.6rem;
   bottom: 0.6rem;
-  width: 1px;
+  width: 2px;
   background: var(--border);
 }
 
 .timeline-dot {
   display: inline-flex;
-  margin-right: 0.85rem;
-  margin-top: 0.5rem;
-  height: 0.4rem;
-  width: 0.4rem;
-  border-radius: 999px;
+  margin-right: 0.9rem;
+  margin-top: 0.55rem;
+  height: 0.45rem;
+  width: 0.45rem;
   background: var(--accent);
   flex-shrink: 0;
 }
 
-/* ---------- long-form prose ---------- */
+/* ---------- prose ---------- */
 
 .mdx-content {
-  font-family: var(--font-source-serif), Georgia, serif;
-  font-size: 1.0625rem;
+  font-family: var(--font-newsreader), Georgia, serif;
+  font-size: 1.125rem;
   line-height: 1.7;
 }
 
 .mdx-content h2 {
   margin-top: 2.25rem;
-  font-family: var(--font-archivo), "Helvetica Neue", Arial, sans-serif;
+  font-family: var(--font-bricolage), sans-serif;
 }
 
-.mdx-content p + p {
-  margin-top: 1rem;
+.mdx-content p + p { margin-top: 1rem; }
+
+.drop-cap::first-letter {
+  float: left;
+  font-family: var(--font-bricolage), sans-serif;
+  font-weight: 800;
+  font-size: 3.4rem;
+  line-height: 0.8;
+  padding: 0.08em 0.1em 0 0;
+  color: var(--accent);
 }
 
-.prose-serif {
-  font-family: var(--font-source-serif), Georgia, serif;
-}
+/* ---------- motion (transform only; never opacity) ---------- */
 
-/* ---------- motion ---------- */
-
-/*
-  Transform only, no opacity. Content is at full opacity in every frame,
-  including before the animation runs, so nothing depends on it completing.
-*/
-.motion-entry {
-  animation: settle 460ms cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
-.motion-entry.delay-1 { animation-delay: 60ms; }
-.motion-entry.delay-2 { animation-delay: 120ms; }
-.motion-entry.delay-3 { animation-delay: 180ms; }
+.motion-entry { animation: settle 520ms cubic-bezier(0.22, 1, 0.36, 1) both; }
+.motion-entry.delay-1 { animation-delay: 70ms; }
+.motion-entry.delay-2 { animation-delay: 140ms; }
+.motion-entry.delay-3 { animation-delay: 210ms; }
 
 @keyframes settle {
-  from {
-    transform: translateY(6px);
-  }
-  to {
-    transform: translateY(0);
-  }
+  from { transform: translateY(8px); }
+  to   { transform: translateY(0); }
 }
 
 @keyframes fade-up {
-  from {
-    transform: translateY(6px);
-  }
-  to {
-    transform: translateY(0);
-  }
+  from { transform: translateY(8px); }
+  to   { transform: translateY(0); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+  *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;

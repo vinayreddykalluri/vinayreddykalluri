@@ -1,20 +1,20 @@
 import type { Metadata } from "next";
 import { FirebaseAnalytics } from "@/components/firebase-analytics";
-import { Archivo, IBM_Plex_Mono, Source_Serif_4 } from "next/font/google";
+import { Bricolage_Grotesque, IBM_Plex_Mono, Newsreader } from "next/font/google";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { siteMetadata } from "@/lib/seo";
 import "./globals.css";
 
-const archivo = Archivo({
-  variable: "--font-archivo",
+const bricolage = Bricolage_Grotesque({
+  variable: "--font-bricolage",
   subsets: ["latin"],
-  weight: ["500", "600", "700", "800"],
+  weight: ["600", "700", "800"],
   display: "swap",
 });
 
-const sourceSerif = Source_Serif_4({
-  variable: "--font-source-serif",
+const newsreader = Newsreader({
+  variable: "--font-newsreader",
   subsets: ["latin"],
   display: "swap",
 });
@@ -56,13 +56,13 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
       <body
-        className={`${archivo.variable} ${sourceSerif.variable} ${ibmPlexMono.variable} min-h-screen antialiased`}
+        className={`${bricolage.variable} ${newsreader.variable} ${ibmPlexMono.variable} min-h-screen antialiased`}
       >
         <FirebaseAnalytics />
         {/* Shared shell keeps every section one click away. */}
         <div className="site-bg min-h-screen">
           <SiteHeader />
-          <main className="mx-auto max-w-6xl px-4 pb-24 pt-14 sm:px-6 lg:px-8">
+          <main className="w-full">
             {children}
           </main>
           <SiteFooter />
