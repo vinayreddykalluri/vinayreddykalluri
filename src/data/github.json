@@ -1,14 +1,14 @@
 {
-  "fetchedAt": "2026-09-08T15:54:31.203Z",
+  "fetchedAt": "2026-09-08T15:56:53.722Z",
   "login": "vinayreddykalluri",
   "url": "https://github.com/vinayreddykalluri",
   "publicRepos": 20,
   "followers": 12,
   "memberSince": "2013-10-21T13:42:24Z",
-  "commits": 232,
-  "commitsLast90": 72,
+  "commits": 233,
+  "commitsLast90": 73,
   "pullRequests": 15,
-  "lastActiveAt": "2026-09-08T10:00:19.000-04:00",
+  "lastActiveAt": "2026-09-08T11:55:09.000-04:00",
   "topLanguages": [
     {
       "name": "TypeScript",
@@ -44,6 +44,12 @@
   "recentCommits": [
     {
       "repo": "vinayreddykalluri",
+      "message": "Retire obsolete migration figures; correct Play Together",
+      "date": "2026-09-08T11:55:09.000-04:00",
+      "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/4f9b559e0c31cba68abb772718bd0147ba43e667"
+    },
+    {
+      "repo": "vinayreddykalluri",
       "message": "Seed featured repos and upstream PRs into the static build",
       "date": "2026-09-08T10:00:19.000-04:00",
       "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/b2c9deb21b845b0ac099ffda14c10f60fceccca6"
@@ -71,12 +77,6 @@
       "message": "Update content from résumé; promotion to Lead I",
       "date": "2026-09-07T21:20:49.000-04:00",
       "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/2c66ccb4cef1938424d6d7818772239d44cbe317"
-    },
-    {
-      "repo": "vinayreddykalluri",
-      "message": "Redesign: full-bleed editorial theme with instrument detail",
-      "date": "2026-09-07T21:14:53.000-04:00",
-      "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/ce8763811c9851e115bfc7eb274a3f4fe91d13db"
     }
   ],
   "featured": [

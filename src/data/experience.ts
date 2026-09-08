@@ -103,7 +103,7 @@ export const experiences: ExperienceItem[] = [
     summary:
       "Built event-driven backend services for Anthem at high event throughput, and mentored engineers on Java and microservice practice.",
     highlights: [
-      "Developed and supported Java and Spring Boot microservices for Anthem Inc. using Apache Kafka to implement event-driven architecture, processing 1M+ events per hour.",
+      "Developed and supported Java and Spring Boot microservices for Anthem Inc. using Apache Kafka to implement event-driven architecture, processing 1M+ events per day.",
       "Improved application and database performance by optimizing SQL (query refactoring, indexing, execution plan analysis) and implementing Redis caching, reducing API response time by 35%.",
       "Built internal automation tools and scripts in Java, Python, and Shell to streamline operational workflows, reducing manual effort by 60% and improving reliability.",
       "Collaborated in an Agile/Scrum environment on requirements, estimation, implementation, code reviews, and production support.",

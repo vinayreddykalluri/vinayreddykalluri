@@ -42,7 +42,7 @@ const OUTCOMES: Outcome[] = [
     note: "Parallel processing, SQL tuning, batch orchestration",
     bars: { from: 100, to: 25, fromLabel: "before", toLabel: "after" },
   },
-  { figure: "1M+", label: "Events / hour", note: "Event-driven services at Anthem" },
+  { figure: "1M+", label: "Events / day", note: "Event-driven services at Anthem" },
   { figure: "99.9%", label: "Consistency", note: "Idempotency, sequencing, dead-letter handling" },
   { figure: "+20%", label: "API throughput", note: "Async execution, Redis caching, JVM tuning" },
   { figure: "\u221240%", label: "Manual effort", note: "Incentive compensation workflow automation" },
@@ -60,7 +60,7 @@ const CAPABILITIES = [
     title: "Event-Driven Platform Engineering",
     summary:
       "Using Kafka and microservice orchestration to keep data movement fast, dependable, and easier to scale.",
-    signal: "1M+ events/hour on event-driven healthcare services",
+    signal: "1M+ events/day on event-driven healthcare services",
   },
   {
     title: "Performance and Delivery Velocity",
