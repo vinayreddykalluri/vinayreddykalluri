@@ -23,12 +23,19 @@ async function json(url) {
 }
 
 try {
-  const [user, repos, commits] = await Promise.all([
+  const since = new Date(Date.now() - 90 * 864e5).toISOString().slice(0, 10);
+  const [user, repos, commits, windowed, prs] = await Promise.all([
     json(`https://api.github.com/users/${USER}`),
     json(`https://api.github.com/users/${USER}/repos?per_page=100&sort=pushed`),
-    json(`https://api.github.com/search/commits?q=author:${USER}&per_page=1`).catch(
-      () => ({ total_count: null }),
-    ),
+    json(
+      `https://api.github.com/search/commits?q=author:${USER}&sort=author-date&order=desc&per_page=6`,
+    ).catch(() => ({ total_count: null, items: [] })),
+    json(
+      `https://api.github.com/search/commits?q=author:${USER}+author-date:%3E${since}&per_page=1`,
+    ).catch(() => ({ total_count: null })),
+    json(
+      `https://api.github.com/search/issues?q=author:${USER}+type:pr&sort=updated&order=desc&per_page=30`,
+    ).catch(() => ({ total_count: null, items: [] })),
   ]);
 
   const languages = {};
@@ -44,17 +51,45 @@ try {
 
   const totalLangRepos = topLanguages.reduce((sum, l) => sum + l.count, 0) || 1;
 
-  const recent = repos
-    .filter((r) => !r.fork)
-    .slice(0, 4)
+  // Same ranking and shape the Worker uses, so the seeded markup and the live
+  // payload render identically and the swap is invisible.
+  const featured = repos
+    .filter((r) => !r.fork && r.name !== USER && r.description)
+    .sort(
+      (a, b) =>
+        b.stargazers_count - a.stargazers_count ||
+        b.forks_count - a.forks_count ||
+        Date.parse(b.pushed_at) - Date.parse(a.pushed_at),
+    )
+    .slice(0, 6)
     .map((r) => ({
       name: r.name,
       description: r.description,
+      url: r.html_url,
       language: r.language,
       stars: r.stargazers_count,
+      forks: r.forks_count,
+      topics: (r.topics ?? []).slice(0, 4),
       pushedAt: r.pushed_at,
-      url: r.html_url,
     }));
+
+  const upstream = (prs.items ?? [])
+    .filter((pr) => !pr.repository_url.includes(`/repos/${USER}/`))
+    .slice(0, 5)
+    .map((pr) => ({
+      title: pr.title,
+      url: pr.html_url,
+      state: pr.state,
+      repo: pr.repository_url.split("/repos/")[1] ?? "",
+      createdAt: pr.created_at,
+    }));
+
+  const recentCommits = (commits.items ?? []).map((item) => ({
+    repo: item.repository.name,
+    message: item.commit.message.split("\n")[0].slice(0, 90),
+    date: item.commit.author.date,
+    url: item.html_url,
+  }));
 
   const data = {
     fetchedAt: new Date().toISOString(),
@@ -64,11 +99,16 @@ try {
     followers: user.followers,
     memberSince: user.created_at,
     commits: commits.total_count,
+    commitsLast90: windowed.total_count ?? null,
+    pullRequests: prs.total_count ?? null,
+    lastActiveAt: recentCommits[0]?.date ?? null,
     topLanguages: topLanguages.map((l) => ({
       ...l,
       share: Math.round((l.count / totalLangRepos) * 100),
     })),
-    recent,
+    recentCommits,
+    featured,
+    upstream,
   };
 
   await writeFile(OUT, `${JSON.stringify(data, null, 2)}\n`);

@@ -1,11 +1,14 @@
 {
-  "fetchedAt": "2026-09-08T13:57:54.840Z",
+  "fetchedAt": "2026-09-08T13:59:42.416Z",
   "login": "vinayreddykalluri",
   "url": "https://github.com/vinayreddykalluri",
   "publicRepos": 20,
   "followers": 12,
   "memberSince": "2013-10-21T13:42:24Z",
-  "commits": 230,
+  "commits": 231,
+  "commitsLast90": 71,
+  "pullRequests": 15,
+  "lastActiveAt": "2026-09-08T09:58:40.000-04:00",
   "topLanguages": [
     {
       "name": "TypeScript",
@@ -38,38 +41,123 @@
       "share": 11
     }
   ],
-  "recent": [
+  "recentCommits": [
     {
-      "name": "vinayreddykalluri",
-      "description": null,
-      "language": "TypeScript",
-      "stars": 0,
-      "pushedAt": "2026-09-08T01:33:06Z",
-      "url": "https://github.com/vinayreddykalluri/vinayreddykalluri"
+      "repo": "vinayreddykalluri",
+      "message": "Surface real GitHub and LinkedIn material in the portfolio",
+      "date": "2026-09-08T09:58:40.000-04:00",
+      "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/fc0defcf56ee7e64b6c848a489c2f295aa3fcdc9"
     },
+    {
+      "repo": "vinayreddykalluri",
+      "message": "Serve GitHub activity live via a Worker API route",
+      "date": "2026-09-07T21:33:05.000-04:00",
+      "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/ede179787dedb9dd23f95b560d2611a248da5572"
+    },
+    {
+      "repo": "vinayreddykalluri",
+      "message": "Drop pink, new display font, live GitHub stats, parallax",
+      "date": "2026-09-07T21:26:59.000-04:00",
+      "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/acf38b0d4c70e61275fec966171a3bc35ad789e3"
+    },
+    {
+      "repo": "vinayreddykalluri",
+      "message": "Update content from résumé; promotion to Lead I",
+      "date": "2026-09-07T21:20:49.000-04:00",
+      "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/2c66ccb4cef1938424d6d7818772239d44cbe317"
+    },
+    {
+      "repo": "vinayreddykalluri",
+      "message": "Redesign: full-bleed editorial theme with instrument detail",
+      "date": "2026-09-07T21:14:53.000-04:00",
+      "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/ce8763811c9851e115bfc7eb274a3f4fe91d13db"
+    },
+    {
+      "repo": "vinayreddykalluri",
+      "message": "Never hide content behind scroll-reveal animations",
+      "date": "2026-09-07T20:24:08.000-04:00",
+      "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/6cc37eaaeb9ee05ce4cc233c3c18c30d3fbd47d6"
+    }
+  ],
+  "featured": [
     {
       "name": "SDE2-Interview-Handbook",
       "description": "Open-source SDE-2 backend interview handbook with Java, DSA, LLD, HLD, system design, diagrams, runnable examples, and printable guides.",
+      "url": "https://github.com/vinayreddykalluri/SDE2-Interview-Handbook",
       "language": "Java",
       "stars": 3,
-      "pushedAt": "2026-09-01T19:21:43Z",
-      "url": "https://github.com/vinayreddykalluri/SDE2-Interview-Handbook"
+      "forks": 1,
+      "topics": [
+        "algorithms",
+        "backend",
+        "books",
+        "data-structures"
+      ],
+      "pushedAt": "2026-09-01T19:21:43Z"
+    },
+    {
+      "name": "Image-Generation-GANs",
+      "description": "Image Generation Using VQ-GAN, CLIP and Custom Deep Face GAN",
+      "url": "https://github.com/vinayreddykalluri/Image-Generation-GANs",
+      "language": "Jupyter Notebook",
+      "stars": 2,
+      "forks": 0,
+      "topics": [],
+      "pushedAt": "2022-05-10T18:16:09Z"
+    },
+    {
+      "name": "NutriGPT",
+      "description": "NutriGPT – AI-Powered Diet and Wellness Assistant",
+      "url": "https://github.com/vinayreddykalluri/NutriGPT",
+      "language": null,
+      "stars": 1,
+      "forks": 0,
+      "topics": [],
+      "pushedAt": "2025-06-13T13:22:35Z"
+    },
+    {
+      "name": "Twitter-Data-Analysis-for-Enhancement-of-Customer-Service",
+      "description": "Twitter-Data-Analysis-for-Enhancement-of-Customer-Service.",
+      "url": "https://github.com/vinayreddykalluri/Twitter-Data-Analysis-for-Enhancement-of-Customer-Service",
+      "language": "R",
+      "stars": 0,
+      "forks": 1,
+      "topics": [],
+      "pushedAt": "2018-07-23T05:49:17Z"
     },
     {
       "name": "java-sde2-interview-preparation-series",
       "description": "Open-source Java 21 and DSA books for SDE-2 interview preparation—from fundamentals to advanced engineering.",
+      "url": "https://github.com/vinayreddykalluri/java-sde2-interview-preparation-series",
       "language": "Python",
       "stars": 0,
-      "pushedAt": "2026-07-26T18:02:54Z",
-      "url": "https://github.com/vinayreddykalluri/java-sde2-interview-preparation-series"
+      "forks": 0,
+      "topics": [
+        "algorithms",
+        "backend-engineering",
+        "data-structures",
+        "interview-preparation"
+      ],
+      "pushedAt": "2026-07-26T18:02:54Z"
     },
     {
-      "name": "vinayreddykalluri.github.io",
-      "description": null,
-      "language": "HTML",
+      "name": "AI-Buddy",
+      "description": "AI Buddy – Conversational Agent using OpenAI & LangChain ",
+      "url": "https://github.com/vinayreddykalluri/AI-Buddy",
+      "language": null,
       "stars": 0,
-      "pushedAt": "2025-10-23T18:36:35Z",
-      "url": "https://github.com/vinayreddykalluri/vinayreddykalluri.github.io"
+      "forks": 0,
+      "topics": [],
+      "pushedAt": "2025-06-13T13:21:48Z"
+    }
+  ],
+  "upstream": [
+    {
+      "title": "Close the resource stream in PDF document readers",
+      "url": "https://github.com/spring-projects/spring-ai/pull/6927",
+      "state": "open",
+      "repo": "spring-projects/spring-ai",
+      "createdAt": "2026-09-07T03:52:31Z"
     }
   ]
 }
