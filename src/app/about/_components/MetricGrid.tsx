@@ -14,7 +14,7 @@ type MetricGridProps = {
 export function MetricGrid({ metrics, location, visa, mindset }: MetricGridProps) {
   return (
     <aside className="space-y-5" aria-label="Current focus and builder identity">
-      <section className="relative overflow-hidden rounded-[1.75rem] border border-[var(--border)] bg-[linear-gradient(145deg,var(--surface),var(--surface-strong))] p-6 shadow-[0_8px_40px_rgba(0,0,0,0.06)] backdrop-blur-md">
+      <section className="relative overflow-hidden rounded-[3px] border border-[var(--border)] bg-[color:var(--surface)] p-6">
         <div className="pointer-events-none absolute -right-7 top-0 h-28 w-28 rounded-full bg-[color:var(--accent-soft)] blur-2xl" />
         <h3 className="text-xl font-semibold">Current Focus</h3>
 
@@ -38,7 +38,7 @@ export function MetricGrid({ metrics, location, visa, mindset }: MetricGridProps
         </p>
       </section>
 
-      <section className="relative overflow-hidden rounded-[1.75rem] border border-[var(--border)] bg-[linear-gradient(145deg,var(--surface),var(--surface-strong))] p-6 shadow-[0_8px_40px_rgba(0,0,0,0.06)] backdrop-blur-md">
+      <section className="relative overflow-hidden rounded-[3px] border border-[var(--border)] bg-[color:var(--surface)] p-6">
         <div className="pointer-events-none absolute -left-8 bottom-2 h-24 w-24 rounded-full bg-[color:var(--accent-soft)] blur-3xl" />
         <h3 className="text-xl font-semibold">Builder Identity</h3>
         <p className="mt-2 text-sm leading-6 text-[color:var(--muted)]">
@@ -49,9 +49,9 @@ export function MetricGrid({ metrics, location, visa, mindset }: MetricGridProps
         <ul className="relative mt-4 space-y-3">
           {mindset.map((item, index) => (
             <li key={item}>
-              <details className="group rounded-xl border border-[var(--border)] bg-[linear-gradient(160deg,var(--surface),rgba(255,255,255,0.56))] px-4 py-3 shadow-[var(--shadow-soft)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[var(--shadow-strong)] open:border-[color:var(--accent)] open:bg-[color:var(--accent-soft)]/50">
+              <details className="group rounded-[3px] border border-[var(--border)] bg-[color:var(--surface)] px-4 py-3 transition-colors duration-200 hover:border-[color:var(--accent)] open:border-[color:var(--accent)] open:bg-[color:var(--accent-soft)]">
                 <summary className="flex cursor-pointer list-none items-center gap-3 [&::-webkit-details-marker]:hidden">
-                  <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[linear-gradient(135deg,var(--accent),var(--accent-alt))] text-xs font-semibold text-white">
+                  <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-[3px] bg-[color:var(--accent)] font-mono text-[11px] font-semibold text-white">
                     {index + 1}
                   </span>
                   <span className="flex-1 text-sm font-medium text-[color:var(--foreground)]">

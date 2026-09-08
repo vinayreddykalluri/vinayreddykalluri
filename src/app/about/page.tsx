@@ -62,7 +62,7 @@ export default function AboutPage() {
 
       <Reveal delay={0.12}>
         <section className="grid gap-5 xl:grid-cols-[1.08fr_0.92fr]">
-          <article className="relative overflow-hidden rounded-[1.75rem] border border-[var(--border)] bg-[linear-gradient(145deg,var(--surface),var(--surface-strong))] p-7 shadow-[0_8px_40px_rgba(0,0,0,0.06)] backdrop-blur-md md:p-8">
+          <article className="relative overflow-hidden rounded-[3px] border border-[var(--border)] bg-[color:var(--surface)] p-7 md:p-8">
             <SectionHeader
               title="Education"
               description="Academic foundation, research exposure, and outcomes."

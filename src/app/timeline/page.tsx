@@ -15,11 +15,14 @@ export const metadata: Metadata = pageMetadata({
 });
 
 const categoryStyles: Record<TimelineCategory, string> = {
-  Career: "border border-[#0F6FFF55] bg-[#0F6FFF1A] text-[#0F6FFF]",
-  Project: "border border-[#20A4F355] bg-[#20A4F31A] text-[#1A83C9]",
-  Award: "border border-[#FF7A4555] bg-[#FF7A451A] text-[#DB612E]",
-  Learning: "border border-[#2CB67D55] bg-[#2CB67D1A] text-[#208B5F]",
-  Publication: "border border-[#5476F455] bg-[#5476F41A] text-[#3F60DB]",
+  Career:
+    "border border-[color:var(--accent)] bg-[color:var(--accent-soft)] text-[color:var(--accent-strong)]",
+  Project:
+    "border border-[color:var(--accent-alt)] bg-[color:var(--accent-alt-soft)] text-[color:var(--accent-alt)]",
+  Award:
+    "border border-[color:var(--foreground)] text-[color:var(--foreground)]",
+  Learning: "border border-[var(--border)] text-[color:var(--muted)]",
+  Publication: "border border-[var(--border)] text-[color:var(--faint)]",
 };
 
 function groupTimelineByYear() {
@@ -85,7 +88,7 @@ export default function TimelinePage() {
                               {event.title}
                             </h3>
                             <span
-                              className={`rounded-full px-2.5 py-1 text-xs font-medium ${categoryStyles[event.category]}`}
+                              className={`rounded-[3px] px-2.5 py-1 text-xs font-medium ${categoryStyles[event.category]}`}
                             >
                               {event.category}
                             </span>

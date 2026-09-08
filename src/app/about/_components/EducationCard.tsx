@@ -15,11 +15,11 @@ type EducationCardProps = {
 
 export function EducationCard({ item }: EducationCardProps) {
   return (
-    <article className="group overflow-hidden rounded-2xl border border-[var(--border)] bg-[linear-gradient(160deg,var(--surface),rgba(255,255,255,0.55))] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_60px_rgba(15,111,255,0.18)]">
-      <div className="h-1.5 bg-gradient-to-r from-[var(--accent)] via-[var(--accent-alt)] to-[#4ca9ff]" />
+    <article className="group overflow-hidden rounded-[3px] border border-[var(--border)] bg-[color:var(--surface)] transition-colors duration-200 hover:border-[color:var(--accent)]">
+      <div className="h-px bg-[color:var(--border)]" />
       <div className="space-y-4 p-5 md:p-6">
         <div className="flex items-start gap-4">
-          <div className="flex h-[4.5rem] w-[6.5rem] shrink-0 items-center justify-center rounded-xl border border-[var(--border)] bg-[color:var(--surface-strong)] p-2">
+          <div className="flex h-[4.5rem] w-[6.5rem] shrink-0 items-center justify-center rounded-[3px] border border-[var(--border)] bg-[color:var(--surface-strong)] p-2">
             <Image
               src={item.logo}
               alt={item.logoAlt}
@@ -49,7 +49,7 @@ export function EducationCard({ item }: EducationCardProps) {
             return (
               <li
                 key={`${item.degree}-${detail}`}
-                className="rounded-xl border border-[var(--border)] bg-[color:var(--surface-strong)]/90 px-3.5 py-2.5 text-sm leading-6 text-[color:var(--muted)]"
+                className="rounded-[3px] border border-[var(--border)] bg-[color:var(--surface-strong)]/90 px-3.5 py-2.5 text-sm leading-6 text-[color:var(--muted)]"
               >
                 <span className="flex items-start gap-3">
                   <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-[color:var(--accent)]" />

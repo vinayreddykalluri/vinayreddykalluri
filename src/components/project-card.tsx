@@ -12,7 +12,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
           <p className="kicker">{project.type}</p>
           <h3 className="mt-2 text-xl font-semibold">{project.name}</h3>
         </div>
-        <p className="soft-chip rounded-full px-3 py-1 text-xs">
+        <p className="soft-chip rounded-[3px] px-3 py-1 text-xs">
           {project.period}
         </p>
       </header>
@@ -40,7 +40,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
 
       <ul className="mt-4 flex flex-wrap gap-2">
         {project.stack.map((tech) => (
-          <li key={tech} className="soft-chip rounded-full px-3 py-1 text-xs">
+          <li key={tech} className="soft-chip rounded-[3px] px-3 py-1 text-xs">
             {tech}
           </li>
         ))}

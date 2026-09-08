@@ -73,7 +73,7 @@ export default async function BlogPage() {
                       {post.tags.map((tag) => (
                         <li
                           key={tag}
-                          className="soft-chip rounded-full px-3 py-1 text-xs"
+                          className="soft-chip rounded-[3px] px-3 py-1 text-xs"
                         >
                           {tag}
                         </li>

@@ -5,11 +5,9 @@ type VisionPanelProps = {
 export function VisionPanel({ mission }: VisionPanelProps) {
   return (
     <section className="relative">
-      <div className="pointer-events-none absolute -left-10 top-8 h-40 w-40 rounded-full bg-[color:var(--accent-soft)] blur-3xl" />
-      <div className="pointer-events-none absolute right-8 top-0 h-28 w-28 rounded-full bg-[color:var(--accent-soft)] blur-2xl" />
-
-      <div className="rounded-[1.75rem] bg-gradient-to-r from-[var(--accent)] via-[var(--accent-alt)] to-[#4ca9ff] p-[1px] shadow-[0_16px_48px_rgba(15,111,255,0.24)]">
-        <article className="relative overflow-hidden rounded-[calc(1.75rem-1px)] border border-white/15 bg-[linear-gradient(145deg,var(--surface),var(--surface-strong))] p-8 backdrop-blur-md md:p-10">
+      
+      <div className="border-l-2 border-[color:var(--accent)]">
+        <article className="relative overflow-hidden border border-l-0 border-[var(--border)] bg-[color:var(--surface)] p-8 md:p-10">
           <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">
             Mission &amp; Long-Term Vision
           </h2>

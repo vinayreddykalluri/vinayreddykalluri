@@ -22,10 +22,10 @@ export function SiteHeader() {
   }, [pathname]);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-[var(--border)]/70 bg-[color:var(--surface)]/72 backdrop-blur-xl">
+    <header className="sticky top-0 z-40 border-b border-[var(--border)] bg-[color:var(--background)]/92">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
         <Link href="/" className="group inline-flex items-center gap-3">
-          <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-[linear-gradient(135deg,var(--accent),var(--accent-alt))] text-sm font-bold text-white shadow-[0_10px_22px_rgba(15,111,255,0.35)] transition group-hover:scale-105">
+          <span className="inline-flex h-8 w-8 items-center justify-center rounded-[3px] bg-[color:var(--accent)] font-mono text-[11px] font-semibold tracking-[0.08em] text-white transition group-hover:bg-[color:var(--accent-strong)]">
             {siteConfig.shortName}
           </span>
           <span className="text-sm font-semibold tracking-tight transition group-hover:text-[color:var(--accent)]">
@@ -51,10 +51,10 @@ export function SiteHeader() {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className={`rounded-full px-4 py-2 text-sm transition ${
+                    className={`relative rounded-[3px] px-3 py-2 text-sm transition after:absolute after:inset-x-3 after:bottom-1 after:h-px after:transition ${
                       active
-                        ? "bg-[linear-gradient(135deg,var(--accent),var(--accent-alt))] font-semibold text-white shadow-[0_10px_22px_rgba(15,111,255,0.32)]"
-                        : "text-[color:var(--muted)] hover:bg-[color:var(--accent-soft)] hover:text-[color:var(--foreground)]"
+                        ? "font-semibold text-[color:var(--foreground)] after:bg-[color:var(--accent)]"
+                        : "text-[color:var(--muted)] after:bg-transparent hover:text-[color:var(--foreground)]"
                     }`}
                   >
                     {item.label}
@@ -78,10 +78,10 @@ export function SiteHeader() {
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className={`block rounded-xl px-3 py-2 text-sm transition ${
+                  className={`block rounded-[3px] border-l-2 px-3 py-2 text-sm transition ${
                     active
-                      ? "bg-[linear-gradient(135deg,var(--accent),var(--accent-alt))] font-semibold text-white"
-                      : "text-[color:var(--muted)] hover:bg-[color:var(--accent-soft)] hover:text-[color:var(--foreground)]"
+                      ? "border-[color:var(--accent)] bg-[color:var(--accent-soft)] font-semibold text-[color:var(--foreground)]"
+                      : "border-transparent text-[color:var(--muted)] hover:text-[color:var(--foreground)]"
                   }`}
                 >
                   {item.label}

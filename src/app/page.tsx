@@ -63,12 +63,9 @@ export default function HomePage() {
       />
       <Reveal>
         <section className="hero-shell surface-panel mesh-grid relative p-7 md:p-11">
-          <span className="hero-orb h-40 w-40 bg-[color:var(--accent-soft)] -left-8 top-14 opacity-80 md:h-52 md:w-52" />
-          <span className="hero-orb alt h-32 w-32 bg-[color:var(--accent-alt-soft)] right-8 top-6 opacity-75 md:h-44 md:w-44" />
-
           <div className="relative grid gap-9 md:gap-10 lg:grid-cols-[1.1fr_0.9fr]">
             <div className="space-y-7">
-              <p className="soft-chip motion-entry inline-flex w-fit rounded-full px-3 py-1 font-mono text-xs tracking-[0.1em] uppercase">
+              <p className="soft-chip motion-entry inline-flex w-fit rounded-[3px] px-3 py-1 font-mono text-xs tracking-[0.1em] uppercase">
                 {siteConfig.role}
               </p>
               <h1 className="motion-entry delay-1 text-4xl leading-[1.05] font-semibold tracking-tight sm:text-5xl lg:text-6xl">
@@ -152,10 +149,10 @@ export default function HomePage() {
           </div>
 
           <div className="signal-strip mt-8">
-            <div className="signal-track" aria-hidden="true">
-              {[...currentStack, ...currentStack].map((stack, index) => (
-                <span key={`${stack}-${index}`} className="signal-pill">
-                  <span className="signal-dot mr-2" />
+            <p className="kicker mb-3">Current stack</p>
+            <div className="signal-track">
+              {currentStack.map((stack) => (
+                <span key={stack} className="signal-pill">
                   {stack}
                 </span>
               ))}
@@ -199,7 +196,7 @@ export default function HomePage() {
               <article key={project.name} className="surface-card p-6">
                 <div className="flex items-center justify-between gap-3">
                   <p className="kicker">{project.type}</p>
-                  <span className="soft-chip rounded-full px-3 py-1 text-xs">
+                  <span className="soft-chip rounded-[3px] px-3 py-1 text-xs">
                     {project.period}
                   </span>
                 </div>

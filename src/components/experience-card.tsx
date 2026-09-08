@@ -15,7 +15,7 @@ export function ExperienceCard({ experience }: ExperienceCardProps) {
             {experience.company} | {experience.location}
           </p>
         </div>
-        <p className="soft-chip rounded-full px-3 py-1 font-mono text-xs">
+        <p className="soft-chip rounded-[3px] px-3 py-1 font-mono text-xs">
           {experience.period}
         </p>
       </header>
@@ -34,7 +34,7 @@ export function ExperienceCard({ experience }: ExperienceCardProps) {
 
       <ul className="mt-5 flex flex-wrap gap-2">
         {experience.stack.map((tag) => (
-          <li key={tag} className="soft-chip rounded-full px-3 py-1 text-xs">
+          <li key={tag} className="soft-chip rounded-[3px] px-3 py-1 text-xs">
             {tag}
           </li>
         ))}

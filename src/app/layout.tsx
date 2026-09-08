@@ -1,13 +1,20 @@
 import type { Metadata } from "next";
 import { FirebaseAnalytics } from "@/components/firebase-analytics";
-import { IBM_Plex_Mono, Manrope } from "next/font/google";
+import { Archivo, IBM_Plex_Mono, Source_Serif_4 } from "next/font/google";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { siteMetadata } from "@/lib/seo";
 import "./globals.css";
 
-const manrope = Manrope({
-  variable: "--font-manrope",
+const archivo = Archivo({
+  variable: "--font-archivo",
+  subsets: ["latin"],
+  weight: ["500", "600", "700", "800"],
+  display: "swap",
+});
+
+const sourceSerif = Source_Serif_4({
+  variable: "--font-source-serif",
   subsets: ["latin"],
   display: "swap",
 });
@@ -15,7 +22,7 @@ const manrope = Manrope({
 const ibmPlexMono = IBM_Plex_Mono({
   variable: "--font-ibm-plex-mono",
   subsets: ["latin"],
-  weight: ["400", "500"],
+  weight: ["400", "500", "600"],
   display: "swap",
 });
 
@@ -49,7 +56,7 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
       <body
-        className={`${manrope.variable} ${ibmPlexMono.variable} min-h-screen antialiased`}
+        className={`${archivo.variable} ${sourceSerif.variable} ${ibmPlexMono.variable} min-h-screen antialiased`}
       >
         <FirebaseAnalytics />
         {/* Shared shell keeps every section one click away. */}

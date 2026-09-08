@@ -66,16 +66,16 @@ export default function ContactPage() {
         </Reveal>
 
         <Reveal delay={0.08}>
-          <article className="rounded-[1.6rem] border border-[var(--border)] bg-[linear-gradient(135deg,var(--accent),var(--accent-alt),#4ca9ff)] p-7 text-white shadow-[0_22px_48px_rgba(15,111,255,0.35)]">
+          <article className="rounded-[3px] border border-[color:var(--accent)] bg-[color:var(--accent-soft)] p-7">
             <h2 className="text-xl font-semibold">Availability</h2>
-            <p className="mt-3 text-sm leading-6 text-white/90">
+            <p className="mt-3 text-sm leading-6 text-[color:var(--muted)]">
               Available for {siteConfig.workAuthorization.availability}.{" "}
               {siteConfig.workAuthorization.visa}. Focused on senior backend
               engineering and platform reliability roles.
             </p>
             <a
               href={`mailto:${siteConfig.contact.email}`}
-              className="mt-6 inline-flex items-center gap-2 rounded-full border border-white/40 bg-[#0b1222] px-6 py-2.5 text-sm font-semibold text-white shadow-[0_14px_28px_rgba(11,16,34,0.45)] transition hover:-translate-y-0.5 hover:bg-[#141f39] focus-visible:outline-white"
+              className="cta-primary mt-6 px-6 py-2.5 text-sm"
             >
               Start a conversation
             </a>
