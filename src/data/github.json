@@ -1,14 +1,14 @@
 {
-  "fetchedAt": "2026-09-08T17:38:07.163Z",
+  "fetchedAt": "2026-09-08T18:20:27.720Z",
   "login": "vinayreddykalluri",
   "url": "https://github.com/vinayreddykalluri",
   "publicRepos": 20,
   "followers": 11,
   "memberSince": "2013-10-21T13:42:24Z",
-  "commits": 246,
-  "commitsLast90": 86,
+  "commits": 247,
+  "commitsLast90": 87,
   "pullRequests": 15,
-  "lastActiveAt": "2026-09-08T13:33:44.000-04:00",
+  "lastActiveAt": "2026-09-08T13:39:11.000-04:00",
   "topLanguages": [
     {
       "name": "TypeScript",
@@ -44,6 +44,12 @@
   "recentCommits": [
     {
       "repo": "vinayreddykalluri",
+      "message": "Extend the timeline back to 2012 and give it a scroll-linked spine",
+      "date": "2026-09-08T13:39:11.000-04:00",
+      "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/21f0ad867f926c415df3acdf2b2d99088d2a961c"
+    },
+    {
+      "repo": "vinayreddykalluri",
       "message": "Rebuild the timeline; fix dates rendering a day early",
       "date": "2026-09-08T13:33:44.000-04:00",
       "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/fde11a8f91caa46ac706ba2c80814aafe3c55dc7"
@@ -71,12 +77,6 @@
       "message": "Lead with Carelon; make skills evidence rather than a list",
       "date": "2026-09-08T13:05:34.000-04:00",
       "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/e65141807069eefddee7cf8471b27e8f0499ba78"
-    },
-    {
-      "repo": "vinayreddykalluri",
-      "message": "Move skills to their own page with per-technology logos",
-      "date": "2026-09-08T12:52:50.000-04:00",
-      "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/773aab67f369b33af5cdf3dc05cd42a07dfca736"
     }
   ],
   "featured": [

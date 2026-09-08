@@ -1,5 +1,5 @@
 import { siteConfig } from "@/data/profile";
-import { absoluteUrl } from "@/lib/seo";
+import { absoluteUrl, DEFAULT_OG_IMAGE_PATH } from "@/lib/seo";
 
 export function getPersonAndWebsiteJsonLd() {
   return {
@@ -70,7 +70,7 @@ export function getBlogPostingJsonLd({
     },
     mainEntityOfPage: postUrl,
     url: postUrl,
-    image: absoluteUrl("/og/cover.svg"),
+    image: absoluteUrl(DEFAULT_OG_IMAGE_PATH),
     keywords: tags,
     inLanguage: "en-US",
   };

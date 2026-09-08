@@ -64,8 +64,14 @@ export default function RootLayout({
         <FirebaseAnalytics />
         {/* Shared shell keeps every section one click away. */}
         <div className="site-bg min-h-screen">
+          <a
+            href="#main"
+            className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:border focus:border-[color:var(--accent)] focus:bg-[color:var(--background)] focus:px-4 focus:py-2 focus:font-mono focus:text-sm"
+          >
+            Skip to content
+          </a>
           <SiteHeader />
-          <main className="w-full">
+          <main id="main" className="w-full">
             {children}
           </main>
           <SiteFooter />

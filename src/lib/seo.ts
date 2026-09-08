@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { siteConfig, siteUrl } from "@/data/profile";
 
-export const DEFAULT_OG_IMAGE_PATH = "/og/cover.svg";
+// PNG, not SVG: X, LinkedIn, Facebook, Slack and iMessage all refuse to render
+// an SVG preview image, so an SVG here means every shared link shows no card.
+export const DEFAULT_OG_IMAGE_PATH = "/og/cover.png";
 
 export function normalizePath(path: string) {
   if (path === "/") {
@@ -37,10 +39,12 @@ export function pageMetadata({
 }: PageMetadataOptions): Metadata {
   const normalizedPath = normalizePath(path);
   const pageTitle =
-    title === "Home" ? siteConfig.name : `${title} | ${siteConfig.name}`;
+    title === "Home"
+      ? `${siteConfig.name} — ${siteConfig.role}`
+      : `${title} | ${siteConfig.name}`;
 
   return {
-    title,
+    title: { absolute: pageTitle },
     description,
     alternates: {
       canonical: normalizedPath,

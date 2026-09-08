@@ -12,7 +12,7 @@ export const navLinks = [
 export const siteConfig = {
   name: "Vinay Reddy Kalluri",
   shortName: "VRK",
-  role: "Senior Java Backend Engineer",
+  role: "Lead Software Engineer",
   location: "Atlanta, Georgia, USA",
   headline:
     "Building high-throughput microservices and event platforms that scale with confidence.",
