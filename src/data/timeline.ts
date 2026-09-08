@@ -17,8 +17,53 @@ export type TimelineEvent = {
 
 export const timelineEvents: TimelineEvent[] = [
   {
+    year: 2012,
+    date: "2012-06-01",
+    title: "Began M.S. Software Engineering at VIT",
+    category: "Learning",
+    org: { name: "VIT University", domain: "vit.ac.in" },
+    details:
+      "Started the five-year integrated programme at Vellore Institute of Technology — the beginning of the engineering foundation everything since is built on.",
+  },
+  {
+    year: 2015,
+    date: "2015-07-01",
+    title: "Led the Android Student Club as President",
+    category: "Learning",
+    org: { name: "VIT University", domain: "vit.ac.in" },
+    details:
+      "Ran workshops, hackathons and app-building sessions for 100+ students on the Android SDK and Java — the first taste of mentoring engineers rather than only writing code.",
+  },
+  {
+    year: 2016,
+    date: "2016-04-01",
+    title: "Best Project Based Learning Award",
+    category: "Award",
+    org: { name: "VIT University", domain: "vit.ac.in" },
+    details:
+      "Awarded for a dietary management system that analysed a user's health status and generated individual diet recommendations.",
+  },
+  {
     year: 2017,
-    date: "2017-06-01",
+    date: "2017-05-01",
+    title: "Graduated Rank #1 with the Gold Medal",
+    category: "Award",
+    org: { name: "VIT University", domain: "vit.ac.in" },
+    details:
+      "Finished first in the class with a 9.24/10 GPA, honoured with the Gold Medal for academic excellence across the full five-year programme.",
+  },
+  {
+    year: 2017,
+    date: "2017-05-15",
+    title: "Best Project Award from Cognizant",
+    category: "Award",
+    org: { name: "Cognizant", domain: "cognizant.com" },
+    details:
+      "Recognised for the real-time drowsiness detection system built as the final-year project, before joining the company that September.",
+  },
+  {
+    year: 2017,
+    date: "2017-11-28",
     title: "Published Driver Fatigue Detection Paper",
     category: "Publication",
     details:

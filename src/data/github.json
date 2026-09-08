@@ -1,14 +1,14 @@
 {
-  "fetchedAt": "2026-09-08T17:33:07.612Z",
+  "fetchedAt": "2026-09-08T17:38:07.163Z",
   "login": "vinayreddykalluri",
   "url": "https://github.com/vinayreddykalluri",
   "publicRepos": 20,
   "followers": 11,
   "memberSince": "2013-10-21T13:42:24Z",
-  "commits": 245,
-  "commitsLast90": 85,
+  "commits": 246,
+  "commitsLast90": 86,
   "pullRequests": 15,
-  "lastActiveAt": "2026-09-08T13:17:55.000-04:00",
+  "lastActiveAt": "2026-09-08T13:33:44.000-04:00",
   "topLanguages": [
     {
       "name": "TypeScript",
@@ -44,6 +44,12 @@
   "recentCommits": [
     {
       "repo": "vinayreddykalluri",
+      "message": "Rebuild the timeline; fix dates rendering a day early",
+      "date": "2026-09-08T13:33:44.000-04:00",
+      "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/fde11a8f91caa46ac706ba2c80814aafe3c55dc7"
+    },
+    {
+      "repo": "vinayreddykalluri",
       "message": "Render technology marks inline instead of proxying them",
       "date": "2026-09-08T13:17:55.000-04:00",
       "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/c8c3b8fec165b03e6c815a27d23ff77d208b4bfb"
@@ -71,12 +77,6 @@
       "message": "Move skills to their own page with per-technology logos",
       "date": "2026-09-08T12:52:50.000-04:00",
       "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/773aab67f369b33af5cdf3dc05cd42a07dfca736"
-    },
-    {
-      "repo": "vinayreddykalluri",
-      "message": "Model companies as a list of positions, not one flat role",
-      "date": "2026-09-08T12:47:15.000-04:00",
-      "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/9c847e00cfb0c0dc4f32f1afff49de321e03b3c1"
     }
   ],
   "featured": [

@@ -3,6 +3,7 @@ import { CompanyLogo } from "@/components/company-logo";
 import { PageHeader } from "@/components/page-header";
 import { Reveal } from "@/components/Reveal";
 import { Spotlight } from "@/components/spotlight";
+import { TimelineSpine } from "@/components/timeline-spine";
 import { timelineEvents, type TimelineCategory } from "@/data/timeline";
 import { formatDate } from "@/lib/format";
 import { pageMetadata } from "@/lib/seo";
@@ -98,92 +99,92 @@ export default function TimelinePage() {
           ))}
       </div>
 
-      <div className="mt-14">
-        {byYear.map(({ year, events }) => (
-          <section
-            key={year}
-            aria-labelledby={`year-${year}`}
-            className="grid gap-6 md:grid-cols-[minmax(0,11rem)_1fr] md:gap-10"
-          >
-            {/* sticky year anchor */}
-            <div className="md:sticky md:top-24 md:h-fit md:self-start md:pb-16">
-              <h2
-                id={`year-${year}`}
-                className="stat-figure text-[color:var(--border)]"
-              >
-                {year}
-              </h2>
-              <p className="data-label mt-2 text-[color:var(--faint)]">
-                {events.length} {events.length === 1 ? "entry" : "entries"}
-              </p>
-            </div>
+      {/* One continuous spine for the whole run, so 2012 to 2026 reads as a
+          single thread rather than fourteen disconnected year blocks. */}
+      <TimelineSpine>
+        <Spotlight className="mt-14 pl-8 md:pl-12">
+          {byYear.map(({ year, events }) => (
+            <section key={year} aria-labelledby={`year-${year}`}>
+              {/* year marker, pinned while its entries scroll past */}
+              <div className="sticky top-[68px] z-10 -ml-8 mb-6 flex items-center gap-4 bg-[color:var(--background)] py-3 md:-ml-12">
+                <span
+                  className="h-2.5 w-2.5 shrink-0 translate-x-[-4px] bg-[color:var(--accent)]"
+                  aria-hidden="true"
+                />
+                <h2
+                  id={`year-${year}`}
+                  className="font-sans text-3xl font-extrabold tracking-tight md:text-4xl"
+                >
+                  {year}
+                </h2>
+                <span className="data-label text-[color:var(--faint)]">
+                  {events.length} {events.length === 1 ? "entry" : "entries"}
+                </span>
+                <span className="h-px flex-1 bg-[var(--border)]" aria-hidden="true" />
+              </div>
 
-            {/* the spine and its entries */}
-            <Spotlight className="relative border-l border-[var(--border)] pl-8 md:pl-10">
-              {events.map((event, index) => {
-                const style = CATEGORY[event.category];
-                const isLatest = year === years[0] && index === 0;
+              <div className="mb-10">
+                {events.map((event, index) => {
+                  const style = CATEGORY[event.category];
+                  const isLatest = year === years[0] && index === 0;
 
-                return (
-                  <Reveal key={`${event.date}-${event.title}`}>
-                    <article className="spot relative mb-3 border border-[var(--border)] bg-[color:var(--surface)] p-6">
-                      {/* marker on the spine */}
-                      <span
-                        className={`absolute left-[-2.05rem] top-7 h-2.5 w-2.5 md:left-[-2.55rem] ${style.dot}`}
-                        aria-hidden="true"
-                      />
-                      <span
-                        className="absolute left-[-1.72rem] top-[2.1rem] h-px w-5 bg-[var(--border)] md:left-[-2.22rem] md:w-7"
-                        aria-hidden="true"
-                      />
+                  return (
+                    <Reveal key={`${event.date}-${event.title}`}>
+                      <article className="spot relative mb-3 border border-[var(--border)] bg-[color:var(--surface)] p-6">
+                        <span
+                          className={`absolute left-[-2.05rem] top-8 h-2 w-2 md:left-[-3.05rem] ${style.dot}`}
+                          aria-hidden="true"
+                        />
+                        <span
+                          className="absolute left-[-1.8rem] top-[2.2rem] h-px w-6 bg-[var(--border)] md:left-[-2.8rem] md:w-10"
+                          aria-hidden="true"
+                        />
 
-                      <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-                        <span className={`data-label ${style.text}`}>
-                          {style.label}
-                        </span>
-                        <span className="data-label text-[color:var(--faint)]">
-                          {formatDate(event.date)}
-                        </span>
-                        {isLatest ? (
-                          <span className="border border-[color:var(--accent)] bg-[color:var(--accent-soft)] px-2 py-0.5 data-label text-[color:var(--accent-strong)]">
-                            Most recent
+                        <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+                          <span className={`data-label ${style.text}`}>
+                            {style.label}
                           </span>
-                        ) : null}
-                      </div>
-
-                      <div className="mt-3 flex items-start gap-4">
-                        {event.org ? (
-                          <CompanyLogo
-                            domain={event.org.domain}
-                            name={event.org.name}
-                            size={40}
-                          />
-                        ) : null}
-                        <div>
-                          <h3 className="font-sans text-xl font-bold leading-snug">
-                            {event.title}
-                          </h3>
-                          <p className="measure mt-2 leading-relaxed text-[color:var(--muted)]">
-                            {event.details}
-                          </p>
+                          <span className="data-label text-[color:var(--faint)]">
+                            {formatDate(event.date)}
+                          </span>
+                          {isLatest ? (
+                            <span className="border border-[color:var(--accent)] bg-[color:var(--accent-soft)] px-2 py-0.5 data-label text-[color:var(--accent-strong)]">
+                              Most recent
+                            </span>
+                          ) : null}
                         </div>
-                      </div>
-                    </article>
-                  </Reveal>
-                );
-              })}
-            </Spotlight>
-          </section>
-        ))}
-      </div>
 
-      {/* the beginning */}
-      <div className="grid gap-6 md:grid-cols-[minmax(0,11rem)_1fr] md:gap-10">
-        <div />
-        <p className="border-l border-[var(--border)] py-6 pl-8 data-label text-[color:var(--faint)] md:pl-10">
-          Where it started
-        </p>
-      </div>
+                        <div className="mt-3 flex items-start gap-4">
+                          {event.org ? (
+                            <CompanyLogo
+                              domain={event.org.domain}
+                              name={event.org.name}
+                              size={40}
+                            />
+                          ) : null}
+                          <div>
+                            <h3 className="font-sans text-xl font-bold leading-snug">
+                              {event.title}
+                            </h3>
+                            <p className="measure mt-2 leading-relaxed text-[color:var(--muted)]">
+                              {event.details}
+                            </p>
+                          </div>
+                        </div>
+                      </article>
+                    </Reveal>
+                  );
+                })}
+              </div>
+            </section>
+          ))}
+
+          <p className="pb-2 data-label text-[color:var(--faint)]">
+            Where it started &mdash; VIT University, 2012
+          </p>
+        </Spotlight>
+      </TimelineSpine>
+
     </div>
   );
 }
