@@ -1,14 +1,14 @@
 {
-  "fetchedAt": "2026-09-08T16:21:22.800Z",
+  "fetchedAt": "2026-09-08T16:42:11.795Z",
   "login": "vinayreddykalluri",
   "url": "https://github.com/vinayreddykalluri",
   "publicRepos": 20,
   "followers": 12,
   "memberSince": "2013-10-21T13:42:24Z",
-  "commits": 236,
-  "commitsLast90": 76,
+  "commits": 238,
+  "commitsLast90": 78,
   "pullRequests": 15,
-  "lastActiveAt": "2026-09-08T12:16:59.000-04:00",
+  "lastActiveAt": "2026-09-08T12:25:49.000-04:00",
   "topLanguages": [
     {
       "name": "TypeScript",
@@ -44,6 +44,18 @@
   "recentCommits": [
     {
       "repo": "vinayreddykalluri",
+      "message": "Distinguish logo proxy failure modes",
+      "date": "2026-09-08T12:25:49.000-04:00",
+      "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/4ced2017320592d1f03b15353124bf058976f941"
+    },
+    {
+      "repo": "vinayreddykalluri",
+      "message": "Add an animated pipeline diagram as the centrepiece",
+      "date": "2026-09-08T12:22:20.000-04:00",
+      "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/daffa9e9bde57166fcb999559b12a888d7919b7b"
+    },
+    {
+      "repo": "vinayreddykalluri",
       "message": "Add company logos via a token-hiding logo.dev proxy",
       "date": "2026-09-08T12:16:59.000-04:00",
       "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/6670ae5abdde120ddda19e253e7979b1a1765ef7"
@@ -65,18 +77,6 @@
       "message": "Retire obsolete migration figures; correct Play Together",
       "date": "2026-09-08T11:55:09.000-04:00",
       "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/4f9b559e0c31cba68abb772718bd0147ba43e667"
-    },
-    {
-      "repo": "vinayreddykalluri",
-      "message": "Seed featured repos and upstream PRs into the static build",
-      "date": "2026-09-08T10:00:19.000-04:00",
-      "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/b2c9deb21b845b0ac099ffda14c10f60fceccca6"
-    },
-    {
-      "repo": "vinayreddykalluri",
-      "message": "Surface real GitHub and LinkedIn material in the portfolio",
-      "date": "2026-09-08T09:58:40.000-04:00",
-      "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/fc0defcf56ee7e64b6c848a489c2f295aa3fcdc9"
     }
   ],
   "featured": [

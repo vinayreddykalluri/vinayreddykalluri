@@ -3,6 +3,8 @@ export type ExperienceItem = {
   company: string;
   /** Corporate domain, used to resolve a logo via the /api/logo proxy. */
   domain?: string;
+  /** Present name, where the employer has since been renamed or absorbed. */
+  nowKnownAs?: string;
   location: string;
   period: string;
   summary: string;
@@ -80,7 +82,8 @@ export const experiences: ExperienceItem[] = [
   {
     role: "Software Engineer",
     company: "Legato Health Technologies",
-    domain: "elevancehealth.com",
+    domain: "carelon.com",
+    nowKnownAs: "Carelon",
     location: "Hyderabad, India",
     period: "Dec 2019 - Dec 2021",
     summary:

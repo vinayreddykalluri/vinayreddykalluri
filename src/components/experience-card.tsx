@@ -27,9 +27,16 @@ export function ExperienceCard({
             name={experience.company}
             size={44}
           />
-          <p className="font-sans text-lg font-bold leading-tight">
-            {experience.company}
-          </p>
+          <div>
+            <p className="font-sans text-lg font-bold leading-tight">
+              {experience.company}
+            </p>
+            {experience.nowKnownAs ? (
+              <p className="data-label mt-1 text-[color:var(--faint)]">
+                Now {experience.nowKnownAs}
+              </p>
+            ) : null}
+          </div>
         </div>
         <p className="data-label mt-3 text-[color:var(--faint)]">
           {experience.period}
