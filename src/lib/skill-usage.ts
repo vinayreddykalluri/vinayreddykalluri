@@ -20,7 +20,6 @@ export type SkillUsage = {
  */
 const ALIASES: Record<string, string[]> = {
   "Apache Kafka": ["kafka", "apache kafka"],
-  "Kafka Streams": ["kafka", "apache kafka"],
   "Spring Boot": ["spring boot", "spring framework"],
   "Spring Security": ["spring security"],
   "REST APIs": ["rest apis", "rest api"],
@@ -31,6 +30,11 @@ const ALIASES: Record<string, string[]> = {
   GitHub: ["git"],
   MySQL: ["mysql", "sql"],
   PostgreSQL: ["postgresql"],
+  // "Event-driven architecture" and "Distributed systems" alias to Kafka
+  // because the role highlights say exactly that in prose. "Kafka Streams"
+  // deliberately does not: no role stack names Streams, so claiming it ran in
+  // five roles would be evidence the data does not support. It falls to the
+  // toolbox tier instead.
   "Idempotency & retries": ["observability"],
   "Event-driven architecture": ["apache kafka", "kafka"],
   "Distributed systems": ["apache kafka", "kafka"],

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { PageHeader } from "@/components/page-header";
 import { SkillsExplorer } from "@/components/skills-explorer";
-import { skillGroups } from "@/data/skills";
 import { buildSkillUsage, usageStats } from "@/lib/skill-usage";
 import { pageMetadata } from "@/lib/seo";
 
@@ -32,8 +31,8 @@ export default function SkillsPage() {
     <div className="shell py-14 md:py-20">
       <PageHeader
         kicker="Skills"
-        title="Not a list. A record of what shipped."
-        lede="Every technology here is cross-referenced against the roles that actually used it, so each one carries how many roles it appeared in, since when, and where. Search it, filter it, or narrow to only what has run in production."
+        title="Ranked by what shipped, not by what fits on a page."
+        lede="Cross-referenced against the roles that actually used it. The core stack carried through three or more roles; everything below that is listed honestly rather than padded out to look equivalent."
       />
 
       <section className="grid gap-x-8 gap-y-10 border-b border-[var(--border)] py-12 sm:grid-cols-2 lg:grid-cols-4">
@@ -50,13 +49,7 @@ export default function SkillsPage() {
         ))}
       </section>
 
-      <SkillsExplorer
-        usage={usage}
-        groups={skillGroups.map((group) => ({
-          label: group.label,
-          summary: group.summary,
-        }))}
-      />
+      <SkillsExplorer usage={usage} />
     </div>
   );
 }

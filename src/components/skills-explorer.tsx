@@ -1,183 +1,137 @@
-"use client";
-
-import { useMemo, useState } from "react";
 import { CompanyLogo } from "@/components/company-logo";
 import { Spotlight } from "@/components/spotlight";
 import type { SkillUsage } from "@/lib/skill-usage";
 
 /**
- * Skills as evidence rather than a list.
+ * Skills tiered by evidence rather than listed flat.
  *
- * Every item is cross-referenced against the work history, so a card can say
- * how many roles used it, since when, and at which companies — the difference
- * between claiming a technology and showing where it was used. Filtering and
- * search are client-side over data already in the page, so the full grid is
- * server-rendered and readable with no JavaScript.
+ * Fifty equal tiles assert nothing and cost fifty logo requests. Ranking by
+ * how many roles actually used a technology gives the page a point of view:
+ * a handful of things carried through every role, a second tier that shipped,
+ * and everything else named honestly as familiarity rather than dressed up to
+ * look equivalent.
+ *
+ * Only the top two tiers request a logo, which cuts image requests on this
+ * page by roughly two thirds. No filter UI either — the ranking does the job
+ * the filters were doing, so this is a server component with no client JS.
  */
-export function SkillsExplorer({
-  usage,
-  groups,
-}: {
-  usage: SkillUsage[];
-  groups: { label: string; summary: string }[];
-}) {
-  const [query, setQuery] = useState("");
-  const [group, setGroup] = useState<string | null>(null);
-  const [provenOnly, setProvenOnly] = useState(false);
+export function SkillsExplorer({ usage }: { usage: SkillUsage[] }) {
+  const core = usage
+    .filter((item) => item.roleCount >= 3)
+    .sort(
+      (a, b) => b.roleCount - a.roleCount || (a.since ?? 0) - (b.since ?? 0),
+    );
 
-  const filtered = useMemo(() => {
-    const q = query.trim().toLowerCase();
-    return usage.filter((item) => {
-      if (group && item.group !== group) return false;
-      if (provenOnly && item.roleCount === 0) return false;
-      if (q && !item.skill.name.toLowerCase().includes(q)) return false;
-      return true;
-    });
-  }, [usage, query, group, provenOnly]);
+  const shipped = usage
+    .filter((item) => item.roleCount > 0 && item.roleCount < 3)
+    .sort((a, b) => b.roleCount - a.roleCount);
 
-  const byGroup = useMemo(() => {
-    const map = new Map<string, SkillUsage[]>();
-    for (const item of filtered) {
-      const list = map.get(item.group) ?? [];
-      list.push(item);
-      map.set(item.group, list);
-    }
-    return map;
-  }, [filtered]);
+  const toolbox = usage.filter((item) => item.roleCount === 0);
 
   return (
     <div>
-      {/* controls */}
-      <div className="sticky top-[57px] z-20 -mx-[clamp(1.25rem,5vw,5rem)] border-b border-[var(--border)] bg-[color:var(--background)]/95 px-[clamp(1.25rem,5vw,5rem)] py-4 backdrop-blur-sm">
-        <div className="flex flex-wrap items-center gap-3">
-          <label className="relative flex-1 min-w-[14rem]">
-            <span className="sr-only">Search skills</span>
-            <input
-              value={query}
-              onChange={(event) => setQuery(event.target.value)}
-              placeholder="Search the stack…"
-              className="w-full border border-[var(--border)] bg-[color:var(--surface)] px-4 py-2.5 font-mono text-sm text-[color:var(--foreground)] placeholder:text-[color:var(--faint)] focus:border-[color:var(--accent)] focus:outline-none"
-            />
-          </label>
-
-          <button
-            type="button"
-            onClick={() => setProvenOnly((value) => !value)}
-            aria-pressed={provenOnly}
-            className={`border px-4 py-2.5 data-label transition-colors ${
-              provenOnly
-                ? "border-[color:var(--accent)] bg-[color:var(--accent-soft)] text-[color:var(--accent-strong)]"
-                : "border-[var(--border)] text-[color:var(--muted)]"
-            }`}
-          >
-            Shipped in production
-          </button>
+      {/* ---------- core stack ---------- */}
+      <section className="border-b border-[var(--border)] py-14">
+        <div className="flex flex-wrap items-end justify-between gap-6">
+          <div>
+            <p className="kicker">Core stack</p>
+            <h2 className="display-lg mt-4 max-w-[18ch]">
+              What carried through every role.
+            </h2>
+          </div>
+          <p className="measure text-[color:var(--muted)]">
+            Used in three or more roles. The tools the work actually rests on,
+            not everything ever touched.
+          </p>
         </div>
 
-        <div className="signal-track mt-3">
-          <button
-            type="button"
-            onClick={() => setGroup(null)}
-            aria-pressed={group === null}
-            className={`signal-pill transition-colors ${
-              group === null
-                ? "border-[color:var(--accent)] text-[color:var(--accent-strong)]"
-                : ""
-            }`}
-          >
-            All
-          </button>
-          {groups.map((g) => (
-            <button
-              key={g.label}
-              type="button"
-              onClick={() => setGroup(g.label === group ? null : g.label)}
-              aria-pressed={group === g.label}
-              className={`signal-pill transition-colors ${
-                group === g.label
-                  ? "border-[color:var(--accent)] text-[color:var(--accent-strong)]"
-                  : ""
-              }`}
+        <Spotlight className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {core.map((item) => (
+            <article
+              key={item.skill.name}
+              className="spot flex flex-col gap-4 border border-[var(--border)] bg-[color:var(--surface)] p-6"
             >
-              {g.label}
-            </button>
+              <CompanyLogo
+                domain={item.skill.domain}
+                name={item.skill.name}
+                size={44}
+              />
+              <div>
+                <p className="font-sans text-lg font-bold leading-snug">
+                  {item.skill.name}
+                </p>
+                <p className="data-label mt-2 text-[color:var(--accent-strong)]">
+                  {item.roleCount} roles
+                  {item.since ? ` · since ${item.since}` : ""}
+                </p>
+              </div>
+              {/*
+                Company names rather than repeated logo tiles: the same five
+                marks recurring on every core tile was visual noise and dozens
+                of extra image elements, and the names read faster anyway.
+              */}
+              <p className="mt-auto pt-1 data-label text-[color:var(--faint)]">
+                {item.companies.map((company) => company.name).join(" · ")}
+              </p>
+            </article>
           ))}
-        </div>
-      </div>
+        </Spotlight>
+      </section>
 
-      {/* results */}
-      {filtered.length === 0 ? (
-        <p className="py-16 text-center text-[color:var(--muted)]">
-          Nothing matches “{query}”.
-        </p>
-      ) : (
-        groups
-          .filter((g) => byGroup.has(g.label))
-          .map((g) => {
-            const items = byGroup.get(g.label) ?? [];
-            return (
-              <section
-                key={g.label}
-                className="grid gap-8 border-b border-[var(--border)] py-12 md:grid-cols-[minmax(0,15rem)_1fr] md:gap-12"
+      {/* ---------- also shipped ---------- */}
+      {shipped.length ? (
+        <section className="border-b border-[var(--border)] py-14">
+          <p className="kicker">Also shipped</p>
+          <h2 className="display-lg mt-4 max-w-[18ch]">
+            Production, if not everywhere.
+          </h2>
+
+          <Spotlight className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {shipped.map((item) => (
+              <article
+                key={item.skill.name}
+                className="spot flex items-center gap-3 border border-[var(--border)] bg-[color:var(--surface)] p-4"
               >
-                <div>
-                  <h2 className="font-sans text-xl font-bold leading-tight">
-                    {g.label}
-                  </h2>
-                  <p className="mt-3 leading-relaxed text-[color:var(--muted)]">
-                    {g.summary}
+                <CompanyLogo
+                  domain={item.skill.domain}
+                  name={item.skill.name}
+                  size={32}
+                />
+                <div className="min-w-0">
+                  <p className="truncate font-sans text-[0.95rem] font-semibold">
+                    {item.skill.name}
+                  </p>
+                  <p className="data-label mt-1 text-[color:var(--faint)]">
+                    {item.roleCount} role{item.roleCount === 1 ? "" : "s"}
+                    {item.since ? ` · ${item.since}` : ""}
                   </p>
                 </div>
+              </article>
+            ))}
+          </Spotlight>
+        </section>
+      ) : null}
 
-                <Spotlight className="self-start">
-                  <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                  {items.map((item) => (
-                    <li
-                      key={item.skill.name}
-                      className="spot flex flex-col gap-3 border border-[var(--border)] bg-[color:var(--surface)] p-5"
-                    >
-                      <div className="flex items-center gap-3">
-                        <CompanyLogo
-                          domain={item.skill.domain}
-                          name={item.skill.name}
-                          size={34}
-                        />
-                        <span className="font-sans text-[0.95rem] font-semibold leading-snug">
-                          {item.skill.name}
-                        </span>
-                      </div>
+      {/* ---------- toolbox ---------- */}
+      {toolbox.length ? (
+        <section className="py-14">
+          <p className="kicker">Toolbox</p>
+          <h2 className="display-lg mt-4 max-w-[22ch]">
+            Familiar, and used where it fits.
+          </h2>
+          <p className="measure mt-5 text-[color:var(--muted)]">
+            Named plainly rather than dressed up to look like the core stack.
+          </p>
 
-                      {item.roleCount > 0 ? (
-                        <div className="mt-auto">
-                          <p className="data-label text-[color:var(--accent-strong)]">
-                            {item.roleCount} role{item.roleCount === 1 ? "" : "s"}
-                            {item.since ? ` · since ${item.since}` : ""}
-                          </p>
-                          <div className="mt-2.5 flex items-center gap-1.5">
-                            {item.companies.map((company) => (
-                              <span key={company.name} title={company.name}>
-                                <CompanyLogo
-                                  domain={company.domain}
-                                  name={company.name}
-                                  size={22}
-                                />
-                              </span>
-                            ))}
-                          </div>
-                        </div>
-                      ) : (
-                        <p className="data-label mt-auto text-[color:var(--faint)]">
-                          Toolbox
-                        </p>
-                      )}
-                    </li>
-                  ))}
-                  </ul>
-                </Spotlight>
-              </section>
-            );
-          })
-      )}
+          <ul className="signal-track mt-8">
+            {toolbox.map((item) => (
+              <li key={item.skill.name} className="signal-pill">
+                {item.skill.name}
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
     </div>
   );
 }

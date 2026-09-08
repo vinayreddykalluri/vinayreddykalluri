@@ -1,14 +1,14 @@
 {
-  "fetchedAt": "2026-09-08T17:07:35.066Z",
+  "fetchedAt": "2026-09-08T17:12:57.249Z",
   "login": "vinayreddykalluri",
   "url": "https://github.com/vinayreddykalluri",
   "publicRepos": 20,
   "followers": 12,
   "memberSince": "2013-10-21T13:42:24Z",
-  "commits": 242,
-  "commitsLast90": 82,
+  "commits": 243,
+  "commitsLast90": 83,
   "pullRequests": 15,
-  "lastActiveAt": "2026-09-08T13:05:34.000-04:00",
+  "lastActiveAt": "2026-09-08T13:09:06.000-04:00",
   "topLanguages": [
     {
       "name": "TypeScript",
@@ -44,6 +44,12 @@
   "recentCommits": [
     {
       "repo": "vinayreddykalluri",
+      "message": "Add depth, texture and light to a design that had gone too flat",
+      "date": "2026-09-08T13:09:06.000-04:00",
+      "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/1d67bbe5c2b143a4024c6c3a9dc1aba429ff89c9"
+    },
+    {
+      "repo": "vinayreddykalluri",
       "message": "Lead with Carelon; make skills evidence rather than a list",
       "date": "2026-09-08T13:05:34.000-04:00",
       "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/e65141807069eefddee7cf8471b27e8f0499ba78"
@@ -71,12 +77,6 @@
       "message": "Distinguish logo proxy failure modes",
       "date": "2026-09-08T12:25:49.000-04:00",
       "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/4ced2017320592d1f03b15353124bf058976f941"
-    },
-    {
-      "repo": "vinayreddykalluri",
-      "message": "Add an animated pipeline diagram as the centrepiece",
-      "date": "2026-09-08T12:22:20.000-04:00",
-      "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/daffa9e9bde57166fcb999559b12a888d7919b7b"
     }
   ],
   "featured": [
