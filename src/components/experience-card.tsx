@@ -35,9 +35,9 @@ export function ExperienceCard({
         <p className="mt-4 font-sans text-lg font-bold leading-tight">
           {experience.company}
         </p>
-        {experience.nowKnownAs ? (
+        {experience.formerly ? (
           <p className="data-label mt-1 text-[color:var(--faint)]">
-            Now {experience.nowKnownAs}
+            Formerly {experience.formerly}
           </p>
         ) : null}
 

@@ -12,8 +12,8 @@ export type ExperienceItem = {
   company: string;
   /** Corporate domain, used to resolve a logo via the /api/logo proxy. */
   domain?: string;
-  /** Present name, where the employer has since been renamed or absorbed. */
-  nowKnownAs?: string;
+  /** Prior name, where the employer has since been renamed. */
+  formerly?: string;
   location: string;
   /** Total span at the company, across every position held there. */
   tenure: string;
@@ -131,9 +131,9 @@ export const experiences: ExperienceItem[] = [
     ],
   },
   {
-    company: "Legato Health Technologies",
+    company: "Carelon",
     domain: "carelon.com",
-    nowKnownAs: "Carelon",
+    formerly: "Legato Health Technologies",
     location: "Hyderabad, India",
     tenure: "Dec 2019 - Dec 2021",
     employmentType: "Full-time",

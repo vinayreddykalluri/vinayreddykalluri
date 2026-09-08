@@ -1,14 +1,14 @@
 {
-  "fetchedAt": "2026-09-08T16:51:41.055Z",
+  "fetchedAt": "2026-09-08T17:04:47.032Z",
   "login": "vinayreddykalluri",
   "url": "https://github.com/vinayreddykalluri",
   "publicRepos": 20,
   "followers": 12,
   "memberSince": "2013-10-21T13:42:24Z",
-  "commits": 240,
-  "commitsLast90": 80,
+  "commits": 241,
+  "commitsLast90": 81,
   "pullRequests": 15,
-  "lastActiveAt": "2026-09-08T12:47:15.000-04:00",
+  "lastActiveAt": "2026-09-08T12:52:50.000-04:00",
   "topLanguages": [
     {
       "name": "TypeScript",
@@ -44,6 +44,12 @@
   "recentCommits": [
     {
       "repo": "vinayreddykalluri",
+      "message": "Move skills to their own page with per-technology logos",
+      "date": "2026-09-08T12:52:50.000-04:00",
+      "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/773aab67f369b33af5cdf3dc05cd42a07dfca736"
+    },
+    {
+      "repo": "vinayreddykalluri",
       "message": "Model companies as a list of positions, not one flat role",
       "date": "2026-09-08T12:47:15.000-04:00",
       "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/9c847e00cfb0c0dc4f32f1afff49de321e03b3c1"
@@ -71,12 +77,6 @@
       "message": "Add company logos via a token-hiding logo.dev proxy",
       "date": "2026-09-08T12:16:59.000-04:00",
       "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/6670ae5abdde120ddda19e253e7979b1a1765ef7"
-    },
-    {
-      "repo": "vinayreddykalluri",
-      "message": "Bring every page onto the homepage design system",
-      "date": "2026-09-08T12:13:46.000-04:00",
-      "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/dc45fd2f4d9304b43ed8a9a9804f6140bf4943cc"
     }
   ],
   "featured": [
