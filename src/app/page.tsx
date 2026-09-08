@@ -5,6 +5,7 @@ import { SystemDiagram } from "@/components/system-diagram";
 import { GithubStats } from "@/components/github-stats";
 import { Parallax } from "@/components/parallax";
 import { Reveal } from "@/components/Reveal";
+import { Spotlight } from "@/components/spotlight";
 import { externalArticles } from "@/data/blog";
 import { allPositions, allStack } from "@/data/experience";
 import { projects } from "@/data/projects";
@@ -90,7 +91,7 @@ export default function HomePage() {
       />
 
       {/* ================= HERO ================= */}
-      <section className="mesh-grid pb-16 pt-6 md:pb-24 md:pt-10">
+      <section className="aurora mesh-grid pb-16 pt-6 md:pb-24 md:pt-10">
         <div className="shell grid gap-10 lg:grid-cols-[1.55fr_1fr] lg:gap-16">
           <div>
             <p className="kicker motion-entry">
@@ -259,11 +260,11 @@ export default function HomePage() {
       <Reveal>
         <section className="shell py-16 md:py-24">
           <span className="kicker">How I work</span>
-          <div className="mt-8 grid gap-px bg-[color:var(--border)] md:grid-cols-3">
+          <Spotlight className="mt-8 grid gap-3 md:grid-cols-3">
             {CAPABILITIES.map((capability) => (
               <article
                 key={capability.title}
-                className="bg-[color:var(--background)] p-7 md:p-9"
+                className="spot border border-[var(--border)] bg-[color:var(--surface)] p-7 md:p-9"
               >
                 <h3 className="text-2xl">{capability.title}</h3>
                 <p className="mt-4 leading-relaxed text-[color:var(--muted)]">
@@ -274,7 +275,7 @@ export default function HomePage() {
                 </p>
               </article>
             ))}
-          </div>
+          </Spotlight>
         </section>
       </Reveal>
 

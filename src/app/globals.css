@@ -39,8 +39,12 @@
   --band-ink: #ede9e1;
   --band-muted: #a99ba1;
 
-  --shadow-soft: none;
+  /* Elevation: hairline-plus-diffusion rather than a drop shadow, so tiles
+     lift without the blurred-card look this design deliberately dropped. */
+  --shadow-soft: 0 1px 2px rgba(26, 20, 22, 0.04), 0 8px 24px -12px rgba(26, 20, 22, 0.14);
+  --shadow-lift: 0 2px 4px rgba(26, 20, 22, 0.05), 0 18px 40px -20px rgba(26, 20, 22, 0.28);
   --shadow-strong: none;
+  --glow: color-mix(in oklab, var(--accent) 22%, transparent);
   --radius: 2px;
 }
 
@@ -68,6 +72,10 @@
     --band: #ede7e2;
     --band-ink: #141013;
     --band-muted: #5c5057;
+
+  --shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px -12px rgba(0, 0, 0, 0.7);
+  --shadow-lift: 0 2px 6px rgba(0, 0, 0, 0.5), 0 22px 48px -20px rgba(0, 0, 0, 0.9);
+  --glow: color-mix(in oklab, var(--accent) 30%, transparent);
   }
 }
 
@@ -94,6 +102,10 @@
   --band: #ede7e2;
   --band-ink: #141013;
   --band-muted: #5c5057;
+
+  --shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px -12px rgba(0, 0, 0, 0.7);
+  --shadow-lift: 0 2px 6px rgba(0, 0, 0, 0.5), 0 22px 48px -20px rgba(0, 0, 0, 0.9);
+  --glow: color-mix(in oklab, var(--accent) 30%, transparent);
 }
 
 @theme inline {
@@ -442,5 +454,143 @@ h1, h2, h3, h4 {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+
+/* ============================================================
+   Depth, texture and light
+   ============================================================ */
+
+/*
+  Film grain. A single tiled SVG noise layer over the whole page at very low
+  opacity — the cheapest way to stop large flat colour fields reading as
+  untextured, without touching layout or contrast.
+*/
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+:root:not([data-theme="light"]) body::after,
+[data-theme="dark"] body::after {
+  opacity: 0.075;
+}
+
+/*
+  Ambient light behind the hero. Two slow radial washes in the accent and
+  counter-accent, well below text contrast, drifting just enough to feel alive
+  without pulling the eye.
+*/
+.aurora {
+  position: relative;
+  isolation: isolate;
+}
+
+.aurora::before,
+.aurora::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  border-radius: 50%;
+  filter: blur(90px);
+  pointer-events: none;
+}
+
+.aurora::before {
+  width: 46vw;
+  height: 46vw;
+  max-width: 620px;
+  max-height: 620px;
+  top: -18%;
+  left: -10%;
+  background: color-mix(in oklab, var(--accent) 26%, transparent);
+  animation: drift-a 22s ease-in-out infinite alternate;
+}
+
+.aurora::after {
+  width: 38vw;
+  height: 38vw;
+  max-width: 520px;
+  max-height: 520px;
+  top: 6%;
+  right: -8%;
+  background: color-mix(in oklab, var(--accent-alt) 20%, transparent);
+  animation: drift-b 28s ease-in-out infinite alternate;
+}
+
+@keyframes drift-a {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to   { transform: translate3d(6%, 8%, 0) scale(1.12); }
+}
+
+@keyframes drift-b {
+  from { transform: translate3d(0, 0, 0) scale(1.08); }
+  to   { transform: translate3d(-7%, 6%, 0) scale(1); }
+}
+
+/*
+  Cursor-tracking spotlight. --mx/--my are written by the Spotlight wrapper on
+  pointer move; with no pointer (touch, keyboard) the gradient simply never
+  shows and the tile keeps its border treatment.
+*/
+.spot {
+  position: relative;
+  transition:
+    border-color 220ms ease,
+    box-shadow 260ms ease,
+    transform 260ms ease;
+}
+
+.spot::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 260ms ease;
+  background: radial-gradient(
+    340px circle at var(--mx, 50%) var(--my, 50%),
+    var(--glow),
+    transparent 68%
+  );
+}
+
+.spot:hover::before,
+.spot:focus-within::before {
+  opacity: 1;
+}
+
+.spot:hover,
+.spot:focus-within {
+  border-color: color-mix(in oklab, var(--accent) 55%, var(--border));
+  box-shadow: var(--shadow-lift);
+  transform: translateY(-2px);
+}
+
+.spot > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Panels get real elevation instead of sitting perfectly flat. */
+.surface-panel,
+.surface-card {
+  box-shadow: var(--shadow-soft);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aurora::before,
+  .aurora::after {
+    animation: none !important;
+  }
+  .spot:hover,
+  .spot:focus-within {
+    transform: none;
   }
 }

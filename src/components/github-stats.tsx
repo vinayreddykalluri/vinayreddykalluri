@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { CountUp } from "@/components/count-up";
+import { Spotlight } from "@/components/spotlight";
 import seed from "@/data/github.json";
 
 type RecentCommit = { repo: string; message: string; date: string; url: string };
@@ -176,14 +177,14 @@ export function GithubStats() {
           <p className="data-label text-[color:var(--faint)]">
             Open-source projects
           </p>
-          <div className="mt-5 grid gap-px bg-[color:var(--border)] sm:grid-cols-2 lg:grid-cols-3">
+          <Spotlight className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {data.featured.map((repo) => (
               <a
                 key={repo.url}
                 href={repo.url}
                 target="_blank"
                 rel="noreferrer"
-                className="flex flex-col gap-3 bg-[color:var(--background)] p-6 transition-colors hover:bg-[color:var(--surface)]"
+                className="spot flex flex-col gap-3 border border-[var(--border)] bg-[color:var(--surface)] p-6"
               >
                 <div className="flex items-baseline justify-between gap-3">
                   <span className="font-mono text-sm font-semibold text-[color:var(--accent-strong)]">
@@ -210,7 +211,7 @@ export function GithubStats() {
                 </div>
               </a>
             ))}
-          </div>
+          </Spotlight>
         </div>
       ) : null}
 

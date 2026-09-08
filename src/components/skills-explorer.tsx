@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { CompanyLogo } from "@/components/company-logo";
+import { Spotlight } from "@/components/spotlight";
 import type { SkillUsage } from "@/lib/skill-usage";
 
 /**
@@ -128,11 +129,12 @@ export function SkillsExplorer({
                   </p>
                 </div>
 
-                <ul className="grid gap-3 self-start sm:grid-cols-2 lg:grid-cols-3">
+                <Spotlight className="self-start">
+                  <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                   {items.map((item) => (
                     <li
                       key={item.skill.name}
-                      className="group flex flex-col gap-3 border border-[var(--border)] bg-[color:var(--background)] p-5 transition-colors hover:border-[color:var(--accent)] hover:bg-[color:var(--surface)]"
+                      className="spot flex flex-col gap-3 border border-[var(--border)] bg-[color:var(--surface)] p-5"
                     >
                       <div className="flex items-center gap-3">
                         <CompanyLogo
@@ -170,7 +172,8 @@ export function SkillsExplorer({
                       )}
                     </li>
                   ))}
-                </ul>
+                  </ul>
+                </Spotlight>
               </section>
             );
           })
