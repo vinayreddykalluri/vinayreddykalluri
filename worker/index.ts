@@ -26,6 +26,14 @@ declare const caches: { default: Cache };
 
 interface Env {
   ASSETS: Fetcher;
+  /*
+   * logo.dev token, set with `wrangler secret put LOGO_DEV_TOKEN`.
+   * Deliberately never committed and never sent to the browser: requests are
+   * proxied through /api/logo so the token stays server-side. logo.dev treats
+   * the publishable key as safe to expose, but proxying keeps it out of page
+   * source, out of git, and out of anyone's devtools.
+   */
+  LOGO_DEV_TOKEN?: string;
 }
 
 const USER = "vinayreddykalluri";
@@ -236,9 +244,51 @@ async function handleGithub(ctx: ExecutionContext): Promise<Response> {
   return response;
 }
 
+const LOGO_TTL = 60 * 60 * 24 * 30; // 30 days; corporate marks rarely change
+
+/** Only ever proxy plain hostnames, so this can't be used as an open relay. */
+function isSafeDomain(value: string) {
+  return /^[a-z0-9.-]{3,80}$/i.test(value) && value.includes(".") && !value.includes("..");
+}
+
+async function handleLogo(url: URL, env: Env): Promise<Response> {
+  const domain = url.searchParams.get("d") ?? "";
+  if (!isSafeDomain(domain)) return new Response("Bad domain", { status: 400 });
+
+  // No token configured yet — 404 so the component falls back to its monogram
+  // rather than rendering a broken image.
+  if (!env.LOGO_DEV_TOKEN) return new Response("Not configured", { status: 404 });
+
+  const size = Math.min(Number(url.searchParams.get("s") ?? 128) || 128, 512);
+  const upstream = new URL(`https://img.logo.dev/${domain}`);
+  upstream.searchParams.set("token", env.LOGO_DEV_TOKEN);
+  upstream.searchParams.set("size", String(size));
+  upstream.searchParams.set("format", "png");
+  upstream.searchParams.set("retina", "true");
+
+  const res = await fetch(upstream.toString(), {
+    cf: { cacheTtl: LOGO_TTL, cacheEverything: true },
+  });
+  if (!res.ok) return new Response("Not found", { status: 404 });
+
+  return new Response(res.body, {
+    headers: {
+      "content-type": res.headers.get("content-type") ?? "image/png",
+      "cache-control": `public, max-age=${LOGO_TTL}, immutable`,
+    },
+  });
+}
+
 export default {
   async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
     const url = new URL(request.url);
+
+    if (url.pathname === "/api/logo") {
+      if (request.method !== "GET") {
+        return new Response("Method Not Allowed", { status: 405 });
+      }
+      return handleLogo(url, env);
+    }
 
     if (url.pathname === "/api/github") {
       if (request.method !== "GET") {

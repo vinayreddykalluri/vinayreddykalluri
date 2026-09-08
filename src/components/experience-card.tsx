@@ -1,3 +1,4 @@
+import { CompanyLogo } from "@/components/company-logo";
 import type { ExperienceItem } from "@/data/experience";
 
 /**
@@ -20,9 +21,16 @@ export function ExperienceCard({
             {String(index + 1).padStart(2, "0")}
           </p>
         ) : null}
-        <p className="font-sans text-xl font-bold leading-tight">
-          {experience.company}
-        </p>
+        <div className="flex items-center gap-3">
+          <CompanyLogo
+            domain={experience.domain}
+            name={experience.company}
+            size={44}
+          />
+          <p className="font-sans text-lg font-bold leading-tight">
+            {experience.company}
+          </p>
+        </div>
         <p className="data-label mt-3 text-[color:var(--faint)]">
           {experience.period}
         </p>

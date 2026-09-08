@@ -1,14 +1,14 @@
 {
-  "fetchedAt": "2026-09-08T16:13:24.666Z",
+  "fetchedAt": "2026-09-08T16:16:13.109Z",
   "login": "vinayreddykalluri",
   "url": "https://github.com/vinayreddykalluri",
   "publicRepos": 20,
   "followers": 12,
   "memberSince": "2013-10-21T13:42:24Z",
-  "commits": 234,
-  "commitsLast90": 74,
+  "commits": 235,
+  "commitsLast90": 75,
   "pullRequests": 15,
-  "lastActiveAt": "2026-09-08T11:57:20.000-04:00",
+  "lastActiveAt": "2026-09-08T12:13:46.000-04:00",
   "topLanguages": [
     {
       "name": "TypeScript",
@@ -44,6 +44,12 @@
   "recentCommits": [
     {
       "repo": "vinayreddykalluri",
+      "message": "Bring every page onto the homepage design system",
+      "date": "2026-09-08T12:13:46.000-04:00",
+      "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/dc45fd2f4d9304b43ed8a9a9804f6140bf4943cc"
+    },
+    {
+      "repo": "vinayreddykalluri",
       "message": "Correct Anthem event throughput to 1M+ per day",
       "date": "2026-09-08T11:57:20.000-04:00",
       "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/14bb45af4154872f5f26b62d34dabbb729c47f2c"
@@ -71,12 +77,6 @@
       "message": "Serve GitHub activity live via a Worker API route",
       "date": "2026-09-07T21:33:05.000-04:00",
       "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/ede179787dedb9dd23f95b560d2611a248da5572"
-    },
-    {
-      "repo": "vinayreddykalluri",
-      "message": "Drop pink, new display font, live GitHub stats, parallax",
-      "date": "2026-09-07T21:26:59.000-04:00",
-      "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/acf38b0d4c70e61275fec966171a3bc35ad789e3"
     }
   ],
   "featured": [

@@ -1,6 +1,8 @@
 export type ExperienceItem = {
   role: string;
   company: string;
+  /** Corporate domain, used to resolve a logo via the /api/logo proxy. */
+  domain?: string;
   location: string;
   period: string;
   summary: string;
@@ -12,6 +14,7 @@ export const experiences: ExperienceItem[] = [
   {
     role: "Lead I - Software Engineering",
     company: "UST",
+    domain: "ust.com",
     location: "Atlanta, GA",
     period: "Jan 2024 - Present",
     summary:
@@ -36,6 +39,7 @@ export const experiences: ExperienceItem[] = [
   {
     role: "Software Engineering Consultant",
     company: "Hays (Client: Anthem)",
+    domain: "hays.com",
     location: "Kansas City, MO",
     period: "Mar 2023 - Jan 2024",
     summary:
@@ -60,6 +64,7 @@ export const experiences: ExperienceItem[] = [
   {
     role: "Graduate Research Assistant",
     company: "University of Missouri-Kansas City",
+    domain: "umkc.edu",
     location: "Kansas City, MO",
     period: "Feb 2022 - Jun 2022",
     summary:
@@ -75,6 +80,7 @@ export const experiences: ExperienceItem[] = [
   {
     role: "Software Engineer",
     company: "Legato Health Technologies",
+    domain: "elevancehealth.com",
     location: "Hyderabad, India",
     period: "Dec 2019 - Dec 2021",
     summary:
@@ -98,6 +104,7 @@ export const experiences: ExperienceItem[] = [
   {
     role: "Programmer Analyst",
     company: "Cognizant",
+    domain: "cognizant.com",
     location: "Hyderabad, India",
     period: "Sep 2017 - Nov 2019",
     summary:
