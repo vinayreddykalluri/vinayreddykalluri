@@ -1,0 +1,75 @@
+{
+  "fetchedAt": "2026-09-08T01:24:40.965Z",
+  "login": "vinayreddykalluri",
+  "url": "https://github.com/vinayreddykalluri",
+  "publicRepos": 20,
+  "followers": 12,
+  "memberSince": "2013-10-21T13:42:24Z",
+  "commits": 228,
+  "topLanguages": [
+    {
+      "name": "TypeScript",
+      "count": 2,
+      "share": 22
+    },
+    {
+      "name": "Java",
+      "count": 2,
+      "share": 22
+    },
+    {
+      "name": "Jupyter Notebook",
+      "count": 2,
+      "share": 22
+    },
+    {
+      "name": "Python",
+      "count": 1,
+      "share": 11
+    },
+    {
+      "name": "HTML",
+      "count": 1,
+      "share": 11
+    },
+    {
+      "name": "C++",
+      "count": 1,
+      "share": 11
+    }
+  ],
+  "recent": [
+    {
+      "name": "vinayreddykalluri",
+      "description": null,
+      "language": "TypeScript",
+      "stars": 0,
+      "pushedAt": "2026-09-08T01:20:50Z",
+      "url": "https://github.com/vinayreddykalluri/vinayreddykalluri"
+    },
+    {
+      "name": "SDE2-Interview-Handbook",
+      "description": "Open-source SDE-2 backend interview handbook with Java, DSA, LLD, HLD, system design, diagrams, runnable examples, and printable guides.",
+      "language": "Java",
+      "stars": 3,
+      "pushedAt": "2026-09-01T19:21:43Z",
+      "url": "https://github.com/vinayreddykalluri/SDE2-Interview-Handbook"
+    },
+    {
+      "name": "java-sde2-interview-preparation-series",
+      "description": "Open-source Java 21 and DSA books for SDE-2 interview preparation—from fundamentals to advanced engineering.",
+      "language": "Python",
+      "stars": 0,
+      "pushedAt": "2026-07-26T18:02:54Z",
+      "url": "https://github.com/vinayreddykalluri/java-sde2-interview-preparation-series"
+    },
+    {
+      "name": "vinayreddykalluri.github.io",
+      "description": null,
+      "language": "HTML",
+      "stars": 0,
+      "pushedAt": "2025-10-23T18:36:35Z",
+      "url": "https://github.com/vinayreddykalluri/vinayreddykalluri.github.io"
+    }
+  ]
+}

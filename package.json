@@ -8,7 +8,8 @@
     "start": "serve out",
     "lint": "eslint . --ignore-pattern .next --ignore-pattern out --ignore-pattern next-env.d.ts",
     "preview": "npm run build && wrangler dev",
-    "deploy": "npm run build && wrangler deploy"
+    "deploy": "npm run build && wrangler deploy",
+    "prebuild": "node scripts/fetch-github.mjs"
   },
   "dependencies": {
     "firebase": "^12.9.0",

@@ -24,10 +24,11 @@
   --border-soft: #ded7cc;
   --grid-line: rgba(26, 20, 22, 0.06);
 
-  /* oxblood — the primary voice */
-  --accent: #6e1a2b;
-  --accent-strong: #5a1523;
-  --accent-soft: #e6d9d5;
+  /* deep ochre — the primary voice. No pink anywhere in either theme. */
+  --accent: #8a5410;
+  --accent-strong: #6f4310;
+  --accent-soft: #ece0cb;
+  --accent-ink: #fbf6ec;        /* text that sits on --accent */
 
   /* electric blue — the cold counter-accent */
   --accent-alt: #1739b8;
@@ -56,9 +57,10 @@
     --border-soft: #291f26;
     --grid-line: rgba(237, 231, 226, 0.055);
 
-    --accent: #d9566e;
-    --accent-strong: #e87186;
-    --accent-soft: #2e1a20;
+    --accent: #e3a64a;
+    --accent-strong: #efbb6b;
+    --accent-soft: #2a1f10;
+    --accent-ink: #141013;      /* dark text on amber */
 
     --accent-alt: #7fa0ff;
     --accent-alt-soft: #1a1f38;
@@ -81,9 +83,10 @@
   --border-soft: #291f26;
   --grid-line: rgba(237, 231, 226, 0.055);
 
-  --accent: #d9566e;
-  --accent-strong: #e87186;
-  --accent-soft: #2e1a20;
+  --accent: #e3a64a;
+  --accent-strong: #efbb6b;
+  --accent-soft: #2a1f10;
+  --accent-ink: #141013;        /* dark text on amber */
 
   --accent-alt: #7fa0ff;
   --accent-alt-soft: #1a1f38;
@@ -96,8 +99,8 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-bricolage);
-  --font-serif: var(--font-newsreader);
+  --font-sans: var(--font-body);
+  --font-serif: var(--font-display);
   --font-mono: var(--font-ibm-plex-mono);
 }
 
@@ -116,7 +119,7 @@ body {
   min-height: 100vh;
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-newsreader), Georgia, "Times New Roman", serif;
+  font-family: var(--font-body), "Helvetica Neue", Arial, sans-serif;
   font-size: 17px;
   line-height: 1.62;
   text-rendering: optimizeLegibility;
@@ -140,10 +143,10 @@ a { color: inherit; text-decoration: none; }
 }
 
 h1, h2, h3, h4 {
-  font-family: var(--font-bricolage), "Helvetica Neue", Arial, sans-serif;
+  font-family: var(--font-display), "Helvetica Neue", Arial, sans-serif;
   font-weight: 800;
-  letter-spacing: -0.035em;
-  line-height: 0.98;
+  letter-spacing: -0.022em;
+  line-height: 1.0;
   text-wrap: balance;
 }
 
@@ -180,10 +183,10 @@ h1, h2, h3, h4 {
 
 .band-accent {
   background: var(--accent);
-  color: #f7efe9;
+  color: var(--accent-ink);
 }
-.band-accent .kicker { color: #f0cfc6; }
-.band-accent .band-dim { color: #e2c4bc; }
+.band-accent .kicker { color: var(--accent-ink); opacity: 0.72; }
+.band-accent .band-dim { color: var(--accent-ink); opacity: 0.82; }
 
 /* ---------- surfaces ---------- */
 
@@ -238,28 +241,28 @@ h1, h2, h3, h4 {
 
 /* Oversized editorial display, sized to the viewport rather than a container. */
 .display-xl {
-  font-family: var(--font-bricolage), "Helvetica Neue", Arial, sans-serif;
+  font-family: var(--font-display), "Helvetica Neue", Arial, sans-serif;
   font-weight: 800;
   font-size: clamp(2.75rem, 8.5vw, 8rem);
   line-height: 0.88;
-  letter-spacing: -0.045em;
+  letter-spacing: -0.028em;
 }
 
 .display-lg {
-  font-family: var(--font-bricolage), "Helvetica Neue", Arial, sans-serif;
+  font-family: var(--font-display), "Helvetica Neue", Arial, sans-serif;
   font-weight: 800;
   font-size: clamp(2rem, 4.6vw, 3.75rem);
   line-height: 0.96;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.025em;
 }
 
 /* A metric rendered as a graphic object rather than a card. */
 .stat-figure {
-  font-family: var(--font-bricolage), "Helvetica Neue", Arial, sans-serif;
+  font-family: var(--font-display), "Helvetica Neue", Arial, sans-serif;
   font-weight: 800;
   font-size: clamp(2.25rem, 4.6vw, 4rem);
   line-height: 0.9;
-  letter-spacing: -0.05em;
+  letter-spacing: -0.03em;
   font-variant-numeric: tabular-nums;
 }
 
@@ -324,8 +327,8 @@ h1, h2, h3, h4 {
   border: 1px solid var(--accent);
   border-radius: var(--radius);
   background: var(--accent);
-  color: #f7efe9;
-  font-family: var(--font-bricolage), sans-serif;
+  color: var(--accent-ink);
+  font-family: var(--font-display), sans-serif;
   font-weight: 700;
   letter-spacing: -0.01em;
   transition: background-color 180ms ease, border-color 180ms ease;
@@ -336,7 +339,6 @@ h1, h2, h3, h4 {
   border-color: var(--accent-strong);
 }
 
-[data-theme="dark"] .cta-primary { color: #141013; }
 
 .band-invert .cta-primary,
 .band-accent .cta-primary {
@@ -352,7 +354,7 @@ h1, h2, h3, h4 {
   border: 1px solid var(--border);
   border-radius: var(--radius);
   background: transparent;
-  font-family: var(--font-bricolage), sans-serif;
+  font-family: var(--font-display), sans-serif;
   font-weight: 700;
   transition: border-color 180ms ease, color 180ms ease;
 }
@@ -395,21 +397,21 @@ h1, h2, h3, h4 {
 /* ---------- prose ---------- */
 
 .mdx-content {
-  font-family: var(--font-newsreader), Georgia, serif;
+  font-family: var(--font-body), Georgia, serif;
   font-size: 1.125rem;
   line-height: 1.7;
 }
 
 .mdx-content h2 {
   margin-top: 2.25rem;
-  font-family: var(--font-bricolage), sans-serif;
+  font-family: var(--font-display), sans-serif;
 }
 
 .mdx-content p + p { margin-top: 1rem; }
 
 .drop-cap::first-letter {
   float: left;
-  font-family: var(--font-bricolage), sans-serif;
+  font-family: var(--font-display), sans-serif;
   font-weight: 800;
   font-size: 3.4rem;
   line-height: 0.8;

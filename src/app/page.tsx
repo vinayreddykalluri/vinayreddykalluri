@@ -1,6 +1,8 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { EventLanes } from "@/components/event-lanes";
+import { GithubStats } from "@/components/github-stats";
+import { Parallax } from "@/components/parallax";
 import { Reveal } from "@/components/Reveal";
 import { externalArticles } from "@/data/blog";
 import { experiences } from "@/data/experience";
@@ -131,8 +133,8 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* instrument column */}
-          <aside className="flex flex-col gap-6">
+          {/* instrument column — drifts slightly against the headline */}
+          <Parallax speed={0.06} className="flex flex-col gap-6">
             <div className="surface-panel p-5">
               <div className="flex items-baseline justify-between gap-4">
                 <span className="kicker">Partitions p0–p3</span>
@@ -167,7 +169,7 @@ export default function HomePage() {
                 ))}
               </ul>
             </div>
-          </aside>
+          </Parallax>
         </div>
 
         <div className="signal-strip shell mt-12">
@@ -309,6 +311,11 @@ export default function HomePage() {
             ))}
           </div>
         </section>
+      </Reveal>
+
+      {/* ================= GITHUB ================= */}
+      <Reveal>
+        <GithubStats />
       </Reveal>
 
       {/* ================= TIMELINE + WRITING ================= */}

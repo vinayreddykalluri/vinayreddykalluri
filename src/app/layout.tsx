@@ -1,21 +1,24 @@
 import type { Metadata } from "next";
 import { FirebaseAnalytics } from "@/components/firebase-analytics";
-import { Bricolage_Grotesque, IBM_Plex_Mono, Newsreader } from "next/font/google";
+import { Chivo, Fraunces, IBM_Plex_Mono } from "next/font/google";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { siteMetadata } from "@/lib/seo";
 import "./globals.css";
 
-const bricolage = Bricolage_Grotesque({
-  variable: "--font-bricolage",
+// High-contrast display serif for the oversized headlines, paired with a
+// warm grotesque for everything that has to be read at body size.
+const fraunces = Fraunces({
+  variable: "--font-display",
   subsets: ["latin"],
-  weight: ["600", "700", "800"],
+  axes: ["SOFT", "WONK", "opsz"],
   display: "swap",
 });
 
-const newsreader = Newsreader({
-  variable: "--font-newsreader",
+const chivo = Chivo({
+  variable: "--font-body",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
@@ -56,7 +59,7 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
       <body
-        className={`${bricolage.variable} ${newsreader.variable} ${ibmPlexMono.variable} min-h-screen antialiased`}
+        className={`${fraunces.variable} ${chivo.variable} ${ibmPlexMono.variable} min-h-screen antialiased`}
       >
         <FirebaseAnalytics />
         {/* Shared shell keeps every section one click away. */}
