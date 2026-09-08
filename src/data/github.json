@@ -1,14 +1,14 @@
 {
-  "fetchedAt": "2026-09-08T16:16:13.109Z",
+  "fetchedAt": "2026-09-08T16:21:22.800Z",
   "login": "vinayreddykalluri",
   "url": "https://github.com/vinayreddykalluri",
   "publicRepos": 20,
   "followers": 12,
   "memberSince": "2013-10-21T13:42:24Z",
-  "commits": 235,
-  "commitsLast90": 75,
+  "commits": 236,
+  "commitsLast90": 76,
   "pullRequests": 15,
-  "lastActiveAt": "2026-09-08T12:13:46.000-04:00",
+  "lastActiveAt": "2026-09-08T12:16:59.000-04:00",
   "topLanguages": [
     {
       "name": "TypeScript",
@@ -44,6 +44,12 @@
   "recentCommits": [
     {
       "repo": "vinayreddykalluri",
+      "message": "Add company logos via a token-hiding logo.dev proxy",
+      "date": "2026-09-08T12:16:59.000-04:00",
+      "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/6670ae5abdde120ddda19e253e7979b1a1765ef7"
+    },
+    {
+      "repo": "vinayreddykalluri",
       "message": "Bring every page onto the homepage design system",
       "date": "2026-09-08T12:13:46.000-04:00",
       "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/dc45fd2f4d9304b43ed8a9a9804f6140bf4943cc"
@@ -71,12 +77,6 @@
       "message": "Surface real GitHub and LinkedIn material in the portfolio",
       "date": "2026-09-08T09:58:40.000-04:00",
       "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/fc0defcf56ee7e64b6c848a489c2f295aa3fcdc9"
-    },
-    {
-      "repo": "vinayreddykalluri",
-      "message": "Serve GitHub activity live via a Worker API route",
-      "date": "2026-09-07T21:33:05.000-04:00",
-      "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/ede179787dedb9dd23f95b560d2611a248da5572"
     }
   ],
   "featured": [

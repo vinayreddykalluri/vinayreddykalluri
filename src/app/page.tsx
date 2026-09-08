@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { EventLanes } from "@/components/event-lanes";
+import { SystemDiagram } from "@/components/system-diagram";
 import { GithubStats } from "@/components/github-stats";
 import { Parallax } from "@/components/parallax";
 import { Reveal } from "@/components/Reveal";
@@ -234,6 +235,27 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* ================= ANATOMY ================= */}
+      <Reveal>
+        <section className="shell border-t border-[var(--border)] py-16 md:py-24">
+          <div className="flex flex-wrap items-end justify-between gap-6">
+            <div>
+              <span className="kicker">Anatomy</span>
+              <h2 className="display-lg mt-4 max-w-[18ch]">
+                What I actually build, moving.
+              </h2>
+            </div>
+            <p className="measure text-[color:var(--muted)]">
+              The shape of nearly every system on this page: publish, partition,
+              consume, and survive the failures. Hover a stage.
+            </p>
+          </div>
+          <div className="mt-12">
+            <SystemDiagram />
+          </div>
+        </section>
+      </Reveal>
 
       {/* ================= CAPABILITIES ================= */}
       <Reveal>

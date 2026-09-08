@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { CountUp } from "@/components/count-up";
 import seed from "@/data/github.json";
 
 type RecentCommit = { repo: string; message: string; date: string; url: string };
@@ -132,7 +133,7 @@ export function GithubStats() {
             key={f.label}
             className="border-t-2 border-[color:var(--accent)] pt-5"
           >
-            <p className="stat-figure">{f.value}</p>
+<CountUp value={f.value} className="stat-figure block" />
             <p className="data-label mt-3 text-[color:var(--faint)]">
               {f.label}
             </p>
