@@ -256,8 +256,14 @@ async function handleLogo(url: URL, env: Env): Promise<Response> {
   if (!isSafeDomain(domain)) return new Response("Bad domain", { status: 400 });
 
   // No token configured yet — 404 so the component falls back to its monogram
-  // rather than rendering a broken image.
-  if (!env.LOGO_DEV_TOKEN) return new Response("Not configured", { status: 404 });
+  // rather than rendering a broken image. The header says why, so "key not
+  // set" is never confused with "logo not found" when debugging.
+  if (!env.LOGO_DEV_TOKEN) {
+    return new Response("Not configured", {
+      status: 404,
+      headers: { "x-logo-status": "no-token" },
+    });
+  }
 
   const size = Math.min(Number(url.searchParams.get("s") ?? 128) || 128, 512);
   const upstream = new URL(`https://img.logo.dev/${domain}`);
@@ -269,12 +275,22 @@ async function handleLogo(url: URL, env: Env): Promise<Response> {
   const res = await fetch(upstream.toString(), {
     cf: { cacheTtl: LOGO_TTL, cacheEverything: true },
   });
-  if (!res.ok) return new Response("Not found", { status: 404 });
+  if (!res.ok) {
+    // 401 means the token is wrong or revoked; anything else means logo.dev
+    // has no mark for this domain. Both fall back to a monogram, but the
+    // header distinguishes them without ever echoing the token.
+    const reason = res.status === 401 ? "bad-token" : `upstream-${res.status}`;
+    return new Response("Not found", {
+      status: 404,
+      headers: { "x-logo-status": reason },
+    });
+  }
 
   return new Response(res.body, {
     headers: {
       "content-type": res.headers.get("content-type") ?? "image/png",
       "cache-control": `public, max-age=${LOGO_TTL}, immutable`,
+      "x-logo-status": "ok",
     },
   });
 }
