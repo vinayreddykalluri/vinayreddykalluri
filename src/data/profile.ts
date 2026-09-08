@@ -16,7 +16,7 @@ export const siteConfig = {
   headline:
     "Building high-throughput microservices and event platforms that scale with confidence.",
   summary:
-    "Senior backend engineer with 7+ years of experience delivering resilient distributed systems across healthcare and enterprise domains using Java, Spring Boot, Kafka, Redis, MySQL, and AWS.",
+    "Senior Java backend engineer with 8+ years designing high-throughput microservices for healthcare enterprise platforms — event-driven architecture on Kafka, resilient API design with timeouts, retries and idempotency, and cloud-native delivery on AWS.",
   mission:
     "I focus on backend systems that improve reliability, decision speed, and service quality at scale. My long-term vision is to build nationally impactful software infrastructure and engineering practices aligned with the U.S. national interest.",
   metrics: [
@@ -27,7 +27,7 @@ export const siteConfig = {
     },
     {
       label: "Experience",
-      value: "7+ Years",
+      value: "8+ Years",
       detail: "Backend systems across healthcare and enterprise",
     },
     {
@@ -48,6 +48,7 @@ export const siteConfig = {
   ],
   contact: {
     email: "vinayreddykalluri@gmail.com",
+    phone: "+1 (660) 492-8656",
     linkedin: "https://linkedin.com/in/vinayreddykalluri",
     github: "https://github.com/vinayreddykalluri",
     medium: "https://vinayreddykalluri.medium.com",
@@ -91,8 +92,8 @@ export const siteConfig = {
   ],
   achievements: [
     "Automated a sales compensation backend workflow and reduced manual processing effort by 40%.",
-    "Led a 35TB+ migration initiative that reduced runtime from 16 days to 4 days.",
-    "Improved API throughput by 20% through async execution, caching, and JVM profiling.",
+    "Led a complete data migration with parallel processing and batch orchestration, cutting end-to-end load time by 75%.",
+    "Improved API throughput by 20% through asynchronous execution, Redis caching, and JVM tuning.",
     "Received 7 Impact Awards for backend scalability and reliability engineering.",
   ],
   education: [

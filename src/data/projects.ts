@@ -7,6 +7,7 @@ export type ProjectItem = {
   stack: string[];
   impact: string;
   href?: string;
+  hrefLabel?: string;
 };
 
 export const projects: ProjectItem[] = [
@@ -15,53 +16,39 @@ export const projects: ProjectItem[] = [
     type: "Platform",
     period: "2025 - Present",
     problem:
-      "International professionals often struggle to understand fragmented U.S. work visa and immigration pathways.",
+      "Employer sponsorship data for U.S. work visas is scattered across large, messy public datasets, so applicants and employers have no reliable way to see real sponsorship trends.",
     solution:
-      "Built a content and insights platform concept that translates complex visa pathways into clear, actionable guidance with structured resource navigation.",
-    stack: [
-      "Next.js",
-      "TypeScript",
-      "Tailwind CSS",
-      "Static Content Architecture",
-    ],
+      "Built a backend platform that aggregates and analyzes USCIS, H-1B, and PERM public datasets, with ETL pipelines and normalized PostgreSQL schemas that clean, deduplicate, and load multi-year data for accurate reporting.",
+    stack: ["Java", "Spring Boot", "PostgreSQL", "ETL", "REST APIs"],
     impact:
-      "Established a mission-driven product direction at the intersection of technology, immigration clarity, and public access to information.",
+      "Turns raw federal filing data into employer sponsorship trends and visa outcome insights, served through Spring Boot REST APIs with filtering, search, and pagination.",
+    href: "https://workvisainsights.com",
+    hrefLabel: "workvisainsights.com",
   },
   {
-    name: "Sales Compensation Backend Platform",
+    name: "Sales Incentive Compensation System",
     type: "Platform",
     period: "2024 - Present",
     problem:
-      "Commission workflows were manual, error-prone, and difficult to reconcile across distributed systems.",
+      "Commission workflows at Elevance Health were manual, error-prone, and difficult to reconcile across distributed systems.",
     solution:
-      "Designed an event-driven backend platform using Spring Boot, Kafka, and MySQL with robust orchestration, retries, and consistency safeguards.",
+      "Designed an event-driven backend on Java, Spring Boot, Kafka, and MySQL with orchestration, idempotency, sequencing, multi-level retries, and dead-letter handling.",
     stack: ["Java", "Spring Boot", "Kafka", "MySQL", "Redis", "AWS"],
     impact:
-      "Reduced manual effort by 40%, improved consistency to 99.9%, and increased API throughput by 20%.",
+      "Reduced manual processing by 40%, held data consistency above 99.9%, raised API throughput by 20%, and cut migration load time by 75%.",
   },
   {
-    name: "Revisitly",
-    type: "Product",
-    period: "2023",
-    problem:
-      "Users lacked a clean way to organize and revisit saved web discoveries across categories.",
-    solution:
-      "Created a lightweight product concept focused on quick capture, contextual notes, and deliberate revisit workflows.",
-    stack: ["Flutter", "Dart", "REST APIs", "Firebase-ready Architecture"],
-    impact:
-      "Improved personal knowledge retention patterns and validated product-thinking workflows from ideation to launch.",
-  },
-  {
-    name: "Flames Match",
+    name: "Play Together",
     type: "Mobile App",
     period: "2017 - 2018",
     problem:
-      "Needed a polished, production-ready Android app to publish and validate mobile development capabilities.",
+      "Wanted to own a product end to end — design, build, ship, and maintain a real Android app in front of real users.",
     solution:
-      "Designed and released a complete Android application with focused UX, responsive UI flows, and market distribution readiness.",
-    stack: ["Android SDK", "Java", "Material Design", "Google Play"],
+      "Developed and released an Android app for social play matching with responsive UI and complete user flows in Flutter and Dart, integrating REST APIs with local persistence for offline-friendly use.",
+    stack: ["Flutter", "Dart", "REST APIs", "Google Play"],
     impact:
-      "Published on Google Play and established early proof of end-to-end product execution.",
-    href: "https://play.google.com/dev?id=56692869",
+      "Published on Google Play with full ownership of testing, release management, and ongoing updates.",
+    href: "https://play.google.com/store/apps/dev?id=5669286937377429055",
+    hrefLabel: "View on Google Play",
   },
 ];

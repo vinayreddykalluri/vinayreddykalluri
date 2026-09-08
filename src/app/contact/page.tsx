@@ -44,6 +44,14 @@ export default function ContactPage() {
               <li>
                 <a
                   className="spark-link inline-flex px-4 py-2 font-semibold text-[color:var(--accent)]"
+                  href={`tel:${siteConfig.contact.phone.replace(/[^+\d]/g, "")}`}
+                >
+                  {siteConfig.contact.phone}
+                </a>
+              </li>
+              <li>
+                <a
+                  className="spark-link inline-flex px-4 py-2 font-semibold text-[color:var(--accent)]"
                   href={siteConfig.contact.linkedin}
                   target="_blank"
                   rel="noreferrer"

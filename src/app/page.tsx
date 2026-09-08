@@ -25,14 +25,27 @@ export const metadata: Metadata = pageMetadata({
  * The migration entry carries its real before/after so the bar pair below can
  * encode actual numbers rather than a decorative squiggle.
  */
-const OUTCOMES = [
-  { figure: "35TB+", label: "Migrated", note: "Runtime cut from 16 days to 4", bars: { from: 16, to: 4, unit: "days" } },
-  { figure: "1M+", label: "Events / day", note: "Enterprise healthcare pipelines" },
-  { figure: "99.9%", label: "Consistency", note: "Sequencing and multi-level retries" },
-  { figure: "+20%", label: "API throughput", note: "Async, Redis caching, JVM profiling" },
-  { figure: "−40%", label: "Manual effort", note: "Compensation workflow automation" },
-  { figure: "7", label: "Impact awards", note: "Scalability and reliability outcomes" },
-] as const;
+type Outcome = {
+  figure: string;
+  label: string;
+  note: string;
+  /** Relative before/after, used to draw the reduction to scale. */
+  bars?: { from: number; to: number; fromLabel: string; toLabel: string };
+};
+
+const OUTCOMES: Outcome[] = [
+  {
+    figure: "\u221275%",
+    label: "Migration load time",
+    note: "Parallel processing, SQL tuning, batch orchestration",
+    bars: { from: 100, to: 25, fromLabel: "before", toLabel: "after" },
+  },
+  { figure: "1M+", label: "Events / hour", note: "Event-driven services at Anthem" },
+  { figure: "99.9%", label: "Consistency", note: "Idempotency, sequencing, dead-letter handling" },
+  { figure: "+20%", label: "API throughput", note: "Async execution, Redis caching, JVM tuning" },
+  { figure: "\u221240%", label: "Manual effort", note: "Incentive compensation workflow automation" },
+  { figure: "20+", label: "Services migrated", note: "Standardised onto Spring Boot on AWS" },
+];
 
 const CAPABILITIES = [
   {
@@ -45,13 +58,13 @@ const CAPABILITIES = [
     title: "Event-Driven Platform Engineering",
     summary:
       "Using Kafka and microservice orchestration to keep data movement fast, dependable, and easier to scale.",
-    signal: "1M+ events/day patterns from enterprise healthcare systems",
+    signal: "1M+ events/hour on event-driven healthcare services",
   },
   {
     title: "Performance and Delivery Velocity",
     summary:
       "Balancing technical depth with execution speed through JVM profiling, SQL optimization, and clear ownership.",
-    signal: "35TB+ migration reduced from 16 days to 4 days",
+    signal: "Migration load time cut by 75% end to end",
   },
 ] as const;
 
@@ -194,27 +207,23 @@ export default function HomePage() {
                   {item.note}
                 </p>
 
-                {"bars" in item && item.bars ? (
-                  <div className="mt-5" aria-hidden="true">
-                    <div className="flex items-end gap-2">
+                {item.bars ? (
+                  <div className="mt-5">
+                    <div className="flex items-center gap-3">
                       <span
-                        className="block bg-current/30"
-                        style={{ width: `${item.bars.from * 5}px`, height: "10px" }}
+                        className="block h-2.5 bg-current opacity-30"
+                        style={{ width: `${item.bars.from}px` }}
                       />
                       <span className="data-label opacity-70">
-                        {item.bars.from}
-                        {item.bars.unit === "days" ? "d" : ""}
+                        {item.bars.fromLabel}
                       </span>
                     </div>
-                    <div className="mt-2 flex items-end gap-2">
+                    <div className="mt-2 flex items-center gap-3">
                       <span
-                        className="block bg-[color:var(--accent)]"
-                        style={{ width: `${item.bars.to * 5}px`, height: "10px" }}
+                        className="block h-2.5 bg-[color:var(--accent)]"
+                        style={{ width: `${item.bars.to}px` }}
                       />
-                      <span className="data-label">
-                        {item.bars.to}
-                        {item.bars.unit === "days" ? "d" : ""}
-                      </span>
+                      <span className="data-label">{item.bars.toLabel}</span>
                     </div>
                   </div>
                 ) : null}

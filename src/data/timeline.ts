@@ -33,10 +33,10 @@ export const timelineEvents: TimelineEvent[] = [
   {
     year: 2018,
     date: "2018-04-01",
-    title: "Released Play Store Apps",
+    title: "Released Play Together on Google Play",
     category: "Project",
     details:
-      "Published mobile apps including Flames Match and Keep Motive through Google Play developer profile.",
+      "Released Play Together on Google Play, owning testing, release management, and updates end to end.",
   },
   {
     year: 2019,
@@ -65,7 +65,7 @@ export const timelineEvents: TimelineEvent[] = [
   {
     year: 2023,
     date: "2023-03-01",
-    title: "Consulted at Hays UK",
+    title: "Consulted at Hays (Client: Anthem)",
     category: "Career",
     details:
       "Led AWS microservices migration and streaming architecture improvements.",
@@ -109,6 +109,14 @@ export const timelineEvents: TimelineEvent[] = [
     category: "Project",
     details:
       "Started shaping a mission-driven platform focused on immigration clarity and trusted guidance.",
+  },
+  {
+    year: 2026,
+    date: "2026-09-01",
+    title: "Promoted to Lead I - Software Engineering",
+    category: "Career",
+    details:
+      "Stepped up to lead backend delivery at UST for Elevance Health compensation platforms.",
   },
   {
     year: 2026,
