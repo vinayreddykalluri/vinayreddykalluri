@@ -26,7 +26,7 @@ export default function CareerPage() {
 
       <section>
         {experiences.map((experience, index) => (
-          <Reveal key={`${experience.company}-${experience.period}`}>
+          <Reveal key={`${experience.company}-${experience.tenure}`}>
             <ExperienceCard experience={experience} index={index} />
           </Reveal>
         ))}

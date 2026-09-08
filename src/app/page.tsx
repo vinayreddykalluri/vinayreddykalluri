@@ -6,7 +6,7 @@ import { GithubStats } from "@/components/github-stats";
 import { Parallax } from "@/components/parallax";
 import { Reveal } from "@/components/Reveal";
 import { externalArticles } from "@/data/blog";
-import { experiences } from "@/data/experience";
+import { allPositions, allStack } from "@/data/experience";
 import { projects } from "@/data/projects";
 import { siteConfig } from "@/data/profile";
 import { timelineEvents } from "@/data/timeline";
@@ -77,12 +77,10 @@ export default function HomePage() {
   const latestTimeline = [...timelineEvents]
     .sort((a, b) => +new Date(b.date) - +new Date(a.date))
     .slice(0, 4);
-  const currentStack = Array.from(
-    new Set(experiences.flatMap((experience) => experience.stack)),
-  ).slice(0, 12);
-  const featuredHighlights = experiences[0]?.highlights.slice(0, 3) ?? [];
+  const currentStack = allStack.slice(0, 12);
+  const currentPosition = allPositions[0];
+  const featuredHighlights = currentPosition?.highlights.slice(0, 3) ?? [];
   const featuredArticle = externalArticles[0];
-  const current = experiences[0];
 
   return (
     <div>
@@ -154,10 +152,10 @@ export default function HomePage() {
             <div className="surface-panel p-6">
               <span className="kicker">Currently</span>
               <p className="mt-3 font-sans text-xl font-bold leading-tight">
-                {current?.role}
+                {currentPosition?.role}
               </p>
               <p className="mt-1 text-[color:var(--muted)]">
-                {current?.company} — {current?.period}
+                {currentPosition?.company.company} — {currentPosition?.period}
               </p>
               <ul className="timeline-rail mt-5 space-y-3">
                 {featuredHighlights.map((highlight) => (
