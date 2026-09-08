@@ -11,6 +11,8 @@ export type TimelineEvent = {
   title: string;
   category: TimelineCategory;
   details: string;
+  /** Organisation the event belongs to, so its mark can anchor the entry. */
+  org?: { name: string; domain?: string };
 };
 
 export const timelineEvents: TimelineEvent[] = [
@@ -26,6 +28,7 @@ export const timelineEvents: TimelineEvent[] = [
     year: 2017,
     date: "2017-09-01",
     title: "Started at Cognizant",
+    org: { name: "Cognizant", domain: "cognizant.com" },
     category: "Career",
     details:
       "Joined as Programmer Analyst and began building enterprise healthcare microservices.",
@@ -34,6 +37,7 @@ export const timelineEvents: TimelineEvent[] = [
     year: 2019,
     date: "2019-12-01",
     title: "Joined Legato Health Technologies",
+    org: { name: "Carelon", domain: "carelon.com" },
     category: "Career",
     details:
       "Built high-throughput healthcare services and Kafka-based interoperability pipelines.",
@@ -50,6 +54,7 @@ export const timelineEvents: TimelineEvent[] = [
     year: 2022,
     date: "2022-01-15",
     title: "Started M.S. in Computer Science (UMKC)",
+    org: { name: "UMKC", domain: "umkc.edu" },
     category: "Learning",
     details:
       "Pursued advanced study in scalable systems while expanding applied research work.",
@@ -58,6 +63,7 @@ export const timelineEvents: TimelineEvent[] = [
     year: 2023,
     date: "2023-03-01",
     title: "Consulted at Hays (Client: Anthem)",
+    org: { name: "Hays", domain: "hays.com" },
     category: "Career",
     details:
       "Led AWS microservices migration and streaming architecture improvements.",
@@ -66,6 +72,7 @@ export const timelineEvents: TimelineEvent[] = [
     year: 2023,
     date: "2023-05-15",
     title: "Graduated with M.S. CS (GPA 3.9)",
+    org: { name: "UMKC", domain: "umkc.edu" },
     category: "Learning",
     details:
       "Completed graduate degree at UMKC with Hack-A-Roo recognition and research assistantship.",
@@ -74,6 +81,7 @@ export const timelineEvents: TimelineEvent[] = [
     year: 2024,
     date: "2024-01-05",
     title: "Joined UST as Developer III",
+    org: { name: "UST", domain: "ust.com" },
     category: "Career",
     details:
       "Took ownership of high-impact backend initiatives for Elevance Health systems.",
@@ -82,6 +90,7 @@ export const timelineEvents: TimelineEvent[] = [
     year: 2024,
     date: "2024-07-10",
     title: "Completed Enterprise Migration Program",
+    org: { name: "UST", domain: "ust.com" },
     category: "Project",
     details:
       "Cut end-to-end migration load time by 75% through parallel processing, SQL optimization, and batch orchestration.",
@@ -90,6 +99,7 @@ export const timelineEvents: TimelineEvent[] = [
     year: 2025,
     date: "2025-02-20",
     title: "Recognized with Multiple Impact Awards",
+    org: { name: "UST", domain: "ust.com" },
     category: "Award",
     details:
       "Received 7 Impact Awards for scalability, reliability, and backend performance engineering outcomes.",
@@ -114,6 +124,7 @@ export const timelineEvents: TimelineEvent[] = [
     year: 2026,
     date: "2026-08-01",
     title: "Promoted to Lead I - Software Engineering",
+    org: { name: "UST", domain: "ust.com" },
     category: "Career",
     details:
       "Stepped up to lead backend delivery at UST for Elevance Health compensation platforms.",
