@@ -1,32 +1,87 @@
-import github from "@/data/github.json";
+"use client";
 
-function yearsSince(iso: string | null) {
+import { useEffect, useState } from "react";
+import seed from "@/data/github.json";
+
+type RecentCommit = { repo: string; message: string; date: string; url: string };
+
+type Live = {
+  ok?: boolean;
+  updatedAt?: string;
+  login?: string;
+  url?: string;
+  publicRepos?: number | null;
+  followers?: number | null;
+  memberSince?: string | null;
+  commits?: number | null;
+  commitsLast90?: number;
+  lastActiveAt?: string | null;
+  recentCommits?: RecentCommit[];
+};
+
+function relative(iso?: string | null) {
   if (!iso) return null;
-  return Math.floor((Date.now() - new Date(iso).getTime()) / (365.25 * 24 * 3600 * 1000));
+  const diff = Date.now() - new Date(iso).getTime();
+  if (Number.isNaN(diff)) return null;
+  const mins = Math.round(diff / 60000);
+  if (mins < 1) return "just now";
+  if (mins < 60) return `${mins}m ago`;
+  const hrs = Math.round(mins / 60);
+  if (hrs < 24) return `${hrs}h ago`;
+  const days = Math.round(hrs / 24);
+  if (days < 30) return `${days}d ago`;
+  const months = Math.round(days / 30);
+  return months < 12 ? `${months}mo ago` : `${Math.round(months / 12)}y ago`;
+}
+
+function yearsSince(iso?: string | null) {
+  if (!iso) return null;
+  return Math.floor(
+    (Date.now() - new Date(iso).getTime()) / (365.25 * 24 * 3600 * 1000),
+  );
 }
 
 /**
- * Public GitHub activity, fetched at build time by scripts/fetch-github.mjs.
- * Every figure is real; the section hides itself if the fetch produced nothing.
+ * Live GitHub activity.
+ *
+ * Renders the build-time snapshot immediately, then swaps in live data from
+ * the Worker's /api/github route. Never shows a spinner or an empty state:
+ * if the fetch fails the seeded figures simply stay.
  */
 export function GithubStats() {
-  if (!github.commits && !github.publicRepos) return null;
+  const [live, setLive] = useState<Live | null>(null);
+  const [isLive, setIsLive] = useState(false);
 
-  const years = yearsSince(github.memberSince ?? null);
-  const figures = [
-    { value: github.commits?.toLocaleString() ?? "—", label: "Commits authored" },
-    { value: String(github.publicRepos ?? "—"), label: "Public repositories" },
-    { value: years ? `${years} yrs` : "—", label: "On GitHub" },
-    { value: String(github.followers ?? "—"), label: "Followers" },
-  ];
-
-  const updated = github.fetchedAt
-    ? new Date(github.fetchedAt).toLocaleDateString("en-US", {
-        month: "short",
-        day: "numeric",
-        year: "numeric",
+  useEffect(() => {
+    let cancelled = false;
+    fetch("/api/github")
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data: Live | null) => {
+        if (cancelled || !data || data.ok === false) return;
+        setLive(data);
+        setIsLive(true);
       })
-    : null;
+      .catch(() => {
+        /* keep the seeded values */
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  const data: Live = { ...seed, ...(live ?? {}) };
+  const years = yearsSince(data.memberSince);
+  const lastActive = relative(data.lastActiveAt);
+
+  const figures = [
+    { value: data.commits?.toLocaleString() ?? "—", label: "Commits authored" },
+    {
+      value: data.commitsLast90 != null ? String(data.commitsLast90) : "—",
+      label: "Commits, last 90 days",
+    },
+    { value: String(data.publicRepos ?? "—"), label: "Public repositories" },
+    { value: years ? `${years} yrs` : "—", label: "On GitHub" },
+  ];
 
   return (
     <section className="shell border-t border-[var(--border)] py-16 md:py-24">
@@ -36,89 +91,77 @@ export function GithubStats() {
           <h2 className="display-lg mt-4 max-w-[16ch]">
             What I push, in public.
           </h2>
+          {lastActive ? (
+            <p className="mt-4 inline-flex items-center gap-2.5 text-[color:var(--muted)]">
+              <span
+                className={`inline-block h-2 w-2 rounded-full bg-[color:var(--accent)] ${
+                  isLive ? "animate-pulse" : ""
+                }`}
+                aria-hidden="true"
+              />
+              <span className="data-label">
+                Last pushed {lastActive}
+              </span>
+            </p>
+          ) : null}
         </div>
         <a
-          href={github.url ?? "https://github.com/vinayreddykalluri"}
+          href={data.url ?? "https://github.com/vinayreddykalluri"}
           target="_blank"
           rel="noreferrer"
           className="spark-link px-6 py-3 text-sm"
         >
-          @{github.login ?? "vinayreddykalluri"}
+          @{data.login ?? "vinayreddykalluri"}
         </a>
       </div>
 
       <div className="mt-12 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
         {figures.map((f) => (
-          <div key={f.label} className="border-t-2 border-[color:var(--accent)] pt-5">
+          <div
+            key={f.label}
+            className="border-t-2 border-[color:var(--accent)] pt-5"
+          >
             <p className="stat-figure">{f.value}</p>
-            <p className="data-label mt-3 text-[color:var(--faint)]">{f.label}</p>
+            <p className="data-label mt-3 text-[color:var(--faint)]">
+              {f.label}
+            </p>
           </div>
         ))}
       </div>
 
-      {github.topLanguages?.length ? (
+      {data.recentCommits?.length ? (
         <div className="mt-14">
-          <p className="data-label text-[color:var(--faint)]">
-            Languages across public repositories
-          </p>
-          <div
-            className="mt-4 flex h-3 w-full overflow-hidden"
-            role="img"
-            aria-label={github.topLanguages
-              .map((l) => `${l.name} ${l.share}%`)
-              .join(", ")}
-          >
-            {github.topLanguages.map((lang, i) => (
-              <span
-                key={lang.name}
-                style={{
-                  width: `${lang.share}%`,
-                  opacity: 1 - i * 0.13,
-                }}
-                className="block bg-[color:var(--accent)]"
-              />
+          <p className="data-label text-[color:var(--faint)]">Latest commits</p>
+          <ul className="mt-5 grid gap-px bg-[color:var(--border)] sm:grid-cols-2 lg:grid-cols-3">
+            {data.recentCommits.slice(0, 6).map((commit) => (
+              <li key={commit.url}>
+                <a
+                  href={commit.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex h-full flex-col justify-between gap-3 bg-[color:var(--background)] p-5 transition-colors hover:bg-[color:var(--surface)]"
+                >
+                  <p className="text-[0.95rem] leading-snug">
+                    {commit.message}
+                  </p>
+                  <p className="data-label text-[color:var(--faint)]">
+                    <span className="text-[color:var(--accent-strong)]">
+                      {commit.repo}
+                    </span>{" "}
+                    · {relative(commit.date)}
+                  </p>
+                </a>
+              </li>
             ))}
-          </div>
-          <div className="signal-track mt-4">
-            {github.topLanguages.map((lang) => (
-              <span key={lang.name} className="signal-pill">
-                {lang.name} {lang.share}%
-              </span>
-            ))}
-          </div>
+          </ul>
         </div>
       ) : null}
 
-      {github.recent?.length ? (
-        <div className="mt-14 grid gap-px bg-[color:var(--border)] sm:grid-cols-2 lg:grid-cols-4">
-          {github.recent.map((repo) => (
-            <a
-              key={repo.name}
-              href={repo.url}
-              target="_blank"
-              rel="noreferrer"
-              className="group bg-[color:var(--background)] p-6 transition-colors hover:bg-[color:var(--surface)]"
-            >
-              <p className="font-mono text-sm font-semibold text-[color:var(--accent-strong)]">
-                {repo.name}
-              </p>
-              <p className="mt-2 line-clamp-3 text-[0.9rem] leading-relaxed text-[color:var(--muted)]">
-                {repo.description ?? "No description"}
-              </p>
-              <p className="data-label mt-4 text-[color:var(--faint)]">
-                {repo.language ?? "—"}
-                {repo.stars ? ` · ★ ${repo.stars}` : ""}
-              </p>
-            </a>
-          ))}
-        </div>
-      ) : null}
-
-      {updated ? (
-        <p className="data-label mt-8 text-[color:var(--faint)]">
-          Fetched from the GitHub API at build time — {updated}
-        </p>
-      ) : null}
+      <p className="data-label mt-8 text-[color:var(--faint)]">
+        {isLive
+          ? "Live from the GitHub API, cached 10 minutes at the edge"
+          : "From the last build"}
+      </p>
     </section>
   );
 }

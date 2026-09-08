@@ -10,10 +10,14 @@
     { "pattern": "www.vinayreddykalluri.com", "custom_domain": true }
   ],
 
-  // The site is a Next.js static export (`output: "export"` in next.config.ts),
-  // so this Worker serves the built `out/` directory and runs no server code.
+  // The site is a Next.js static export (`output: "export"` in next.config.ts).
+  // Static files are served directly from ./out without invoking the Worker;
+  // the script below only handles /api/github, which proxies live GitHub data.
+  "main": "./worker/index.ts",
+
   "assets": {
     "directory": "./out/",
+    "binding": "ASSETS",
 
     // next.config.ts sets `trailingSlash: true`, so pages build as
     // `out/about/index.html`. "auto-trailing-slash" serves those at `/about/`.
