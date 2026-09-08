@@ -17,11 +17,15 @@ export function Reveal({ children, className, delay = 0 }: RevealProps) {
   }
 
   return (
+    // Animates position only — never opacity. Fading in from 0 means the page
+    // is blank until an IntersectionObserver fires and the animation finishes,
+    // so a throttled rAF (background tab, hidden window, slow device) leaves
+    // content stuck half-transparent. Text stays readable in the first frame.
     <motion.div
       className={className}
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay }}
+      initial={{ y: 14 }}
+      whileInView={{ y: 0 }}
+      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay }}
       viewport={{ once: true, margin: "-80px 0px" }}
     >
       {children}

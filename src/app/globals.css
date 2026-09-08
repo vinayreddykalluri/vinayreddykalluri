@@ -351,8 +351,8 @@ h4 {
 /* ---------- motion ---------- */
 
 /*
-  Starts visible and settles, rather than parking at opacity:0 and waiting.
-  A page that has loaded should be readable in its first frame.
+  Transform only, no opacity. Content is at full opacity in every frame,
+  including before the animation runs, so nothing depends on it completing.
 */
 .motion-entry {
   animation: settle 460ms cubic-bezier(0.22, 1, 0.36, 1) both;
@@ -365,22 +365,18 @@ h4 {
 @keyframes settle {
   from {
     transform: translateY(6px);
-    opacity: 0.55;
   }
   to {
     transform: translateY(0);
-    opacity: 1;
   }
 }
 
 @keyframes fade-up {
   from {
     transform: translateY(6px);
-    opacity: 0.55;
   }
   to {
     transform: translateY(0);
-    opacity: 1;
   }
 }
 

@@ -38,8 +38,10 @@ export function RevealOnScroll({
   return (
     <div
       ref={ref}
-      className={`${className} transition-all duration-700 ${
-        isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
+      // Position only, never opacity: content must be readable in the first
+      // frame even if the observer never fires (JS disabled, throttled rAF).
+      className={`${className} transition-transform duration-700 ${
+        isVisible ? "translate-y-0" : "translate-y-3"
       }`}
     >
       {children}
