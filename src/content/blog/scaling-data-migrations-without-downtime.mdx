@@ -12,7 +12,7 @@ Large migrations are often treated as one-time projects. In reality, they are a 
 
 ## Migration Principles
 
-For a 35TB+ migration effort, the gains came from architecture choices, not brute force infrastructure:
+On a large enterprise migration, the gains came from architecture choices, not brute force infrastructure:
 
 - Partition the workload by data domain and dependency.
 - Batch aggressively, but monitor lock and transaction pressure.
@@ -20,7 +20,7 @@ For a 35TB+ migration effort, the gains came from architecture choices, not brut
 
 ## What Improved
 
-We reduced the pipeline window from 16 days to 4 days by aligning orchestration and SQL strategy.
+We cut the pipeline window by 75% by aligning orchestration and SQL strategy.
 
 ## Closing Thought
 

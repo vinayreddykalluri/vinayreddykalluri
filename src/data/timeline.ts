@@ -31,14 +31,6 @@ export const timelineEvents: TimelineEvent[] = [
       "Joined as Programmer Analyst and began building enterprise healthcare microservices.",
   },
   {
-    year: 2018,
-    date: "2018-04-01",
-    title: "Released Play Together on Google Play",
-    category: "Project",
-    details:
-      "Released Play Together on Google Play, owning testing, release management, and updates end to end.",
-  },
-  {
     year: 2019,
     date: "2019-12-01",
     title: "Joined Legato Health Technologies",
@@ -89,10 +81,10 @@ export const timelineEvents: TimelineEvent[] = [
   {
     year: 2024,
     date: "2024-07-10",
-    title: "Completed 35TB+ Migration Program",
+    title: "Completed Enterprise Migration Program",
     category: "Project",
     details:
-      "Reduced migration runtime from 16 days to 4 days through pipeline and SQL optimization.",
+      "Cut end-to-end migration load time by 75% through parallel processing, SQL optimization, and batch orchestration.",
   },
   {
     year: 2025,
@@ -109,6 +101,14 @@ export const timelineEvents: TimelineEvent[] = [
     category: "Project",
     details:
       "Started shaping a mission-driven platform focused on immigration clarity and trusted guidance.",
+  },
+  {
+    year: 2026,
+    date: "2026-01-15",
+    title: "Shipped Play Together on Google Play",
+    category: "Project",
+    details:
+      "Released the Flutter and Firebase relationship-games app, owning testing, release management, and updates end to end.",
   },
   {
     year: 2026,

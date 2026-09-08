@@ -40,14 +40,14 @@ export const projects: ProjectItem[] = [
   {
     name: "Play Together",
     type: "Mobile App",
-    period: "2017 - 2018",
+    period: "2024 - 2026",
     problem:
-      "Wanted to own a product end to end — design, build, ship, and maintain a real Android app in front of real users.",
+      "Couples wanted something light and shared to do together, rather than another feed to scroll.",
     solution:
-      "Developed and released an Android app for social play matching with responsive UI and complete user flows in Flutter and Dart, integrating REST APIs with local persistence for offline-friendly use.",
-    stack: ["Flutter", "Dart", "REST APIs", "Google Play"],
+      "Built and shipped a Flutter app of interactive relationship games — compatibility, truth or dare, and personalised date-night ideas — with Firebase for real-time sync across devices, each module carrying its own game logic.",
+    stack: ["Flutter", "Dart", "Firebase", "Google Play"],
     impact:
-      "Published on Google Play with full ownership of testing, release management, and ongoing updates.",
+      "Published on Google Play with full ownership of the delivery lifecycle: testing, release management, and ongoing updates. Previously released as Flames Match.",
     href: "https://play.google.com/store/apps/dev?id=5669286937377429055",
     hrefLabel: "View on Google Play",
   },

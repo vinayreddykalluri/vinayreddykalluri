@@ -1,14 +1,14 @@
 {
-  "fetchedAt": "2026-09-08T13:59:42.416Z",
+  "fetchedAt": "2026-09-08T15:54:31.203Z",
   "login": "vinayreddykalluri",
   "url": "https://github.com/vinayreddykalluri",
   "publicRepos": 20,
   "followers": 12,
   "memberSince": "2013-10-21T13:42:24Z",
-  "commits": 231,
-  "commitsLast90": 71,
+  "commits": 232,
+  "commitsLast90": 72,
   "pullRequests": 15,
-  "lastActiveAt": "2026-09-08T09:58:40.000-04:00",
+  "lastActiveAt": "2026-09-08T10:00:19.000-04:00",
   "topLanguages": [
     {
       "name": "TypeScript",
@@ -44,6 +44,12 @@
   "recentCommits": [
     {
       "repo": "vinayreddykalluri",
+      "message": "Seed featured repos and upstream PRs into the static build",
+      "date": "2026-09-08T10:00:19.000-04:00",
+      "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/b2c9deb21b845b0ac099ffda14c10f60fceccca6"
+    },
+    {
+      "repo": "vinayreddykalluri",
       "message": "Surface real GitHub and LinkedIn material in the portfolio",
       "date": "2026-09-08T09:58:40.000-04:00",
       "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/fc0defcf56ee7e64b6c848a489c2f295aa3fcdc9"
@@ -71,12 +77,6 @@
       "message": "Redesign: full-bleed editorial theme with instrument detail",
       "date": "2026-09-07T21:14:53.000-04:00",
       "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/ce8763811c9851e115bfc7eb274a3f4fe91d13db"
-    },
-    {
-      "repo": "vinayreddykalluri",
-      "message": "Never hide content behind scroll-reveal animations",
-      "date": "2026-09-07T20:24:08.000-04:00",
-      "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/6cc37eaaeb9ee05ce4cc233c3c18c30d3fbd47d6"
     }
   ],
   "featured": [

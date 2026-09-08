@@ -22,8 +22,8 @@ export const siteConfig = {
   metrics: [
     {
       label: "Data Pipelines",
-      value: "35TB+",
-      detail: "Large-scale migration and ETL modernization",
+      value: "75% faster",
+      detail: "Migration and ETL modernization",
     },
     {
       label: "Experience",
