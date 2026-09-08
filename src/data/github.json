@@ -1,14 +1,14 @@
 {
-  "fetchedAt": "2026-09-08T16:46:09.006Z",
+  "fetchedAt": "2026-09-08T16:51:41.055Z",
   "login": "vinayreddykalluri",
   "url": "https://github.com/vinayreddykalluri",
   "publicRepos": 20,
   "followers": 12,
   "memberSince": "2013-10-21T13:42:24Z",
-  "commits": 239,
-  "commitsLast90": 79,
+  "commits": 240,
+  "commitsLast90": 80,
   "pullRequests": 15,
-  "lastActiveAt": "2026-09-08T12:42:55.000-04:00",
+  "lastActiveAt": "2026-09-08T12:47:15.000-04:00",
   "topLanguages": [
     {
       "name": "TypeScript",
@@ -44,6 +44,12 @@
   "recentCommits": [
     {
       "repo": "vinayreddykalluri",
+      "message": "Model companies as a list of positions, not one flat role",
+      "date": "2026-09-08T12:47:15.000-04:00",
+      "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/9c847e00cfb0c0dc4f32f1afff49de321e03b3c1"
+    },
+    {
+      "repo": "vinayreddykalluri",
       "message": "Point Legato at carelon.com and label the rename",
       "date": "2026-09-08T12:42:55.000-04:00",
       "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/a07be0793d9e7668abca654396c30ae4993bc665"
@@ -71,12 +77,6 @@
       "message": "Bring every page onto the homepage design system",
       "date": "2026-09-08T12:13:46.000-04:00",
       "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/dc45fd2f4d9304b43ed8a9a9804f6140bf4943cc"
-    },
-    {
-      "repo": "vinayreddykalluri",
-      "message": "Correct Anthem event throughput to 1M+ per day",
-      "date": "2026-09-08T11:57:20.000-04:00",
-      "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/14bb45af4154872f5f26b62d34dabbb729c47f2c"
     }
   ],
   "featured": [
