@@ -54,6 +54,29 @@ async function ghJson<T>(url: string): Promise<T | null> {
   }
 }
 
+type Repo = {
+  name: string;
+  description: string | null;
+  html_url: string;
+  language: string | null;
+  stargazers_count: number;
+  forks_count: number;
+  topics?: string[];
+  fork: boolean;
+  pushed_at: string;
+};
+
+type PrSearch = {
+  total_count: number;
+  items?: Array<{
+    title: string;
+    html_url: string;
+    state: string;
+    repository_url: string;
+    created_at: string;
+  }>;
+};
+
 type CommitSearch = {
   total_count: number;
   items?: Array<{
@@ -77,13 +100,21 @@ async function buildPayload() {
    * API gives real counts and the commits themselves, so everything comes
    * from there instead.
    */
-  const [user, recent, windowed] = await Promise.all([
+  const [user, recent, windowed, repos, prs] = await Promise.all([
     ghJson<Record<string, unknown>>(`https://api.github.com/users/${USER}`),
     ghJson<CommitSearch>(
       `https://api.github.com/search/commits?q=author:${USER}&sort=author-date&order=desc&per_page=6`,
     ),
     ghJson<CommitSearch>(
       `https://api.github.com/search/commits?q=author:${USER}+author-date:%3E${since}&per_page=1`,
+    ),
+    ghJson<Repo[]>(
+      `https://api.github.com/users/${USER}/repos?per_page=100&sort=pushed`,
+    ),
+    // Pull requests raised against repositories the user does not own — the
+    // clearest signal of upstream open-source contribution.
+    ghJson<PrSearch>(
+      `https://api.github.com/search/issues?q=author:${USER}+type:pr&sort=updated&order=desc&per_page=30`,
     ),
   ]);
 
@@ -95,6 +126,39 @@ async function buildPayload() {
     date: item.commit.author.date,
     url: item.html_url,
   }));
+
+  // Rank owned repositories by signal (stars, forks, then recency) so the
+  // homepage leads with real projects rather than whatever was pushed last.
+  const featured = (repos ?? [])
+    .filter((r) => !r.fork && r.name !== USER && r.description)
+    .sort(
+      (a, b) =>
+        b.stargazers_count - a.stargazers_count ||
+        b.forks_count - a.forks_count ||
+        Date.parse(b.pushed_at) - Date.parse(a.pushed_at),
+    )
+    .slice(0, 6)
+    .map((r) => ({
+      name: r.name,
+      description: r.description,
+      url: r.html_url,
+      language: r.language,
+      stars: r.stargazers_count,
+      forks: r.forks_count,
+      topics: (r.topics ?? []).slice(0, 4),
+      pushedAt: r.pushed_at,
+    }));
+
+  const upstream = (prs?.items ?? [])
+    .filter((pr) => !pr.repository_url.includes(`/repos/${USER}/`))
+    .slice(0, 5)
+    .map((pr) => ({
+      title: pr.title,
+      url: pr.html_url,
+      state: pr.state,
+      repo: pr.repository_url.split("/repos/")[1] ?? "",
+      createdAt: pr.created_at,
+    }));
 
   return {
     ok: true,
@@ -108,12 +172,15 @@ async function buildPayload() {
     commitsLast90: windowed?.total_count ?? null,
     lastActiveAt: recentCommits[0]?.date ?? null,
     recentCommits,
+    featured,
+    upstream,
+    pullRequests: prs?.total_count ?? null,
   };
 }
 
 async function handleGithub(ctx: ExecutionContext): Promise<Response> {
   const cache = caches.default;
-  const key = new Request(`https://cache.internal/github?v=2`);
+  const key = new Request(`https://cache.internal/github?v=3`);
 
   const hit = await cache.match(key);
   if (hit) return hit;

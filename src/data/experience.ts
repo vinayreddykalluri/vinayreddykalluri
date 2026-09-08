@@ -58,6 +58,21 @@ export const experiences: ExperienceItem[] = [
     ],
   },
   {
+    role: "Graduate Research Assistant",
+    company: "University of Missouri-Kansas City",
+    location: "Kansas City, MO",
+    period: "Feb 2022 - Jun 2022",
+    summary:
+      "Applied machine learning to smart grid security, detecting anomalies in Phasor Measurement Unit data streams.",
+    highlights: [
+      "Researched machine learning applications for smart grid anomaly detection, focused on identifying fraudulent behaviour in Phasor Measurement Unit (PMU) data.",
+      "Built and evaluated predictive models in Python, improving anomaly classification accuracy on real-time energy data streams.",
+      "Maintained reproducible research workflows and experiment tracking with Git-based collaboration.",
+      "Contributed to a data-driven framework supporting energy efficiency and reliability in modern power systems.",
+    ],
+    stack: ["Python", "Machine Learning", "Research", "Git"],
+  },
+  {
     role: "Software Engineer",
     company: "Legato Health Technologies",
     location: "Hyderabad, India",

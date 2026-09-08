@@ -96,6 +96,25 @@ export const siteConfig = {
     "Improved API throughput by 20% through asynchronous execution, Redis caching, and JVM tuning.",
     "Received 7 Impact Awards for backend scalability and reliability engineering.",
   ],
+  credentials: {
+    headline:
+      "Lead Software Engineer | Java & Microservices | Cloud & API Architecture | Scalable & Secure Systems | Engineering Leader",
+    publication: {
+      title:
+        "Real-Time Driver Fatigue or Drowsiness Detection System Using Face Image Stream",
+      venue: "International Journal of Civil Engineering and Technology",
+      date: "Nov 2017",
+    },
+    honors: [
+      "Best Project Award 2016-2017, Cognizant — drowsiness detection system",
+      "Best Project Based Learning Award, VIT University — dietary management system",
+      "Gold Medal, graduated Rank #1 at VIT University",
+      "Hack-A-Roo Hackathon winner at UMKC — first prize among 30+ teams",
+    ],
+    certifications: 18,
+    languages: ["English (professional)", "Telugu (native)"],
+  },
+
   education: [
     {
       degree: "M.S. in Computer Science",

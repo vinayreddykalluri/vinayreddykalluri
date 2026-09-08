@@ -20,7 +20,7 @@ export const timelineEvents: TimelineEvent[] = [
     title: "Published Driver Fatigue Detection Paper",
     category: "Publication",
     details:
-      "Published in IJCET Vol. 8 on real-time driver fatigue detection using face image streams.",
+      "Published in the International Journal of Civil Engineering and Technology on real-time driver fatigue and drowsiness detection from face image streams.",
   },
   {
     year: 2017,
@@ -112,7 +112,7 @@ export const timelineEvents: TimelineEvent[] = [
   },
   {
     year: 2026,
-    date: "2026-09-01",
+    date: "2026-08-01",
     title: "Promoted to Lead I - Software Engineering",
     category: "Career",
     details:

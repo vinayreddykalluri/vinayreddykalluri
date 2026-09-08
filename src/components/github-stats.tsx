@@ -4,6 +4,11 @@ import { useEffect, useState } from "react";
 import seed from "@/data/github.json";
 
 type RecentCommit = { repo: string; message: string; date: string; url: string };
+type Featured = {
+  name: string; description: string | null; url: string; language: string | null;
+  stars: number; forks: number; topics: string[]; pushedAt: string;
+};
+type Upstream = { title: string; url: string; state: string; repo: string; createdAt: string };
 
 type Live = {
   ok?: boolean;
@@ -17,6 +22,9 @@ type Live = {
   commitsLast90?: number;
   lastActiveAt?: string | null;
   recentCommits?: RecentCommit[];
+  featured?: Featured[];
+  upstream?: Upstream[];
+  pullRequests?: number | null;
 };
 
 function relative(iso?: string | null) {
@@ -80,7 +88,10 @@ export function GithubStats() {
       label: "Commits, last 90 days",
     },
     { value: String(data.publicRepos ?? "—"), label: "Public repositories" },
-    { value: years ? `${years} yrs` : "—", label: "On GitHub" },
+    {
+      value: data.pullRequests != null ? String(data.pullRequests) : "—",
+      label: "Pull requests opened",
+    },
   ];
 
   return (
@@ -128,6 +139,79 @@ export function GithubStats() {
           </div>
         ))}
       </div>
+
+      {data.upstream?.length ? (
+        <div className="mt-14">
+          <p className="data-label text-[color:var(--faint)]">
+            Upstream contributions
+          </p>
+          <ul className="mt-5 flex flex-col">
+            {data.upstream.map((pr) => (
+              <li key={pr.url} className="border-t border-[var(--border)]">
+                <a
+                  href={pr.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2 py-5 transition-colors hover:text-[color:var(--accent-strong)]"
+                >
+                  <span className="font-mono text-sm text-[color:var(--accent-strong)]">
+                    {pr.repo}
+                  </span>
+                  <span className="flex-1 text-[1.05rem] leading-snug">
+                    {pr.title}
+                  </span>
+                  <span className="data-label text-[color:var(--faint)]">
+                    {pr.state} · {relative(pr.createdAt)}
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : null}
+
+      {data.featured?.length ? (
+        <div className="mt-14">
+          <p className="data-label text-[color:var(--faint)]">
+            Open-source projects
+          </p>
+          <div className="mt-5 grid gap-px bg-[color:var(--border)] sm:grid-cols-2 lg:grid-cols-3">
+            {data.featured.map((repo) => (
+              <a
+                key={repo.url}
+                href={repo.url}
+                target="_blank"
+                rel="noreferrer"
+                className="flex flex-col gap-3 bg-[color:var(--background)] p-6 transition-colors hover:bg-[color:var(--surface)]"
+              >
+                <div className="flex items-baseline justify-between gap-3">
+                  <span className="font-mono text-sm font-semibold text-[color:var(--accent-strong)]">
+                    {repo.name}
+                  </span>
+                  {repo.stars > 0 ? (
+                    <span className="data-label text-[color:var(--faint)]">
+                      ★ {repo.stars}
+                    </span>
+                  ) : null}
+                </div>
+                <p className="text-[0.95rem] leading-relaxed text-[color:var(--muted)]">
+                  {repo.description}
+                </p>
+                <div className="signal-track mt-auto pt-2">
+                  {repo.language ? (
+                    <span className="signal-pill">{repo.language}</span>
+                  ) : null}
+                  {repo.topics.slice(0, 3).map((topic) => (
+                    <span key={topic} className="signal-pill">
+                      {topic}
+                    </span>
+                  ))}
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      ) : null}
 
       {data.recentCommits?.length ? (
         <div className="mt-14">
