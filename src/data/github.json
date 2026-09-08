@@ -1,14 +1,14 @@
 {
-  "fetchedAt": "2026-09-08T17:12:57.249Z",
+  "fetchedAt": "2026-09-08T17:16:51.348Z",
   "login": "vinayreddykalluri",
   "url": "https://github.com/vinayreddykalluri",
   "publicRepos": 20,
   "followers": 12,
   "memberSince": "2013-10-21T13:42:24Z",
-  "commits": 243,
-  "commitsLast90": 83,
+  "commits": 244,
+  "commitsLast90": 84,
   "pullRequests": 15,
-  "lastActiveAt": "2026-09-08T13:09:06.000-04:00",
+  "lastActiveAt": "2026-09-08T13:13:29.000-04:00",
   "topLanguages": [
     {
       "name": "TypeScript",
@@ -44,6 +44,12 @@
   "recentCommits": [
     {
       "repo": "vinayreddykalluri",
+      "message": "Tier skills by evidence instead of listing fifty of them",
+      "date": "2026-09-08T13:13:29.000-04:00",
+      "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/77d4f8b651c828885543bfd11d38904aeeffa83a"
+    },
+    {
+      "repo": "vinayreddykalluri",
       "message": "Add depth, texture and light to a design that had gone too flat",
       "date": "2026-09-08T13:09:06.000-04:00",
       "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/1d67bbe5c2b143a4024c6c3a9dc1aba429ff89c9"
@@ -71,12 +77,6 @@
       "message": "Point Legato at carelon.com and label the rename",
       "date": "2026-09-08T12:42:55.000-04:00",
       "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/a07be0793d9e7668abca654396c30ae4993bc665"
-    },
-    {
-      "repo": "vinayreddykalluri",
-      "message": "Distinguish logo proxy failure modes",
-      "date": "2026-09-08T12:25:49.000-04:00",
-      "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/4ced2017320592d1f03b15353124bf058976f941"
     }
   ],
   "featured": [

@@ -1,4 +1,4 @@
-import { CompanyLogo } from "@/components/company-logo";
+import { TechLogo } from "@/components/tech-logo";
 import { Spotlight } from "@/components/spotlight";
 import type { SkillUsage } from "@/lib/skill-usage";
 
@@ -51,7 +51,8 @@ export function SkillsExplorer({ usage }: { usage: SkillUsage[] }) {
               key={item.skill.name}
               className="spot flex flex-col gap-4 border border-[var(--border)] bg-[color:var(--surface)] p-6"
             >
-              <CompanyLogo
+              <TechLogo
+                icon={item.skill.icon}
                 domain={item.skill.domain}
                 name={item.skill.name}
                 size={44}
@@ -92,7 +93,8 @@ export function SkillsExplorer({ usage }: { usage: SkillUsage[] }) {
                 key={item.skill.name}
                 className="spot flex items-center gap-3 border border-[var(--border)] bg-[color:var(--surface)] p-4"
               >
-                <CompanyLogo
+                <TechLogo
+                  icon={item.skill.icon}
                   domain={item.skill.domain}
                   name={item.skill.name}
                   size={32}
