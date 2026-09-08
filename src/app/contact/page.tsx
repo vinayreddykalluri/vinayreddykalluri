@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { PageHeader } from "@/components/page-header";
 import { Reveal } from "@/components/Reveal";
 import { siteConfig } from "@/data/profile";
 import { pageMetadata } from "@/lib/seo";
@@ -13,83 +14,104 @@ export const metadata: Metadata = pageMetadata({
 });
 
 export default function ContactPage() {
+  const channels = [
+    {
+      label: "Email",
+      value: siteConfig.contact.email,
+      href: `mailto:${siteConfig.contact.email}`,
+    },
+    {
+      label: "Phone",
+      value: siteConfig.contact.phone,
+      href: `tel:${siteConfig.contact.phone.replace(/[^+\d]/g, "")}`,
+    },
+    {
+      label: "LinkedIn",
+      value: "in/vinayreddykalluri",
+      href: siteConfig.contact.linkedin,
+      external: true,
+    },
+    {
+      label: "GitHub",
+      value: "@vinayreddykalluri",
+      href: siteConfig.contact.github,
+      external: true,
+    },
+    {
+      label: "Writing",
+      value: "vinayreddykalluri.medium.com",
+      href: siteConfig.contact.medium,
+      external: true,
+    },
+    {
+      label: "Based in",
+      value: siteConfig.location,
+    },
+  ];
+
   return (
-    <div className="shell py-14 md:py-20 space-y-10 md:space-y-12">
+    <div className="shell py-14 md:py-20">
+      <PageHeader
+        kicker="Contact"
+        title="Open to high-impact backend work."
+        lede="If you are hiring for platform or backend leadership, or want to collaborate on distributed systems work, the fastest route is email."
+      />
+
       <Reveal>
-        <header className="max-w-3xl space-y-4">
-          <p className="kicker">Contact</p>
-          <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">
-            Open to high-impact backend opportunities
-          </h1>
-          <p className="text-base leading-7 text-[color:var(--muted)]">
-            If you are hiring for platform/backend leadership or want to
-            collaborate on distributed systems work, reach out directly.
-          </p>
-        </header>
+        <section className="mt-12 grid gap-px bg-[color:var(--border)] sm:grid-cols-2 lg:grid-cols-3">
+          {channels.map((channel) => {
+            const inner = (
+              <>
+                <p className="data-label text-[color:var(--faint)]">
+                  {channel.label}
+                </p>
+                <p className="mt-3 break-words font-sans text-lg font-semibold">
+                  {channel.value}
+                </p>
+              </>
+            );
+
+            return channel.href ? (
+              <a
+                key={channel.label}
+                href={channel.href}
+                {...(channel.external
+                  ? { target: "_blank", rel: "noreferrer" }
+                  : {})}
+                className="bg-[color:var(--background)] p-7 transition-colors hover:bg-[color:var(--accent-soft)]"
+              >
+                {inner}
+              </a>
+            ) : (
+              <div
+                key={channel.label}
+                className="bg-[color:var(--background)] p-7"
+              >
+                {inner}
+              </div>
+            );
+          })}
+        </section>
       </Reveal>
 
-      <section className="grid gap-5 md:grid-cols-2">
-        <Reveal delay={0.04}>
-          <article className="surface-panel h-full p-7">
-            <h2 className="text-xl font-semibold">Direct Channels</h2>
-            <ul className="mt-5 space-y-3 text-sm">
-              <li>
-                <a
-                  className="spark-link inline-flex px-4 py-2 font-semibold text-[color:var(--accent)]"
-                  href={`mailto:${siteConfig.contact.email}`}
-                >
-                  {siteConfig.contact.email}
-                </a>
-              </li>
-              <li>
-                <a
-                  className="spark-link inline-flex px-4 py-2 font-semibold text-[color:var(--accent)]"
-                  href={`tel:${siteConfig.contact.phone.replace(/[^+\d]/g, "")}`}
-                >
-                  {siteConfig.contact.phone}
-                </a>
-              </li>
-              <li>
-                <a
-                  className="spark-link inline-flex px-4 py-2 font-semibold text-[color:var(--accent)]"
-                  href={siteConfig.contact.linkedin}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  LinkedIn Profile
-                </a>
-              </li>
-              <li>
-                <a
-                  className="spark-link inline-flex px-4 py-2 font-semibold text-[color:var(--accent)]"
-                  href={siteConfig.contact.github}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  GitHub Profile
-                </a>
-              </li>
-            </ul>
-          </article>
-        </Reveal>
-
-        <Reveal delay={0.08}>
-          <article className="rounded-[3px] border border-[color:var(--accent)] bg-[color:var(--accent-soft)] p-7">
-            <h2 className="text-xl font-semibold">Availability</h2>
-            <p className="mt-3 text-sm leading-6 text-[color:var(--muted)]">
-              Available for {siteConfig.workAuthorization.availability}.{" "}
-              {siteConfig.workAuthorization.visa}. Focused on senior backend
-              engineering and platform reliability roles.
-            </p>
-            <a
-              href={`mailto:${siteConfig.contact.email}`}
-              className="cta-primary mt-6 px-6 py-2.5 text-sm"
-            >
-              Start a conversation
-            </a>
-          </article>
-        </Reveal>
-      </section>
+      <Reveal>
+        <section className="band-accent mt-16 p-9 md:p-14">
+          <span className="kicker">Availability</span>
+          <h2 className="display-lg mt-4 max-w-[20ch]">
+            Remote, hybrid, or onsite in the U.S.
+          </h2>
+          <p className="band-dim measure mt-5 text-lg">
+            {siteConfig.workAuthorization.visa}. Focused on distributed systems,
+            platform reliability, and backend modernization.
+          </p>
+          <a
+            href={`mailto:${siteConfig.contact.email}`}
+            className="cta-primary mt-8 px-7 py-3 text-sm"
+          >
+            Start a conversation
+          </a>
+        </section>
+      </Reveal>
     </div>
   );
 }

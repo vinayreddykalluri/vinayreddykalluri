@@ -36,7 +36,7 @@ export function SiteHeader() {
         <button
           aria-expanded={menuOpen}
           aria-controls="mobile-nav"
-          className="glass-nav inline-flex rounded-xl px-3.5 py-2 text-sm font-medium text-[color:var(--foreground)] md:hidden"
+          className="glass-nav inline-flex rounded-[3px] px-3.5 py-2 font-mono text-xs uppercase tracking-[0.1em] text-[color:var(--foreground)] md:hidden"
           onClick={() => setMenuOpen((prev) => !prev)}
           type="button"
         >

@@ -1,44 +1,65 @@
 import type { ExperienceItem } from "@/data/experience";
 
-type ExperienceCardProps = {
+/**
+ * A role as a spec-sheet row: company and dates in a fixed left rail, the
+ * substance on the right. Hairline separated rather than boxed, matching the
+ * project rows and the homepage bands.
+ */
+export function ExperienceCard({
+  experience,
+  index,
+}: {
   experience: ExperienceItem;
-};
-
-export function ExperienceCard({ experience }: ExperienceCardProps) {
+  index?: number;
+}) {
   return (
-    <article className="surface-card p-7">
-      <header className="flex flex-wrap items-start justify-between gap-3">
-        <div>
-          <p className="kicker">Role</p>
-          <h3 className="mt-2 text-xl font-semibold">{experience.role}</h3>
-          <p className="mt-1 text-sm text-[color:var(--muted)]">
-            {experience.company} | {experience.location}
+    <article className="grid gap-6 border-b border-[var(--border)] py-10 md:grid-cols-[minmax(0,15rem)_1fr] md:gap-12">
+      <div>
+        {index != null ? (
+          <p className="stat-figure mb-4 text-[color:var(--border)] md:text-[2.5rem]">
+            {String(index + 1).padStart(2, "0")}
           </p>
-        </div>
-        <p className="soft-chip rounded-[3px] px-3 py-1 font-mono text-xs">
+        ) : null}
+        <p className="font-sans text-xl font-bold leading-tight">
+          {experience.company}
+        </p>
+        <p className="data-label mt-3 text-[color:var(--faint)]">
           {experience.period}
         </p>
-      </header>
+        <p className="data-label mt-1.5 text-[color:var(--faint)]">
+          {experience.location}
+        </p>
+      </div>
 
-      <p className="mt-5 rounded-xl border border-[var(--border)] bg-[color:var(--surface-strong)] p-4 text-sm leading-7 text-[color:var(--muted)]">
-        {experience.summary}
-      </p>
+      <div>
+        <h3 className="text-2xl md:text-3xl">{experience.role}</h3>
+        <p className="measure-wide mt-4 leading-relaxed text-[color:var(--muted)]">
+          {experience.summary}
+        </p>
 
-      <ul className="mt-5 space-y-2.5 pl-5 text-sm leading-7 text-[color:var(--muted)]">
-        {experience.highlights.map((highlight) => (
-          <li key={highlight} className="list-disc">
-            {highlight}
-          </li>
-        ))}
-      </ul>
+        <ul className="mt-7 flex flex-col gap-3.5">
+          {experience.highlights.map((highlight) => (
+            <li
+              key={highlight}
+              className="relative max-w-[80ch] pl-6 leading-relaxed"
+            >
+              <span
+                className="absolute left-0 top-[0.62em] h-px w-3 bg-[color:var(--accent)]"
+                aria-hidden="true"
+              />
+              {highlight}
+            </li>
+          ))}
+        </ul>
 
-      <ul className="mt-5 flex flex-wrap gap-2">
-        {experience.stack.map((tag) => (
-          <li key={tag} className="soft-chip rounded-[3px] px-3 py-1 text-xs">
-            {tag}
-          </li>
-        ))}
-      </ul>
+        <div className="signal-track mt-7">
+          {experience.stack.map((tech) => (
+            <span key={tech} className="signal-pill">
+              {tech}
+            </span>
+          ))}
+        </div>
+      </div>
     </article>
   );
 }

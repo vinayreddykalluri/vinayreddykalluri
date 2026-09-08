@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { PageHeader } from "@/components/page-header";
 import { Reveal } from "@/components/Reveal";
 import { externalArticles } from "@/data/blog";
 import { getAllPosts } from "@/lib/blog";
@@ -29,35 +30,31 @@ export default async function BlogPage() {
   };
 
   return (
-    <div className="shell py-14 md:py-20 space-y-10 md:space-y-12">
+    <div className="shell py-14 md:py-20">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(blogListJsonLd) }}
       />
-      <Reveal>
-        <header className="max-w-3xl space-y-4">
-          <p className="kicker">Blog</p>
-          <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">
-            Thoughtful backend engineering notes
-          </h1>
-          <p className="text-base leading-7 text-[color:var(--muted)]">
-            Static MDX posts for architecture ideas and practical lessons, plus
-            external writing on Medium.
-          </p>
-        </header>
-      </Reveal>
+      <PageHeader
+        kicker="Writing"
+        title="Backend engineering notes."
+        lede="Architecture reasoning and practical lessons that teams can apply in production, plus external writing on Medium."
+      />
 
       <Reveal delay={0.04}>
-        <section className="space-y-4">
-          <h2 className="text-xl font-semibold">MDX Articles</h2>
-          <div className="grid gap-5 md:grid-cols-2">
+        <section className="mt-12">
+          <div
+            className={`grid gap-px bg-[color:var(--border)] ${
+              posts.length > 1 ? "md:grid-cols-2" : ""
+            }`}
+          >
             {posts.map((post, index) => (
               <Reveal key={post.slug} delay={0.04 * (index % 4)}>
-                <article className="surface-card p-6">
-                  <p className="font-mono text-xs uppercase tracking-[0.08em] text-[color:var(--muted)]">
+                <article className="h-full bg-[color:var(--background)] p-7 transition-colors hover:bg-[color:var(--surface)]">
+                  <p className="data-label text-[color:var(--faint)]">
                     {formatDate(post.date)}
                   </p>
-                  <h3 className="mt-2 text-xl font-semibold">
+                  <h3 className="mt-3 text-2xl">
                     <Link
                       href={`/blog/${post.slug}`}
                       className="transition hover:text-[color:var(--accent)]"
@@ -65,16 +62,13 @@ export default async function BlogPage() {
                       {post.title}
                     </Link>
                   </h3>
-                  <p className="mt-3 text-sm leading-7 text-[color:var(--muted)]">
+                  <p className="mt-4 leading-relaxed text-[color:var(--muted)]">
                     {post.description}
                   </p>
                   {post.tags && post.tags.length > 0 ? (
-                    <ul className="mt-4 flex flex-wrap gap-2">
+                    <ul className="signal-track mt-5">
                       {post.tags.map((tag) => (
-                        <li
-                          key={tag}
-                          className="soft-chip rounded-[3px] px-3 py-1 text-xs"
-                        >
+                        <li key={tag} className="signal-pill">
                           {tag}
                         </li>
                       ))}
@@ -88,21 +82,25 @@ export default async function BlogPage() {
       </Reveal>
 
       <Reveal delay={0.08}>
-        <section className="space-y-4">
-          <h2 className="text-xl font-semibold">External Writing</h2>
-          <div className="grid gap-5 md:grid-cols-2">
+        <section className="mt-16 border-t border-[var(--border)] pt-12">
+          <p className="kicker">External writing</p>
+          <div
+            className={`mt-6 grid gap-px bg-[color:var(--border)] ${
+              externalArticles.length > 1 ? "md:grid-cols-2" : ""
+            }`}
+          >
             {externalArticles.map((article, index) => (
               <Reveal key={article.href} delay={0.04 * (index % 4)}>
-                <article className="surface-card p-6">
-                  <p className="font-mono text-xs uppercase tracking-[0.08em] text-[color:var(--muted)]">
+                <article className="h-full bg-[color:var(--background)] p-7">
+                  <p className="data-label text-[color:var(--faint)]">
                     {formatDate(article.publishedAt)}
                   </p>
-                  <h3 className="mt-2 text-xl font-semibold">{article.title}</h3>
-                  <p className="mt-3 text-sm leading-7 text-[color:var(--muted)]">
+                  <h3 className="mt-3 text-2xl">{article.title}</h3>
+                  <p className="mt-4 leading-relaxed text-[color:var(--muted)]">
                     {article.description}
                   </p>
                   <a
-                    className="spark-link mt-5 inline-flex px-4 py-2 text-xs font-semibold"
+                    className="spark-link mt-6 px-5 py-2.5 text-sm"
                     href={article.href}
                     target="_blank"
                     rel="noreferrer"

@@ -1,14 +1,14 @@
 {
-  "fetchedAt": "2026-09-08T15:56:53.722Z",
+  "fetchedAt": "2026-09-08T16:13:24.666Z",
   "login": "vinayreddykalluri",
   "url": "https://github.com/vinayreddykalluri",
   "publicRepos": 20,
   "followers": 12,
   "memberSince": "2013-10-21T13:42:24Z",
-  "commits": 233,
-  "commitsLast90": 73,
+  "commits": 234,
+  "commitsLast90": 74,
   "pullRequests": 15,
-  "lastActiveAt": "2026-09-08T11:55:09.000-04:00",
+  "lastActiveAt": "2026-09-08T11:57:20.000-04:00",
   "topLanguages": [
     {
       "name": "TypeScript",
@@ -44,6 +44,12 @@
   "recentCommits": [
     {
       "repo": "vinayreddykalluri",
+      "message": "Correct Anthem event throughput to 1M+ per day",
+      "date": "2026-09-08T11:57:20.000-04:00",
+      "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/14bb45af4154872f5f26b62d34dabbb729c47f2c"
+    },
+    {
+      "repo": "vinayreddykalluri",
       "message": "Retire obsolete migration figures; correct Play Together",
       "date": "2026-09-08T11:55:09.000-04:00",
       "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/4f9b559e0c31cba68abb772718bd0147ba43e667"
@@ -71,12 +77,6 @@
       "message": "Drop pink, new display font, live GitHub stats, parallax",
       "date": "2026-09-07T21:26:59.000-04:00",
       "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/acf38b0d4c70e61275fec966171a3bc35ad789e3"
-    },
-    {
-      "repo": "vinayreddykalluri",
-      "message": "Update content from résumé; promotion to Lead I",
-      "date": "2026-09-07T21:20:49.000-04:00",
-      "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/2c66ccb4cef1938424d6d7818772239d44cbe317"
     }
   ],
   "featured": [
