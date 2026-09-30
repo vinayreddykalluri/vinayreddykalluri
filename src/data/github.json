@@ -1,14 +1,14 @@
 {
-  "fetchedAt": "2026-09-30T16:57:44.217Z",
+  "fetchedAt": "2026-09-30T17:05:46.265Z",
   "login": "vinayreddykalluri",
   "url": "https://github.com/vinayreddykalluri",
   "publicRepos": 20,
   "followers": 14,
   "memberSince": "2013-10-21T13:42:24Z",
-  "commits": 250,
-  "commitsLast90": 90,
+  "commits": 251,
+  "commitsLast90": 91,
   "pullRequests": 15,
-  "lastActiveAt": "2026-09-09T08:40:50.000-04:00",
+  "lastActiveAt": "2026-09-30T12:58:17.000-04:00",
   "topLanguages": [
     {
       "name": "TypeScript",
@@ -44,6 +44,12 @@
   "recentCommits": [
     {
       "repo": "vinayreddykalluri",
+      "message": "Feature the merged Spring AI contribution",
+      "date": "2026-09-30T12:58:17.000-04:00",
+      "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/895a1bef8f9a1af944409455be569a38b706d0a5"
+    },
+    {
+      "repo": "vinayreddykalluri",
       "message": "Rewrite the profile README",
       "date": "2026-09-09T08:40:50.000-04:00",
       "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/3cc241bf021213a2b03e4f7cca1279c59746a588"
@@ -71,12 +77,6 @@
       "message": "Render technology marks inline instead of proxying them",
       "date": "2026-09-08T13:17:55.000-04:00",
       "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/c8c3b8fec165b03e6c815a27d23ff77d208b4bfb"
-    },
-    {
-      "repo": "vinayreddykalluri",
-      "message": "Tier skills by evidence instead of listing fifty of them",
-      "date": "2026-09-08T13:13:29.000-04:00",
-      "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/77d4f8b651c828885543bfd11d38904aeeffa83a"
     }
   ],
   "featured": [

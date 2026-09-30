@@ -44,13 +44,6 @@ function relative(iso?: string | null) {
   return months < 12 ? `${months}mo ago` : `${Math.round(months / 12)}y ago`;
 }
 
-function yearsSince(iso?: string | null) {
-  if (!iso) return null;
-  return Math.floor(
-    (Date.now() - new Date(iso).getTime()) / (365.25 * 24 * 3600 * 1000),
-  );
-}
-
 /**
  * Live GitHub activity.
  *
@@ -80,7 +73,6 @@ export function GithubStats() {
   }, []);
 
   const data: Live = { ...seed, ...(live ?? {}) };
-  const years = yearsSince(data.memberSince);
   const lastActive = relative(data.lastActiveAt);
 
   const figures = [

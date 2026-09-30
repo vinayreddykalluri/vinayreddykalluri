@@ -23,3 +23,14 @@ export function formatDate(dateString: string) {
     ...(isDateOnly ? { timeZone: "UTC" } : {}),
   }).format(new Date(dateString));
 }
+
+/**
+ * Turns a display name into a URL fragment, so pages can expose stable anchors
+ * ("/career#carelon") without a second copy of the name living in the data.
+ */
+export function slugify(value: string) {
+  return value
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}

@@ -1,10 +1,15 @@
+import Link from "next/link";
 import type { Metadata } from "next";
 import { CompanyLogo } from "@/components/company-logo";
 import { PageHeader } from "@/components/page-header";
 import { Reveal } from "@/components/Reveal";
 import { Spotlight } from "@/components/spotlight";
 import { TimelineSpine } from "@/components/timeline-spine";
-import { timelineEvents, type TimelineCategory } from "@/data/timeline";
+import {
+  timelineEvents,
+  type TimelineCategory,
+  type TimelineEvent,
+} from "@/data/timeline";
 import { formatDate } from "@/lib/format";
 import { pageMetadata } from "@/lib/seo";
 
@@ -51,6 +56,45 @@ const CATEGORY: Record<
     label: "Publication",
   },
 };
+
+/**
+ * The entry's title doubles as its link, and the link stretches over the whole
+ * card through the pseudo-element — so the entire card is a click target while
+ * the accessibility tree still holds exactly one link, named by the title.
+ * Internal destinations go through next/link to keep client navigation; upstream
+ * evidence opens in a new tab so the reader does not lose their place in a
+ * fourteen-year scroll.
+ */
+function EntryLink({
+  link,
+  children,
+}: {
+  link: NonNullable<TimelineEvent["link"]>;
+  children: React.ReactNode;
+}) {
+  const className =
+    "underline decoration-[color:var(--border)] decoration-1 underline-offset-[6px] transition-colors hover:decoration-[color:var(--accent)] after:absolute after:inset-0 after:content-['']";
+
+  if (link.external) {
+    return (
+      <a
+        href={link.href}
+        target="_blank"
+        rel="noreferrer"
+        className={className}
+      >
+        {children}
+        <span className="sr-only"> (opens in a new tab)</span>
+      </a>
+    );
+  }
+
+  return (
+    <Link href={link.href} className={className}>
+      {children}
+    </Link>
+  );
+}
 
 export default function TimelinePage() {
   const sorted = [...timelineEvents].sort(
@@ -106,7 +150,7 @@ export default function TimelinePage() {
           {byYear.map(({ year, events }) => (
             <section key={year} aria-labelledby={`year-${year}`}>
               {/* year marker, pinned while its entries scroll past */}
-              <div className="sticky top-[68px] z-10 -ml-8 mb-6 flex items-center gap-4 bg-[color:var(--background)] py-3 md:-ml-12">
+              <div className="sticky top-[68px] z-20 -ml-8 mb-6 flex items-center gap-4 bg-[color:var(--background)] py-3 md:-ml-12">
                 <span
                   className="h-2.5 w-2.5 shrink-0 translate-x-[-4px] bg-[color:var(--accent)]"
                   aria-hidden="true"
@@ -130,9 +174,15 @@ export default function TimelinePage() {
 
                   return (
                     <Reveal key={`${event.date}-${event.title}`}>
-                      <article className="spot relative mb-3 border border-[var(--border)] bg-[color:var(--surface)] p-6">
+                      <article
+                        className={`spot group relative mb-3 border border-[var(--border)] bg-[color:var(--surface)] p-6 transition-colors ${
+                          event.link
+                            ? "hover:border-[color:var(--accent)] focus-within:border-[color:var(--accent)]"
+                            : ""
+                        }`}
+                      >
                         <span
-                          className={`absolute left-[-2.05rem] top-8 h-2 w-2 md:left-[-3.05rem] ${style.dot}`}
+                          className={`absolute left-[-2.05rem] top-8 h-2 w-2 transition-transform group-hover:scale-150 md:left-[-3.05rem] ${style.dot}`}
                           aria-hidden="true"
                         />
                         <span
@@ -164,11 +214,26 @@ export default function TimelinePage() {
                           ) : null}
                           <div>
                             <h3 className="font-sans text-xl font-bold leading-snug">
-                              {event.title}
+                              {event.link ? (
+                                <EntryLink link={event.link}>
+                                  {event.title}
+                                </EntryLink>
+                              ) : (
+                                event.title
+                              )}
                             </h3>
                             <p className="measure mt-2 leading-relaxed text-[color:var(--muted)]">
                               {event.details}
                             </p>
+
+                            {event.link ? (
+                              <p className="mt-4 inline-flex items-center gap-2 data-label text-[color:var(--faint)] transition-colors group-hover:text-[color:var(--accent-strong)]">
+                                {event.link.label}
+                                <span aria-hidden="true">
+                                  {event.link.external ? "\u2197" : "\u2192"}
+                                </span>
+                              </p>
+                            ) : null}
                           </div>
                         </div>
                       </article>

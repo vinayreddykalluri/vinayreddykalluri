@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { PageHeader } from "@/components/page-header";
 import { Reveal } from "@/components/Reveal";
 import { projects } from "@/data/projects";
+import { slugify } from "@/lib/format";
 import { pageMetadata } from "@/lib/seo";
 
 export const dynamic = "force-static";
@@ -31,7 +32,10 @@ export default function ProjectsPage() {
       <div className="flex flex-col">
         {projects.map((project, index) => (
           <Reveal key={project.name}>
-            <article className="grid gap-8 border-b border-[var(--border)] py-12 md:grid-cols-[auto_1fr] md:gap-12">
+            <article
+              id={slugify(project.name)}
+              className="grid scroll-mt-28 gap-8 border-b border-[var(--border)] py-12 md:grid-cols-[auto_1fr] md:gap-12"
+            >
               <p className="stat-figure text-[color:var(--border)] md:w-28">
                 {String(index + 1).padStart(2, "0")}
               </p>

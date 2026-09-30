@@ -124,7 +124,7 @@ export default function AboutPage() {
 
       {/* ---------- education ---------- */}
       <Reveal>
-        <section className="py-14">
+        <section id="education" className="scroll-mt-28 py-14">
           <p className="kicker">Education</p>
           <h2 className="display-lg mt-4 max-w-[18ch]">
             Where the foundation was built.
@@ -173,7 +173,10 @@ export default function AboutPage() {
 
       {/* ---------- recognition ---------- */}
       <Reveal>
-        <section className="border-t border-[var(--border)] py-14">
+        <section
+          id="recognition"
+          className="scroll-mt-28 border-t border-[var(--border)] py-14"
+        >
           <div className="grid gap-12 lg:grid-cols-[1fr_1fr] lg:gap-20">
             <div>
               <p className="kicker">Selected impact</p>

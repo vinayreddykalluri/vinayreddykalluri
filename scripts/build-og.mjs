@@ -5,7 +5,7 @@
 // no image at all. Sharp rasterises the same artwork to a 1200x630 PNG, which
 // every platform accepts.
 
-import { writeFile, mkdir } from "node:fs/promises";
+import { mkdir } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import { dirname, resolve } from "node:path";
 import sharp from "sharp";

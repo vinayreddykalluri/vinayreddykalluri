@@ -1,5 +1,6 @@
 import { CompanyLogo } from "@/components/company-logo";
 import type { ExperienceItem } from "@/data/experience";
+import { slugify } from "@/lib/format";
 
 /**
  * One company as a spec-sheet block: identity and total tenure in a fixed left
@@ -17,7 +18,10 @@ export function ExperienceCard({
   const multiple = experience.positions.length > 1;
 
   return (
-    <article className="grid gap-8 border-b border-[var(--border)] py-12 md:grid-cols-[minmax(0,16rem)_1fr] md:gap-12">
+    <article
+      id={slugify(experience.company)}
+      className="grid scroll-mt-28 gap-8 border-b border-[var(--border)] py-12 md:grid-cols-[minmax(0,16rem)_1fr] md:gap-12"
+    >
       {/* company rail */}
       <div>
         {index != null ? (

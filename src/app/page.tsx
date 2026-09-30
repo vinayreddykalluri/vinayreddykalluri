@@ -424,14 +424,29 @@ export default function HomePage() {
             </h2>
             <ul className="timeline-rail mt-9 space-y-7">
               {latestTimeline.map((item) => (
-                <li key={`${item.date}-${item.title}`} className="flex items-start">
+                <li
+                  key={`${item.date}-${item.title}`}
+                  className="group relative flex items-start"
+                >
                   <span className="timeline-dot" />
                   <div>
                     <p className="data-label text-[color:var(--faint)]">
                       {formatDate(item.date)} — {item.category}
                     </p>
                     <p className="mt-1 font-sans text-lg font-bold">
-                      {item.title}
+                      {item.link ? (
+                        <Link
+                          href={item.link.href}
+                          className="underline decoration-[color:var(--border)] decoration-1 underline-offset-[6px] transition-colors group-hover:decoration-[color:var(--accent)] after:absolute after:inset-0 after:content-['']"
+                          {...(item.link.external
+                            ? { target: "_blank", rel: "noreferrer" }
+                            : {})}
+                        >
+                          {item.title}
+                        </Link>
+                      ) : (
+                        item.title
+                      )}
                     </p>
                     <p className="mt-1.5 leading-relaxed text-[color:var(--muted)]">
                       {item.details}
