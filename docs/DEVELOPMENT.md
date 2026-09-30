@@ -110,3 +110,46 @@ npx wrangler login
 `vinayreddykalluri.com` stays registered at Porkbun; only the nameservers point
 to Cloudflare. A Workers Custom Domain then requires no manual DNS record —
 Cloudflare creates the record and issues the certificate.
+
+### Nightly rebuild
+
+`.github/workflows/nightly.yml` rebuilds and redeploys at 07:00 UTC daily, and
+can be run by hand from the Actions tab.
+
+The reason is the static export. Every GitHub figure in the HTML — commit
+counts, "last pushed", upstream contribution dates — is fixed at build time.
+The homepage swaps in live data shortly after load, but the first paint still
+shows the snapshot, so without a nightly build that first frame drifts further
+from the truth every day.
+
+The workflow needs one repository secret:
+
+| Secret | What it is |
+| --- | --- |
+| `CLOUDFLARE_API_TOKEN` | Cloudflare API token with permission to edit Workers |
+| `CLOUDFLARE_ACCOUNT_ID` | The account the Worker lives in. Held as a secret only so this public repository carries no account identifiers. |
+
+Create the token at **Cloudflare → My Profile → API Tokens → Create Token**,
+using the **Edit Cloudflare Workers** template and scoping it to this account
+and the `vinayreddykalluri.com` zone. Then, so the value never passes through a
+shell history or a chat window:
+
+```bash
+gh secret set CLOUDFLARE_API_TOKEN
+```
+
+`GITHUB_TOKEN` needs no setup — Actions provides it automatically, and
+`scripts/fetch-github.mjs` uses it to lift the anonymous GitHub rate limit.
+
+To check the whole pipeline without deploying anything:
+
+```bash
+gh workflow run "Nightly rebuild" -f dry_run=true
+```
+
+Each run writes a summary showing what the live GitHub API returned, including
+a `degraded` list naming any figure that fell back to the build snapshot.
+
+Two things worth knowing about scheduled Actions: GitHub starts cron jobs on a
+best-effort basis and may run them late, and it disables schedules entirely
+after 60 days with no repository activity.
