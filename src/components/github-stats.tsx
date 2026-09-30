@@ -10,7 +10,7 @@ type Featured = {
   name: string; description: string | null; url: string; language: string | null;
   stars: number; forks: number; topics: string[]; pushedAt: string;
 };
-type Upstream = { title: string; url: string; state: string; repo: string; createdAt: string };
+type Upstream = { title: string; url: string; state: string; repo: string; createdAt: string; landed?: boolean };
 
 type Live = {
   ok?: boolean;
@@ -162,8 +162,14 @@ export function GithubStats() {
                   <span className="flex-1 text-[1.05rem] leading-snug">
                     {pr.title}
                   </span>
+                  {/*
+                    Report whether the work landed, not the PR state. A project
+                    that rebases contributions in leaves the PR "closed" with
+                    merged=false even though the commit is upstream, and
+                    "closed" on a portfolio reads as rejected.
+                  */}
                   <span className="data-label text-[color:var(--faint)]">
-                    {pr.state} · {relative(pr.createdAt)}
+                    {pr.landed ? "merged" : pr.state} · {relative(pr.createdAt)}
                   </span>
                 </a>
               </li>

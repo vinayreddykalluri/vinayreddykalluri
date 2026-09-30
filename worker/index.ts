@@ -82,6 +82,7 @@ type PrSearch = {
     state: string;
     repository_url: string;
     created_at: string;
+    pull_request?: { merged_at?: string | null };
   }>;
 };
 
@@ -157,16 +158,42 @@ async function buildPayload() {
       pushedAt: r.pushed_at,
     }));
 
-  const upstream = (prs?.items ?? [])
+  /*
+   * A closed pull request is not the same as a rejected one. Several projects
+   * — Spring among them — rebase a contribution in rather than using GitHub's
+   * merge button, which leaves the PR `closed` with `merged: false` even though
+   * the commit is in the branch. Labelling that "closed" on a portfolio reads
+   * as rejected, so each closed PR is checked against the repository's commit
+   * history for commits authored by this user; if any exist, the contribution
+   * landed and is reported as such.
+   */
+  const upstreamRaw = (prs?.items ?? [])
     .filter((pr) => !pr.repository_url.includes(`/repos/${USER}/`))
-    .slice(0, 5)
-    .map((pr) => ({
-      title: pr.title,
-      url: pr.html_url,
-      state: pr.state,
-      repo: pr.repository_url.split("/repos/")[1] ?? "",
-      createdAt: pr.created_at,
-    }));
+    .slice(0, 5);
+
+  const upstream = await Promise.all(
+    upstreamRaw.map(async (pr) => {
+      const repo = pr.repository_url.split("/repos/")[1] ?? "";
+      const merged = Boolean(pr.pull_request?.merged_at);
+
+      let landed = merged;
+      if (!landed && pr.state === "closed" && repo) {
+        const authored = await ghJson<unknown[]>(
+          `https://api.github.com/repos/${repo}/commits?author=${USER}&per_page=1`,
+        );
+        landed = Array.isArray(authored) && authored.length > 0;
+      }
+
+      return {
+        title: pr.title,
+        url: pr.html_url,
+        repo,
+        createdAt: pr.created_at,
+        state: pr.state,
+        landed,
+      };
+    }),
+  );
 
   return {
     ok: true,

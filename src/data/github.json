@@ -1,14 +1,14 @@
 {
-  "fetchedAt": "2026-09-08T18:20:27.720Z",
+  "fetchedAt": "2026-09-30T16:57:44.217Z",
   "login": "vinayreddykalluri",
   "url": "https://github.com/vinayreddykalluri",
   "publicRepos": 20,
-  "followers": 11,
+  "followers": 14,
   "memberSince": "2013-10-21T13:42:24Z",
-  "commits": 247,
-  "commitsLast90": 87,
+  "commits": 250,
+  "commitsLast90": 90,
   "pullRequests": 15,
-  "lastActiveAt": "2026-09-08T13:39:11.000-04:00",
+  "lastActiveAt": "2026-09-09T08:40:50.000-04:00",
   "topLanguages": [
     {
       "name": "TypeScript",
@@ -44,6 +44,18 @@
   "recentCommits": [
     {
       "repo": "vinayreddykalluri",
+      "message": "Rewrite the profile README",
+      "date": "2026-09-09T08:40:50.000-04:00",
+      "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/3cc241bf021213a2b03e4f7cca1279c59746a588"
+    },
+    {
+      "repo": "vinayreddykalluri",
+      "message": "UX audit: fix share previews, page title, and keyboard entry",
+      "date": "2026-09-08T14:21:16.000-04:00",
+      "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/5927a3c17e9fa8bee94388b174d1d3abdc1ca44c"
+    },
+    {
+      "repo": "vinayreddykalluri",
       "message": "Extend the timeline back to 2012 and give it a scroll-linked spine",
       "date": "2026-09-08T13:39:11.000-04:00",
       "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/21f0ad867f926c415df3acdf2b2d99088d2a961c"
@@ -65,18 +77,6 @@
       "message": "Tier skills by evidence instead of listing fifty of them",
       "date": "2026-09-08T13:13:29.000-04:00",
       "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/77d4f8b651c828885543bfd11d38904aeeffa83a"
-    },
-    {
-      "repo": "vinayreddykalluri",
-      "message": "Add depth, texture and light to a design that had gone too flat",
-      "date": "2026-09-08T13:09:06.000-04:00",
-      "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/1d67bbe5c2b143a4024c6c3a9dc1aba429ff89c9"
-    },
-    {
-      "repo": "vinayreddykalluri",
-      "message": "Lead with Carelon; make skills evidence rather than a list",
-      "date": "2026-09-08T13:05:34.000-04:00",
-      "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/e65141807069eefddee7cf8471b27e8f0499ba78"
     }
   ],
   "featured": [
@@ -155,9 +155,10 @@
     {
       "title": "Close the resource stream in PDF document readers",
       "url": "https://github.com/spring-projects/spring-ai/pull/6927",
-      "state": "open",
+      "state": "closed",
       "repo": "spring-projects/spring-ai",
-      "createdAt": "2026-09-07T03:52:31Z"
+      "createdAt": "2026-09-07T03:52:31Z",
+      "landed": true
     }
   ]
 }

@@ -167,6 +167,15 @@ export const timelineEvents: TimelineEvent[] = [
   },
   {
     year: 2026,
+    date: "2026-09-29",
+    title: "Contribution merged into Spring AI",
+    category: "Project",
+    org: { name: "Spring", domain: "spring.io" },
+    details:
+      "A fix closing the resource stream in the PDF document readers landed in spring-projects/spring-ai, on both main and the 2.0.x maintenance branch.",
+  },
+  {
+    year: 2026,
     date: "2026-08-01",
     title: "Promoted to Lead I - Software Engineering",
     org: { name: "UST", domain: "ust.com" },

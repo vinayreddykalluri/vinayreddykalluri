@@ -70,7 +70,13 @@ Eight years of designing high-throughput microservices, resilient API design wit
 | **[NutriGPT](https://github.com/vinayreddykalluri/NutriGPT)** | AI-powered diet and wellness assistant |
 | **[Image-Generation-GANs](https://github.com/vinayreddykalluri/Image-Generation-GANs)** | Image generation with VQ-GAN, CLIP, and a custom deep-face GAN |
 
-**Upstream:** [`spring-projects/spring-ai`](https://github.com/spring-projects/spring-ai) — closing the resource stream in PDF document readers.
+### Upstream
+
+**[`spring-projects/spring-ai`](https://github.com/spring-projects/spring-ai)** — *Close the resource stream in PDF document readers*
+
+Merged into `main` and the `2.0.x` maintenance branch on 29 Sep 2026, committed by a Spring AI maintainer. Four files, +63/−6, with tests.
+
+[`ecb2de2`](https://github.com/spring-projects/spring-ai/commit/ecb2de2bfc8f0472fcd35703fa1b979260ac31c1) &nbsp;·&nbsp; [all upstream commits](https://github.com/spring-projects/spring-ai/commits?author=vinayreddykalluri)
 
 ## Projects
 

@@ -73,16 +73,33 @@ try {
       pushedAt: r.pushed_at,
     }));
 
-  const upstream = (prs.items ?? [])
-    .filter((pr) => !pr.repository_url.includes(`/repos/${USER}/`))
-    .slice(0, 5)
-    .map((pr) => ({
-      title: pr.title,
-      url: pr.html_url,
-      state: pr.state,
-      repo: pr.repository_url.split("/repos/")[1] ?? "",
-      createdAt: pr.created_at,
-    }));
+  // Mirrors the Worker: a closed PR is not a rejected one. Projects that
+  // rebase contributions in leave the PR closed with merged=false even though
+  // the commit is upstream, so each closed PR is checked against the repo's
+  // commit history for commits authored by this user.
+  const upstream = await Promise.all(
+    (prs.items ?? [])
+      .filter((pr) => !pr.repository_url.includes(`/repos/${USER}/`))
+      .slice(0, 5)
+      .map(async (pr) => {
+        const repo = pr.repository_url.split("/repos/")[1] ?? "";
+        let landed = Boolean(pr.pull_request?.merged_at);
+        if (!landed && pr.state === "closed" && repo) {
+          const authored = await json(
+            `https://api.github.com/repos/${repo}/commits?author=${USER}&per_page=1`,
+          ).catch(() => []);
+          landed = Array.isArray(authored) && authored.length > 0;
+        }
+        return {
+          title: pr.title,
+          url: pr.html_url,
+          state: pr.state,
+          repo,
+          createdAt: pr.created_at,
+          landed,
+        };
+      }),
+  );
 
   const recentCommits = (commits.items ?? []).map((item) => ({
     repo: item.repository.name,

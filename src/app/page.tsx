@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { EventLanes } from "@/components/event-lanes";
 import { SystemDiagram } from "@/components/system-diagram";
 import { GithubStats } from "@/components/github-stats";
+import { contributions } from "@/data/contributions";
 import { Parallax } from "@/components/parallax";
 import { Reveal } from "@/components/Reveal";
 import { Spotlight } from "@/components/spotlight";
@@ -327,6 +328,80 @@ export default function HomePage() {
                       </span>
                     ))}
                   </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+      </Reveal>
+
+      {/* ================= UPSTREAM ================= */}
+      <Reveal>
+        <section className="band-invert -mx-[clamp(1.25rem,5vw,5rem)] mt-16 px-[clamp(1.25rem,5vw,5rem)] py-16 md:py-24">
+          <div className="shell">
+            <span className="kicker">Upstream</span>
+            <h2 className="display-lg mt-4 max-w-[20ch]">
+              Code running inside Spring AI.
+            </h2>
+
+            {contributions.map((item) => (
+              <article key={item.sha} className="mt-12">
+                <div className="flex flex-wrap items-center gap-3">
+                  <span className="border border-current/40 px-2.5 py-1 data-label">
+                    Merged
+                  </span>
+                  <span className="data-label opacity-70">
+                    {item.repo}
+                  </span>
+                  <span className="data-label opacity-70">
+                    {formatDate(item.landedAt)}
+                  </span>
+                </div>
+
+                <p className="mt-6 max-w-[28ch] font-sans text-2xl font-bold leading-snug md:text-4xl">
+                  {item.title}
+                </p>
+
+                <p className="band-dim measure mt-5 text-lg leading-relaxed">
+                  {item.summary}
+                </p>
+
+                <dl className="mt-10 grid gap-x-8 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
+                  {[
+                    ["Commit", item.sha],
+                    ["Branches", item.branches.join(" · ")],
+                    ["Files", String(item.filesChanged)],
+                    ["Diff", `+${item.additions} / −${item.deletions}`],
+                  ].map(([label, value]) => (
+                    <div key={label} className="border-t-2 border-current/25 pt-4">
+                      <dd className="font-mono text-xl font-semibold">{value}</dd>
+                      <dt className="data-label mt-2 opacity-70">{label}</dt>
+                    </div>
+                  ))}
+                </dl>
+
+                <p className="band-dim mt-8 text-[0.95rem]">
+                  Authored by Vinay Reddy Kalluri, committed by {item.maintainer},
+                  a Spring AI maintainer.
+                </p>
+
+                <div className="mt-8 flex flex-wrap gap-3">
+                  <a
+                    href={item.commitUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="cta-primary px-7 py-3 text-sm"
+                  >
+                    View the commit
+                  </a>
+                  <a
+                    href={item.repoUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="spark-link px-6 py-3 text-sm"
+                  >
+                    {item.repo}
+                  </a>
                 </div>
               </article>
             ))}
