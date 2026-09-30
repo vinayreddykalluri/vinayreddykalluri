@@ -10,7 +10,16 @@ type Featured = {
   name: string; description: string | null; url: string; language: string | null;
   stars: number; forks: number; topics: string[]; pushedAt: string;
 };
-type Upstream = { title: string; url: string; state: string; repo: string; createdAt: string; landed?: boolean };
+type Upstream = {
+  title: string;
+  url: string;
+  state: string;
+  repo: string;
+  createdAt: string;
+  /** When the work actually landed upstream — not when the PR was opened. */
+  landedAt?: string | null;
+  landed?: boolean;
+};
 
 type Live = {
   ok?: boolean;
@@ -27,6 +36,8 @@ type Live = {
   featured?: Featured[];
   upstream?: Upstream[];
   pullRequests?: number | null;
+  /** Fields the Worker could not resolve, so the snapshot still supplies them. */
+  degraded?: string[];
 };
 
 function relative(iso?: string | null) {
@@ -72,8 +83,28 @@ export function GithubStats() {
     };
   }, []);
 
-  const data: Live = { ...seed, ...(live ?? {}) };
+  /*
+   * Live data only overrides a field it actually has.
+   *
+   * A plain `{ ...seed, ...live }` let a missing field win: the Worker was
+   * sending `publicRepos: null` and `featured: []` whenever GitHub's core API
+   * was throttled at the edge, so a successful fetch replaced a real 20 with an
+   * em dash and emptied the projects grid. The Worker now omits what it could
+   * not resolve, and this strips anything empty that still arrives, so live
+   * data can only ever improve on the snapshot.
+   */
+  const fresh: Live = Object.fromEntries(
+    Object.entries(live ?? {}).filter(
+      ([, value]) =>
+        value !== null &&
+        value !== undefined &&
+        !(Array.isArray(value) && value.length === 0),
+    ),
+  );
+
+  const data: Live = { ...seed, ...fresh };
   const lastActive = relative(data.lastActiveAt);
+  const staleFields = live?.degraded?.length ?? 0;
 
   const figures = [
     { value: data.commits?.toLocaleString() ?? "—", label: "Commits authored" },
@@ -161,7 +192,9 @@ export function GithubStats() {
                     "closed" on a portfolio reads as rejected.
                   */}
                   <span className="data-label text-[color:var(--faint)]">
-                    {pr.landed ? "merged" : pr.state} · {relative(pr.createdAt)}
+                    {pr.landed
+                      ? `merged · ${relative(pr.landedAt ?? pr.createdAt)}`
+                      : `${pr.state} · opened ${relative(pr.createdAt)}`}
                   </span>
                 </a>
               </li>
@@ -241,10 +274,19 @@ export function GithubStats() {
         </div>
       ) : null}
 
+      {/*
+        The footnote states which it is. Claiming "live" over a payload that
+        quietly fell back to the last build is the kind of small lie that makes
+        every other number on the page unverifiable.
+      */}
       <p className="data-label mt-8 text-[color:var(--faint)]">
-        {isLive
+        {isLive && staleFields === 0
           ? "Live from the GitHub API, cached 10 minutes at the edge"
-          : "From the last build"}
+          : isLive
+            ? `Live from the GitHub API · ${staleFields} ${
+                staleFields === 1 ? "figure" : "figures"
+              } from the last build`
+            : "From the last build"}
       </p>
     </section>
   );

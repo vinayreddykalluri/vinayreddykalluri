@@ -1,14 +1,14 @@
 {
-  "fetchedAt": "2026-09-30T17:05:46.265Z",
+  "fetchedAt": "2026-09-30T17:15:08.432Z",
   "login": "vinayreddykalluri",
   "url": "https://github.com/vinayreddykalluri",
   "publicRepos": 20,
   "followers": 14,
   "memberSince": "2013-10-21T13:42:24Z",
-  "commits": 251,
-  "commitsLast90": 91,
+  "commits": 252,
+  "commitsLast90": 92,
   "pullRequests": 15,
-  "lastActiveAt": "2026-09-30T12:58:17.000-04:00",
+  "lastActiveAt": "2026-09-30T13:06:39.000-04:00",
   "topLanguages": [
     {
       "name": "TypeScript",
@@ -44,6 +44,12 @@
   "recentCommits": [
     {
       "repo": "vinayreddykalluri",
+      "message": "Make timeline entries navigable",
+      "date": "2026-09-30T13:06:39.000-04:00",
+      "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/c4ba00734c949ff713247ea26eceb4d7727596e8"
+    },
+    {
+      "repo": "vinayreddykalluri",
       "message": "Feature the merged Spring AI contribution",
       "date": "2026-09-30T12:58:17.000-04:00",
       "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/895a1bef8f9a1af944409455be569a38b706d0a5"
@@ -71,12 +77,6 @@
       "message": "Rebuild the timeline; fix dates rendering a day early",
       "date": "2026-09-08T13:33:44.000-04:00",
       "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/fde11a8f91caa46ac706ba2c80814aafe3c55dc7"
-    },
-    {
-      "repo": "vinayreddykalluri",
-      "message": "Render technology marks inline instead of proxying them",
-      "date": "2026-09-08T13:17:55.000-04:00",
-      "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/c8c3b8fec165b03e6c815a27d23ff77d208b4bfb"
     }
   ],
   "featured": [
@@ -158,6 +158,7 @@
       "state": "closed",
       "repo": "spring-projects/spring-ai",
       "createdAt": "2026-09-07T03:52:31Z",
+      "landedAt": "2026-09-29T21:56:39Z",
       "landed": true
     }
   ]

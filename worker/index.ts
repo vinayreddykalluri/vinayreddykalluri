@@ -34,6 +34,22 @@ interface Env {
    * source, out of git, and out of anyone's devtools.
    */
   LOGO_DEV_TOKEN?: string;
+  /*
+   * Optional read-only GitHub token, set with `wrangler secret put GITHUB_TOKEN`.
+   *
+   * Without it these calls are anonymous, and anonymous means 60 core requests
+   * per hour *per IP* — where the IP is Cloudflare's shared egress, spent by
+   * every other Worker on it. In practice the core endpoints (/users/:login,
+   * /users/:login/repos) are throttled to a permanent 403 at the edge while the
+   * search endpoints, which have their own per-minute budget, keep answering.
+   * That is why live data could arrive with holes in it.
+   *
+   * A token raises core to 5,000/hr and search to 30/min, which removes the
+   * problem rather than working around it. It needs no scopes: public read is
+   * enough. The token stays server-side; nothing here is ever sent to the
+   * browser.
+   */
+  GITHUB_TOKEN?: string;
 }
 
 const USER = "vinayreddykalluri";
@@ -52,13 +68,25 @@ type RecentCommit = {
   url: string;
 };
 
-async function ghJson<T>(url: string): Promise<T | null> {
+/**
+ * A fetch that reports why it failed.
+ *
+ * The status is kept because "GitHub said 403 rate limit" and "GitHub has no
+ * such user" need different responses, and because a partial failure has to be
+ * visible in the response headers instead of silently becoming a null on the
+ * page.
+ */
+type Fetched<T> = { status: number; data: T | null };
+
+async function ghJson<T>(url: string, token?: string): Promise<Fetched<T>> {
   try {
-    const res = await fetch(url, { headers: GH_HEADERS });
-    if (!res.ok) return null;
-    return (await res.json()) as T;
+    const res = await fetch(url, {
+      headers: token ? { ...GH_HEADERS, Authorization: `Bearer ${token}` } : GH_HEADERS,
+    });
+    if (!res.ok) return { status: res.status, data: null };
+    return { status: res.status, data: (await res.json()) as T };
   } catch {
-    return null;
+    return { status: 0, data: null };
   }
 }
 
@@ -99,8 +127,25 @@ function isoDaysAgo(days: number) {
   return new Date(Date.now() - days * 24 * 3600 * 1000).toISOString().slice(0, 10);
 }
 
-async function buildPayload() {
+/**
+ * Assembles the live payload.
+ *
+ * Two rules hold everything together:
+ *
+ *  1. A field whose source failed is *omitted*, never set to null. The client
+ *     merges this over the build-time snapshot, so an omitted field keeps its
+ *     last known good value. Sending `publicRepos: null` instead used to
+ *     overwrite a perfectly good 20 with an em dash, and `featured: []` made
+ *     the projects grid vanish the moment the live fetch succeeded — the live
+ *     call actively made the page worse than no live call at all.
+ *
+ *  2. Where a core endpoint has a search-API equivalent, the search API is the
+ *     fallback. Core and search have separate rate-limit budgets, so when the
+ *     shared edge IP has burned its anonymous core quota, search still answers.
+ */
+async function buildPayload(env: Env) {
   const since = isoDaysAgo(90);
+  const token = env.GITHUB_TOKEN;
 
   /*
    * The public events feed no longer carries commit counts — GitHub stripped
@@ -110,26 +155,52 @@ async function buildPayload() {
    * from there instead.
    */
   const [user, recent, windowed, repos, prs] = await Promise.all([
-    ghJson<Record<string, unknown>>(`https://api.github.com/users/${USER}`),
+    ghJson<Record<string, unknown>>(`https://api.github.com/users/${USER}`, token),
     ghJson<CommitSearch>(
       `https://api.github.com/search/commits?q=author:${USER}&sort=author-date&order=desc&per_page=6`,
+      token,
     ),
     ghJson<CommitSearch>(
       `https://api.github.com/search/commits?q=author:${USER}+author-date:%3E${since}&per_page=1`,
+      token,
     ),
     ghJson<Repo[]>(
       `https://api.github.com/users/${USER}/repos?per_page=100&sort=pushed`,
+      token,
     ),
     // Pull requests raised against repositories the user does not own — the
     // clearest signal of upstream open-source contribution.
     ghJson<PrSearch>(
       `https://api.github.com/search/issues?q=author:${USER}+type:pr&sort=updated&order=desc&per_page=30`,
+      token,
     ),
   ]);
 
-  if (!user && !recent) return null;
+  // Repository search covers for the owned-repos endpoint when core is
+  // throttled. It indexes fewer repositories than the profile reports (empty
+  // ones never make the index), so it stands in for the *list*, never for the
+  // count — an invented count is worse than yesterday's real one.
+  let repoList = repos.data;
+  const repoSearch = repoList
+    ? null
+    : await ghJson<{ total_count: number; items?: Repo[] }>(
+        `https://api.github.com/search/repositories?q=user%3A${USER}&sort=stars&order=desc&per_page=100`,
+        token,
+      );
+  if (!repoList && repoSearch?.data?.items) repoList = repoSearch.data.items;
 
-  const recentCommits: RecentCommit[] = (recent?.items ?? []).map((item) => ({
+  const sources: Record<string, number> = {
+    user: user.status,
+    commits: recent.status,
+    commitsWindow: windowed.status,
+    repos: repos.status,
+    pullRequests: prs.status,
+  };
+  if (repoSearch) sources.repoSearch = repoSearch.status;
+
+  if (!user.data && !recent.data && !repoList) return null;
+
+  const recentCommits: RecentCommit[] = (recent.data?.items ?? []).map((item) => ({
     repo: item.repository.name,
     message: item.commit.message.split("\n")[0].slice(0, 90),
     date: item.commit.author.date,
@@ -138,7 +209,7 @@ async function buildPayload() {
 
   // Rank owned repositories by signal (stars, forks, then recency) so the
   // homepage leads with real projects rather than whatever was pushed last.
-  const featured = (repos ?? [])
+  const featured = (repoList ?? [])
     .filter((r) => !r.fork && r.name !== USER && r.description)
     .sort(
       (a, b) =>
@@ -165,23 +236,42 @@ async function buildPayload() {
    * the commit is in the branch. Labelling that "closed" on a portfolio reads
    * as rejected, so each closed PR is checked against the repository's commit
    * history for commits authored by this user; if any exist, the contribution
-   * landed and is reported as such.
+   * landed, and the commit also supplies the date it actually landed.
+   *
+   * That date matters: the PR's own `created_at` is when it was *opened*, so
+   * rendering it beside the word "merged" claimed a contribution had landed
+   * three weeks before it did.
    */
-  const upstreamRaw = (prs?.items ?? [])
+  const upstreamRaw = (prs.data?.items ?? [])
     .filter((pr) => !pr.repository_url.includes(`/repos/${USER}/`))
     .slice(0, 5);
 
   const upstream = await Promise.all(
     upstreamRaw.map(async (pr) => {
       const repo = pr.repository_url.split("/repos/")[1] ?? "";
-      const merged = Boolean(pr.pull_request?.merged_at);
+      const mergedAt = pr.pull_request?.merged_at ?? null;
 
-      let landed = merged;
+      let landed = Boolean(mergedAt);
+      let landedAt = mergedAt;
+
       if (!landed && pr.state === "closed" && repo) {
-        const authored = await ghJson<unknown[]>(
-          `https://api.github.com/repos/${repo}/commits?author=${USER}&per_page=1`,
-        );
-        landed = Array.isArray(authored) && authored.length > 0;
+        const authored = await ghJson<
+          Array<{ commit?: { message?: string; committer?: { date?: string } } }>
+        >(`https://api.github.com/repos/${repo}/commits?author=${USER}&per_page=5`, token);
+
+        const commits = authored.data ?? [];
+        // Prefer the commit whose subject matches the PR title: a rebase keeps
+        // the title, so this ties the right commit to the right PR when there
+        // is more than one contribution to the same repository.
+        const match =
+          commits.find(
+            (c) => (c.commit?.message ?? "").split("\n")[0].trim() === pr.title.trim(),
+          ) ?? commits[0];
+
+        if (match) {
+          landed = true;
+          landedAt = match.commit?.committer?.date ?? null;
+        }
       }
 
       return {
@@ -189,38 +279,107 @@ async function buildPayload() {
         url: pr.html_url,
         repo,
         createdAt: pr.created_at,
+        landedAt,
         state: pr.state,
         landed,
       };
     }),
   );
 
-  return {
+  // Only fields that actually resolved are emitted; see rule 1 above.
+  const payload: Record<string, unknown> = {
     ok: true,
     updatedAt: new Date().toISOString(),
-    login: (user?.login as string) ?? USER,
-    url: (user?.html_url as string) ?? `https://github.com/${USER}`,
-    publicRepos: (user?.public_repos as number) ?? null,
-    followers: (user?.followers as number) ?? null,
-    memberSince: (user?.created_at as string) ?? null,
-    commits: recent?.total_count ?? null,
-    commitsLast90: windowed?.total_count ?? null,
-    lastActiveAt: recentCommits[0]?.date ?? null,
-    recentCommits,
-    featured,
-    upstream,
-    pullRequests: prs?.total_count ?? null,
+    login: (user.data?.login as string) ?? USER,
+    url: (user.data?.html_url as string) ?? `https://github.com/${USER}`,
+    sources,
+    auth: token ? "token" : "anon",
   };
+
+  const put = (key: string, value: unknown) => {
+    if (value === null || value === undefined) return;
+    if (Array.isArray(value) && value.length === 0) return;
+    payload[key] = value;
+  };
+
+  put("publicRepos", user.data?.public_repos as number | undefined);
+  put("followers", user.data?.followers as number | undefined);
+  put("memberSince", user.data?.created_at as string | undefined);
+  put("commits", recent.data?.total_count);
+  put("commitsLast90", windowed.data?.total_count);
+  put("pullRequests", prs.data?.total_count);
+  put("lastActiveAt", recentCommits[0]?.date);
+  put("recentCommits", recentCommits);
+  put("featured", featured);
+  put("upstream", upstream);
+
+  // Anything the client still has to take from its own snapshot, named.
+  payload.degraded = [
+    "publicRepos",
+    "commits",
+    "commitsLast90",
+    "pullRequests",
+    "recentCommits",
+    "featured",
+    "upstream",
+  ].filter((key) => !(key in payload));
+
+  return payload;
 }
 
-async function handleGithub(ctx: ExecutionContext): Promise<Response> {
+async function handleGithub(
+  ctx: ExecutionContext,
+  env: Env,
+  url: URL,
+): Promise<Response> {
+  /*
+   * ?debug=1 bypasses the cache and reports the HTTP status of every upstream
+   * call, whether a token is in use, and the remaining rate-limit budget. It
+   * exposes no secret and no private data — just enough to tell "the GitHub
+   * connection is throttled" apart from "the data really is that old", which
+   * otherwise looks identical from the outside.
+   */
+  if (url.searchParams.get("debug") === "1") {
+    const token = env.GITHUB_TOKEN;
+    const limits = await ghJson<{
+      resources?: Record<string, { limit: number; remaining: number; reset: number }>;
+    }>("https://api.github.com/rate_limit", token);
+    const payload = await buildPayload(env);
+
+    return new Response(
+      JSON.stringify(
+        {
+          auth: token ? "token" : "anon",
+          rateLimit: limits.data?.resources
+            ? {
+                core: limits.data.resources.core,
+                search: limits.data.resources.search,
+              }
+            : { error: limits.status },
+          sources: payload?.sources ?? null,
+          degraded: payload?.degraded ?? null,
+        },
+        null,
+        2,
+      ),
+      {
+        headers: {
+          "content-type": "application/json; charset=utf-8",
+          "cache-control": "no-store",
+        },
+      },
+    );
+  }
+
   const cache = caches.default;
-  const key = new Request(`https://cache.internal/github?v=3`);
+  // The version moves whenever the payload shape changes, so a deploy is never
+  // read through the previous shape's cached body.
+  const key = new Request(`https://cache.internal/github?v=4`);
 
   const hit = await cache.match(key);
   if (hit) return hit;
 
-  const payload = await buildPayload();
+  const payload = await buildPayload(env);
 
   if (!payload) {
     // Upstream failed (rate limit, outage). Serve the last good payload if we
@@ -245,12 +404,17 @@ async function handleGithub(ctx: ExecutionContext): Promise<Response> {
     });
   }
 
+  const degraded = (payload.degraded as string[]) ?? [];
   const body = JSON.stringify(payload);
   const response = new Response(body, {
     headers: {
       "content-type": "application/json; charset=utf-8",
-      "cache-control": `public, max-age=${TTL_SECONDS}`,
+      // A partial payload is cached for one minute, not ten: it is worth
+      // retrying soon, since the usual cause is a rate limit that resets.
+      "cache-control": `public, max-age=${degraded.length ? 60 : TTL_SECONDS}`,
       "x-github-source": "live",
+      "x-github-auth": payload.auth as string,
+      "x-github-degraded": degraded.length ? degraded.join(",") : "none",
     },
   });
 
@@ -337,7 +501,7 @@ export default {
       if (request.method !== "GET") {
         return new Response("Method Not Allowed", { status: 405 });
       }
-      return handleGithub(ctx);
+      return handleGithub(ctx, env, url);
     }
 
     // Everything else falls back to the static export, which keeps the

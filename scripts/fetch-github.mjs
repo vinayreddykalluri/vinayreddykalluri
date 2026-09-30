@@ -14,6 +14,11 @@ const OUT = resolve(dirname(fileURLToPath(import.meta.url)), "../src/data/github
 const headers = {
   Accept: "application/vnd.github+json",
   "User-Agent": `${USER}-site-build`,
+  // Optional: raises the anonymous 60/hr limit to 5,000/hr. Needed if this ever
+  // runs from shared CI addresses, where the anonymous budget is already spent.
+  ...(process.env.GITHUB_TOKEN
+    ? { Authorization: `Bearer ${process.env.GITHUB_TOKEN}` }
+    : {}),
 };
 
 async function json(url) {
@@ -83,19 +88,35 @@ try {
       .slice(0, 5)
       .map(async (pr) => {
         const repo = pr.repository_url.split("/repos/")[1] ?? "";
-        let landed = Boolean(pr.pull_request?.merged_at);
+        const mergedAt = pr.pull_request?.merged_at ?? null;
+        let landed = Boolean(mergedAt);
+        let landedAt = mergedAt;
+
         if (!landed && pr.state === "closed" && repo) {
           const authored = await json(
-            `https://api.github.com/repos/${repo}/commits?author=${USER}&per_page=1`,
+            `https://api.github.com/repos/${repo}/commits?author=${USER}&per_page=5`,
           ).catch(() => []);
-          landed = Array.isArray(authored) && authored.length > 0;
+          const list = Array.isArray(authored) ? authored : [];
+          // A rebase keeps the PR title as the commit subject, so matching on it
+          // ties the right commit to the right PR when a repo has several.
+          const match =
+            list.find(
+              (c) =>
+                (c.commit?.message ?? "").split("\n")[0].trim() === pr.title.trim(),
+            ) ?? list[0];
+          if (match) {
+            landed = true;
+            landedAt = match.commit?.committer?.date ?? null;
+          }
         }
+
         return {
           title: pr.title,
           url: pr.html_url,
           state: pr.state,
           repo,
           createdAt: pr.created_at,
+          landedAt,
           landed,
         };
       }),
