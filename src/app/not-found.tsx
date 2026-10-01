@@ -12,7 +12,7 @@ export const metadata: Metadata = pageMetadata({
 export default function NotFound() {
   return (
     <main className="mx-auto flex min-h-screen max-w-3xl flex-col items-start justify-center gap-5 px-6">
-      <p className="font-mono text-xs tracking-[0.2em] text-[color:var(--accent)] uppercase">
+      <p className="kicker">
         404
       </p>
       <h1 className="text-4xl font-semibold">Page not found</h1>

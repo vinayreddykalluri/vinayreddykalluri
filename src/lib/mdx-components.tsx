@@ -25,7 +25,7 @@ export const mdxComponents: MDXComponents = {
   li: (props) => <li className="leading-7" {...props} />,
   a: (props) => (
     <a
-      className="font-medium text-[color:var(--accent)] underline decoration-[color:var(--accent)] underline-offset-4"
+      className="font-semibold text-[color:var(--accent)] underline decoration-[color:var(--accent)] underline-offset-4"
       rel="noreferrer"
       target="_blank"
       {...props}

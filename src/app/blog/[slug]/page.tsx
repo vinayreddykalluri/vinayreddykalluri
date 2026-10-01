@@ -53,7 +53,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(postJsonLd) }}
       />
       <div className="space-y-3">
-        <p className="font-mono text-xs uppercase tracking-[0.08em] text-[color:var(--muted)]">
+        <p className="data-label text-[color:var(--muted)]">
           {formatDate(post.date)}
         </p>
         <h1 className="text-3xl font-semibold tracking-tight md:text-4xl">
@@ -80,7 +80,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
       <Link
         href="/blog"
-        className="inline-flex rounded-full border border-[var(--border)] bg-[color:var(--surface-strong)] px-4 py-2 text-sm font-medium transition hover:border-[color:var(--accent)] hover:text-[color:var(--accent)]"
+        className="inline-flex rounded-full border border-[var(--border)] bg-[color:var(--surface-strong)] px-4 py-2 text-sm font-semibold transition hover:border-[color:var(--accent)] hover:text-[color:var(--accent)]"
       >
         Back to Blog
       </Link>

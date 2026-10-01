@@ -1,22 +1,22 @@
 {
-  "fetchedAt": "2026-09-30T17:15:08.432Z",
+  "fetchedAt": "2026-10-01T13:22:34.036Z",
   "login": "vinayreddykalluri",
   "url": "https://github.com/vinayreddykalluri",
   "publicRepos": 20,
   "followers": 14,
   "memberSince": "2013-10-21T13:42:24Z",
-  "commits": 252,
-  "commitsLast90": 92,
-  "pullRequests": 15,
-  "lastActiveAt": "2026-09-30T13:06:39.000-04:00",
+  "commits": 255,
+  "commitsLast90": 95,
+  "pullRequests": 16,
+  "lastActiveAt": "2026-09-30T16:42:44.000-04:00",
   "topLanguages": [
     {
-      "name": "TypeScript",
+      "name": "Java",
       "count": 2,
       "share": 22
     },
     {
-      "name": "Java",
+      "name": "TypeScript",
       "count": 2,
       "share": 22
     },
@@ -43,6 +43,24 @@
   ],
   "recentCommits": [
     {
+      "repo": "SDE2-Interview-Handbook",
+      "message": "PDF discoverability, SD-04/SD-05 design books, IR-01 behavioral book, and green book CI (#",
+      "date": "2026-09-30T16:42:44.000-04:00",
+      "url": "https://github.com/vinayreddykalluri/SDE2-Interview-Handbook/commit/2be884958520ea9814b417bf1a1aaab69a74d84c"
+    },
+    {
+      "repo": "vinayreddykalluri",
+      "message": "Rebuild and redeploy nightly",
+      "date": "2026-09-30T13:22:13.000-04:00",
+      "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/288a92f3cf1b3b76cc979b71fe8cb3cda834c32c"
+    },
+    {
+      "repo": "vinayreddykalluri",
+      "message": "Stop live GitHub data from arriving with holes in it",
+      "date": "2026-09-30T13:16:57.000-04:00",
+      "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/ee5162ab90a45e20603c7b71e5f77b7ace89c69e"
+    },
+    {
       "repo": "vinayreddykalluri",
       "message": "Make timeline entries navigable",
       "date": "2026-09-30T13:06:39.000-04:00",
@@ -59,24 +77,6 @@
       "message": "Rewrite the profile README",
       "date": "2026-09-09T08:40:50.000-04:00",
       "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/3cc241bf021213a2b03e4f7cca1279c59746a588"
-    },
-    {
-      "repo": "vinayreddykalluri",
-      "message": "UX audit: fix share previews, page title, and keyboard entry",
-      "date": "2026-09-08T14:21:16.000-04:00",
-      "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/5927a3c17e9fa8bee94388b174d1d3abdc1ca44c"
-    },
-    {
-      "repo": "vinayreddykalluri",
-      "message": "Extend the timeline back to 2012 and give it a scroll-linked spine",
-      "date": "2026-09-08T13:39:11.000-04:00",
-      "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/21f0ad867f926c415df3acdf2b2d99088d2a961c"
-    },
-    {
-      "repo": "vinayreddykalluri",
-      "message": "Rebuild the timeline; fix dates rendering a day early",
-      "date": "2026-09-08T13:33:44.000-04:00",
-      "url": "https://github.com/vinayreddykalluri/vinayreddykalluri/commit/fde11a8f91caa46ac706ba2c80814aafe3c55dc7"
     }
   ],
   "featured": [
@@ -93,7 +93,7 @@
         "books",
         "data-structures"
       ],
-      "pushedAt": "2026-09-01T19:21:43Z"
+      "pushedAt": "2026-09-30T20:57:57Z"
     },
     {
       "name": "Image-Generation-GANs",

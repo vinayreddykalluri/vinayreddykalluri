@@ -76,6 +76,7 @@
   --shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px -12px rgba(0, 0, 0, 0.7);
   --shadow-lift: 0 2px 6px rgba(0, 0, 0, 0.5), 0 22px 48px -20px rgba(0, 0, 0, 0.9);
   --glow: color-mix(in oklab, var(--accent) 30%, transparent);
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
   }
 }
 
@@ -113,7 +114,7 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-body);
   --font-serif: var(--font-display);
-  --font-mono: var(--font-ibm-plex-mono);
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
 }
 
 *,
@@ -154,11 +155,16 @@ a { color: inherit; text-decoration: none; }
   color: var(--background);
 }
 
+/*
+ * Headings were set at weight 800 on a line-height of 1.0 — the two settings
+ * that make a page feel like it is being shouted at you. 600 on 1.08 keeps the
+ * authority and gives the letterforms room to be read.
+ */
 h1, h2, h3, h4 {
   font-family: var(--font-display), "Helvetica Neue", Arial, sans-serif;
-  font-weight: 800;
-  letter-spacing: -0.022em;
-  line-height: 1.0;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.08;
   text-wrap: balance;
 }
 
@@ -226,10 +232,9 @@ h1, h2, h3, h4 {
   border-radius: var(--radius);
   background: transparent;
   color: var(--muted);
-  font-family: var(--font-ibm-plex-mono), ui-monospace, monospace;
-  font-size: 0.6875rem;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
+  font-family: var(--font-body), "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.8125rem;
+  letter-spacing: 0;
 }
 
 .glass-nav {
@@ -240,11 +245,16 @@ h1, h2, h3, h4 {
 
 /* ---------- type ---------- */
 
+/*
+ * Section eyebrows. These stay in capitals — there are only a handful per page
+ * and they are signposts, not reading — but in the text face at a readable size
+ * with a third of the tracking, rather than 11px of monospace at 0.16em.
+ */
 .kicker {
-  font-family: var(--font-ibm-plex-mono), ui-monospace, monospace;
-  font-size: 0.6875rem;
-  font-weight: 500;
-  letter-spacing: 0.16em;
+  font-family: var(--font-body), "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--accent-strong);
 }
@@ -254,35 +264,42 @@ h1, h2, h3, h4 {
 /* Oversized editorial display, sized to the viewport rather than a container. */
 .display-xl {
   font-family: var(--font-display), "Helvetica Neue", Arial, sans-serif;
-  font-weight: 800;
-  font-size: clamp(2.75rem, 8.5vw, 8rem);
-  line-height: 0.88;
-  letter-spacing: -0.028em;
+  font-weight: 600;
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
 }
 
 .display-lg {
   font-family: var(--font-display), "Helvetica Neue", Arial, sans-serif;
-  font-weight: 800;
-  font-size: clamp(2rem, 4.6vw, 3.75rem);
-  line-height: 0.96;
-  letter-spacing: -0.025em;
+  font-weight: 600;
+  font-size: clamp(1.75rem, 3.4vw, 3rem);
+  line-height: 1.1;
+  letter-spacing: -0.018em;
 }
 
 /* A metric rendered as a graphic object rather than a card. */
 .stat-figure {
   font-family: var(--font-display), "Helvetica Neue", Arial, sans-serif;
-  font-weight: 800;
-  font-size: clamp(2.25rem, 4.6vw, 4rem);
-  line-height: 0.9;
-  letter-spacing: -0.03em;
+  font-weight: 600;
+  font-size: clamp(2rem, 3.6vw, 3.25rem);
+  line-height: 1;
+  letter-spacing: -0.022em;
   font-variant-numeric: tabular-nums;
 }
 
+/*
+ * The workhorse label — 55 of them on the homepage, carrying dates, metric
+ * names and captions. Every one was 11px monospace capitals tracked to 0.14em.
+ * The source text was already sentence case ("Commits authored", "Aug 1, 2026"),
+ * so dropping the transform simply shows what was written.
+ */
 .data-label {
-  font-family: var(--font-ibm-plex-mono), ui-monospace, monospace;
-  font-size: 0.6875rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  font-family: var(--font-body), "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 400;
+  letter-spacing: 0.005em;
+  line-height: 1.45;
 }
 
 .rule-accent {
@@ -320,10 +337,9 @@ h1, h2, h3, h4 {
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 0.3rem 0.7rem;
-  font-family: var(--font-ibm-plex-mono), ui-monospace, monospace;
-  font-size: 0.6875rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  font-family: var(--font-body), "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.8125rem;
+  letter-spacing: 0;
   color: var(--muted);
   white-space: nowrap;
 }
@@ -490,6 +506,15 @@ body::after {
 .aurora {
   position: relative;
   isolation: isolate;
+  /*
+   * The glow below is positioned at right: -8%, deliberately past the edge. With
+   * nothing clipping it, that overhang counted towards the document's scroll
+   * width and gave every phone a 36px horizontal scroll on the homepage — the
+   * page could be dragged sideways to reveal nothing. `clip` rather than
+   * `hidden` because clip does not create a scroll container, so it cannot
+   * break position: sticky for anything placed inside later.
+   */
+  overflow-x: clip;
 }
 
 .aurora::before,

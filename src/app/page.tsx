@@ -337,7 +337,7 @@ export default function HomePage() {
 
       {/* ================= UPSTREAM ================= */}
       <Reveal>
-        <section className="band-invert -mx-[clamp(1.25rem,5vw,5rem)] mt-16 px-[clamp(1.25rem,5vw,5rem)] py-16 md:py-24">
+        <section className="band-invert mt-16 py-16 md:py-24">
           <div className="shell">
             <span className="kicker">Upstream</span>
             <h2 className="display-lg mt-4 max-w-[20ch]">

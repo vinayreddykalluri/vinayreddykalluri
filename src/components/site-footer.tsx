@@ -15,7 +15,7 @@ export function SiteFooter() {
           <p className="mt-3 max-w-xl text-sm leading-6 text-[color:var(--muted)]">
             {siteConfig.footerTagline}
           </p>
-          <p className="mt-3 text-xs uppercase tracking-[0.1em] text-[color:var(--muted)]">
+          <p className="data-label mt-3 text-[color:var(--muted)]">
             {siteConfig.role} | {siteConfig.location}
           </p>
           <p className="mt-4 text-xs text-[color:var(--muted)]">
