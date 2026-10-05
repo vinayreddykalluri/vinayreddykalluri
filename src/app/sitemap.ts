@@ -10,6 +10,7 @@ const staticRoutes = [
   "/career",
   "/skills",
   "/projects",
+  "/apps",
   "/blog",
   "/timeline",
   "/contact",
